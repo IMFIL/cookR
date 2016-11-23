@@ -1,3 +1,28 @@
 <resources>
     <string name="app_name">cookR</string>
+    <string-array name="mealTime_Array">
+        <item>BreakFast</item>
+        <item>Lunch</item>
+        <item>Supper</item>
+        <item>Snack</item>
+    </string-array>
+
+    <string-array name="cuisine_Array">
+        <item>Asian</item>
+        <item>European</item>
+        <item>Middle Eastern</item>
+        <item>American</item>
+        <item>Indian</item>
+        <item>Mexican</item>
+    </string-array>
+
+    <string-array name="type_Array">
+        <item>Main dish</item>
+        <item>starter</item>
+        <item>dessert</item>
+        <item>appetizer</item>
+        <item>drink</item>
+        <item>sauce</item>
+    </string-array>
+
 </resources>
