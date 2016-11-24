@@ -12,10 +12,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class main_search extends AppCompatActivity {
-    final Context context = this;
     ListView list = null;
 
     selection_items currentList;
@@ -42,6 +40,8 @@ public class main_search extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.single_listview_item,R.id.txtitem, els);
         list = new ListView(this);
         list.setAdapter(adapter);
+
+
         list.setOnItemClickListener( new AdapterView.OnItemClickListener(){
 
             @Override
