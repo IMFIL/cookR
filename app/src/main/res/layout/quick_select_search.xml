@@ -29,42 +29,19 @@
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight=".3"
-                android:layout_margin="10dip">
+                android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="Search"
+                    android:text="Quick Select"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/textView"
                     android:gravity="center_vertical|center_horizontal"
                     android:textSize="50sp"
                     android:textColor="@color/redPastel"
-                    android:paddingBottom="10dip"
-                    android:textStyle="bold" />
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight=".3">
-
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-                        <EditText
-                            android:layout_width="match_parent"
-                            android:hint="Ingredients"
-                            android:textColorHint="@color/darkPink"
-                            android:textColor="@color/redPastel"
-                            android:layout_height="match_parent"
-                            android:textColorLink="@color/darkPink" />
-                    </android.support.design.widget.TextInputLayout>
-
-                </LinearLayout>
+                    android:textStyle="bold"
+                    android:paddingBottom="50dip"
+                    android:paddingTop="15dip" />
 
             </LinearLayout>
 
@@ -130,29 +107,6 @@
                         android:id="@+id/mealTimeText"
                         android:layout_weight="1"
                         android:keepScreenOn="true"
-                        android:gravity="center"
-                        android:textColor="@color/darkPink" />
-
-                    <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="60dip"
-                        android:id="@+id/typeButton"
-                        android:layout_weight="1"
-                        android:background="@drawable/border"
-                        android:layout_margin="10dp"
-                        android:layout_gravity="center"
-                        android:textColor="@color/redPastel"
-                        android:textSize="20sp"
-                        android:text="Type"
-                        android:textAllCaps="false"
-                        android:onClick="showDialogListView" />
-
-                    <TextView
-                        android:text="Type of food"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/typeText"
-                        android:layout_weight="1"
                         android:gravity="center"
                         android:textColor="@color/darkPink" />
 
