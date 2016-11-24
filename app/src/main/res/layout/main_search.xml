@@ -28,7 +28,8 @@
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight=".3">
+                android:layout_weight=".3"
+                android:layout_margin="10dip">
 
                 <TextView
                     android:text="Search"
@@ -47,34 +48,67 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <AutoCompleteTextView
+                <LinearLayout
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="60dip"
-                    android:id="@+id/autoCompleteTextView"
-                    android:gravity="center_vertical|center_horizontal|center"
-                    android:textSize="25sp"
-                    android:background="@drawable/border"
-                    android:textColor="@color/redPastel"
-                    android:layout_gravity="center_horizontal|center"
-                    android:hint="Ingredients"
-                    android:textColorHint="@color/redPastel"
-                    android:layout_weight="1"
-                    android:foregroundGravity="left"
-                    android:layout_margin="10dp" />
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
 
-                <Button
+                    <AutoCompleteTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="60dip"
+                        android:id="@+id/autoCompleteTextView"
+                        android:gravity="center_vertical|center_horizontal|center"
+                        android:textSize="25sp"
+                        android:background="@drawable/border"
+                        android:textColor="@color/redPastel"
+                        android:layout_gravity="center_horizontal|center"
+                        android:hint="Ingredients"
+                        android:textColorHint="@color/redPastel"
+                        android:layout_weight="1"
+                        android:foregroundGravity="left"
+                        android:layout_margin="10dp"
+                        android:textColorLink="@color/redPastel" />
+
+                    <TextView
+                        android:text="ingredients"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/ingText"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="@color/darkPink" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="60dip"
-                    android:id="@+id/typeButton"
-                    android:layout_weight="1"
-                    android:background="@drawable/border_with_image"
-                    android:layout_margin="10dp"
-                    android:layout_gravity="center"
-                    android:textColor="@color/redPastel"
-                    android:textSize="25sp"
-                    android:text="Type"
-                    android:textAllCaps="false"
-                    android:onClick="showDialogListView" />
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="60dip"
+                        android:id="@+id/typeButton"
+                        android:layout_weight="1"
+                        android:background="@drawable/border"
+                        android:layout_margin="10dp"
+                        android:layout_gravity="center"
+                        android:textColor="@color/redPastel"
+                        android:textSize="25sp"
+                        android:text="Type"
+                        android:textAllCaps="false"
+                        android:onClick="showDialogListView" />
+
+                    <TextView
+                        android:text="Type of food"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/typeText"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="@color/darkPink" />
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -102,21 +136,31 @@
                         android:layout_height="60dip"
                         android:id="@+id/cuisineButton"
                         android:layout_weight="1"
-                        android:background="@drawable/border_with_image"
+                        android:background="@drawable/border"
                         android:layout_margin="10dp"
                         android:layout_gravity="center"
                         android:textColor="@color/redPastel"
                         android:textSize="25sp"
-                        android:text="Cusine"
+                        android:text="Cuisine"
                         android:textAllCaps="false"
                         android:onClick="showDialogListView" />
+
+                    <TextView
+                        android:text="Type of cuisine"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/cuisineText"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="@color/darkPink"
+                        android:paddingBottom="10dip" />
 
                     <Button
                         android:layout_width="match_parent"
                         android:layout_height="60dip"
                         android:id="@+id/mealTimeButton"
                         android:layout_weight="1"
-                        android:background="@drawable/border_with_image"
+                        android:background="@drawable/border"
                         android:layout_margin="10dp"
                         android:layout_gravity="center"
                         android:textColor="@color/redPastel"
@@ -124,6 +168,16 @@
                         android:text="Meal time"
                         android:textAllCaps="false"
                         android:onClick="showDialogListView" />
+
+                    <TextView
+                        android:text="Meal classification"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/mealTimeText"
+                        android:layout_weight="1"
+                        android:keepScreenOn="true"
+                        android:gravity="center"
+                        android:textColor="@color/darkPink" />
 
                 </LinearLayout>
 
