@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">cookR</string>
+    <string name="app_name">CookR</string>
+    <string name="title_activity_help">helpActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="help_header">Help</string>
+    <string name="header_main">CookR</string>
+    <string name="HelpAddRecipe"> 1. In the main menu, select \"Add New Recipe\"\n\n2. Take the time to fill in the blanks\n\n3. Hit \"Add\" once your done</string>
+    <string name="helpTextWhatFavourites">Got plenty of cravings? We got you covered!\n\n1. Search a recipe that you like\n\n2. Simply tap the heart\n
+        \n3. At the main menu, click on \"Favourites\"\n\n4. You can view or remove any favourite saved </string>
 </resources>
