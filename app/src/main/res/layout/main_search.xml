@@ -43,7 +43,7 @@
                     android:textSize="50sp"
                     android:textColor="@color/redPastel"
                     android:paddingBottom="10dip"
-                    android:textStyle="bold" />
+                    android:typeface="serif" />
 
                 <LinearLayout
                     android:orientation="vertical"
