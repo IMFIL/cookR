@@ -21,7 +21,7 @@
         android:layout_alignParentStart="true">
 
         <TextView
-            android:text="CookR"
+            android:text="@string/header_main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/headerMain"
@@ -49,7 +49,9 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
                 android:gravity="center_horizontal|center"
                 android:layout_weight="1"
-                android:textColor="@color/redPastel" />
+                android:textColor="@color/redPastel"
+                android:clickable="true"
+                android:soundEffectsEnabled="true" />
 
             <TextView
                 android:text="Search"
@@ -59,7 +61,9 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
                 android:gravity="center_horizontal|center"
                 android:layout_weight="1"
-                android:textColor="@color/redPastel" />
+                android:textColor="@color/redPastel"
+                android:clickable="true"
+                android:soundEffectsEnabled="true" />
 
             <TextView
                 android:text="Favourites"
@@ -69,7 +73,9 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
                 android:gravity="center_horizontal|center"
                 android:layout_weight="1"
-                android:textColor="@color/redPastel" />
+                android:textColor="@color/redPastel"
+                android:clickable="true"
+                android:soundEffectsEnabled="true" />
 
             <TextView
                 android:text="Add New Recipe"
@@ -79,7 +85,9 @@
                 android:gravity="center_horizontal|center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
                 android:layout_weight="1"
-                android:textColor="@color/redPastel" />
+                android:textColor="@color/redPastel"
+                android:onClick="helpAddRecipe"
+                android:soundEffectsEnabled="true" />
 
             <TextView
                 android:text="Help"
@@ -89,7 +97,9 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
                 android:gravity="center_horizontal|center"
                 android:layout_weight="1"
-                android:textColor="@color/redPastel" />
+                android:textColor="@color/redPastel"
+                android:onClick="helpClick"
+                android:soundEffectsEnabled="true" />
         </LinearLayout>
 
     </LinearLayout>
