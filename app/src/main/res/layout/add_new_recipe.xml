@@ -1,165 +1,306 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:text="Recipe Name"
-            android:ems="10"
-            android:id="@+id/recipeName"
-            android:layout_weight="1" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="textMultiLine"
-            android:ems="10"
-            android:id="@+id/recipeInstructions"
-            android:layout_weight="1"
-            android:text="Instructions" />
-    </LinearLayout>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/darkPastel">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <RadioGroup
-            android:id="@+id/radioGroup1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <RadioButton
-                android:id="@+id/radio0"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/colorAccent"
-                android:button="@android:color/transparent"
-                android:text="Breakfast"
-                android:layout_weight="1"
-                android:gravity="center_vertical|center_horizontal|center"
-                android:checked="false" />
-            <RadioButton
-                android:id="@+id/radio1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:button="@android:color/transparent"
-                android:checked="false"
-                android:text="Lunch"
-                android:layout_weight="1"
-                android:gravity="center_vertical|center_horizontal|center" />
-            <RadioButton
-                android:id="@+id/radio2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:button="@android:color/transparent"
-                android:checked="false"
-                android:text="Dinner"
-                android:layout_weight="1"
-                android:gravity="center_vertical|center_horizontal|center" />
-            <RadioButton
-                android:id="@+id/radio3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:button="@android:color/transparent"
-                android:checked="false"
-                android:text="Snack"
-                android:layout_weight="1"
-                android:gravity="center_vertical|center_horizontal|center" />
-
-        </RadioGroup>
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <AutoCompleteTextView
-            android:text="Ethnicity"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp">
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/autoCompleteTextView" />
+            android:textSize="36sp"
+            android:textColor="@color/redPastel"
+            android:text="Add New Recipe"
+            android:gravity="center_horizontal"/>
     </LinearLayout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:background="@color/darkPastel"
+            android:layout_height="match_parent"
+            android:layout_weight="8"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:gravity="center_horizontal"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/viewImage"
+                    android:src="@drawable/camera"
+                    android:text="Select Photo"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:background="@mipmap/ic_launcher"/>
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical">
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textColorHint="@color/redPastel">
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName"
+                        android:ems="10"
+                        android:id="@+id/recipeName"
+                        android:layout_weight="1"
+                        android:hint="Recipe Name"
+                        android:textColor="@color/redPastel"
+                        android:textColorHint="@color/redPastel"
+                        android:gravity="center_vertical|center_horizontal" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical">
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textColorHint="@color/redPastel">
+                        <AutoCompleteTextView
+                            android:hint="Cuisine"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/ethnicity"
+                            android:textColor="@color/redPastel"
+                            android:textColorHint="@color/redPastel"
+                            android:gravity="center_vertical|center_horizontal" />
+                    </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
 
-        <EditText
-            android:text="Servings"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:ems="10"
-            android:id="@+id/editText4"
-            android:layout_weight="1" />
-    </LinearLayout>
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical">
 
-        <EditText
-            android:text="Preparation time in minutes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:ems="10"
-            android:id="@+id/editText5"
-            android:layout_weight="1" />
-    </LinearLayout>
+                    <RadioGroup
+                        android:id="@+id/radioGroup1"
+                        android:layout_above="@+id/view_below"
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+                        <RadioButton
+                            android:id="@+id/radio3"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/custom_radio_button"
+                            android:button="@android:color/transparent"
+                            android:checked="false"
+                            android:text="Snack"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:layout_marginLeft="2dp"
+                            android:textColor="@color/redPastel"
+                            android:layout_marginRight="2dp" />
+                        <RadioButton
+                            android:id="@+id/radio0"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/custom_radio_button"
+                            android:button="@android:color/transparent"
+                            android:text="Breakfast"
+                            android:layout_weight="1"
+                            android:checked="false"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:layout_marginLeft="2dp"
+                            android:textColor="@color/redPastel"
+                            android:layout_marginRight="2dp" />
 
-        <EditText
-            android:text="Cooking time in minutes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:ems="10"
-            android:id="@+id/editText5"
-            android:layout_weight="1" />
-    </LinearLayout>
+                        <RadioButton
+                            android:id="@+id/radio1"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/custom_radio_button"
+                            android:button="@android:color/transparent"
+                            android:checked="false"
+                            android:text="Lunch"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:layout_marginLeft="2dp"
+                            android:textColor="@color/redPastel"
+                            android:layout_marginRight="2dp" />
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+                        <RadioButton
+                            android:id="@+id/radio2"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/custom_radio_button"
+                            android:button="@android:color/transparent"
+                            android:checked="false"
+                            android:text="Dinner"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:layout_marginLeft="2dp"
+                            android:textColor="@color/redPastel"
+                            android:layout_marginRight="2dp" />
 
 
-        <Button
-            android:text="Add"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/button"
-            android:layout_weight="1" />
-    </LinearLayout>
-</LinearLayout>
+                    </RadioGroup>
 
+                </LinearLayout>
+
+
+                <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="bottom"
+                        android:gravity="center_vertical">
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="top"
+                            android:layout_weight="1"
+                            android:textColorHint="@color/redPastel">
+
+                            <EditText
+                                android:hint="Serves [People]"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="number"
+                                android:ems="10"
+                                android:id="@+id/servings"
+                                android:layout_weight="1"
+                                android:textColor="@color/redPastel"
+                                android:textColorHint="@color/redPastel"
+                                android:gravity="center_horizontal" />
+                        </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical">
+
+
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical">
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textColorHint="@color/redPastel">
+                            <EditText
+                                android:hint="Preparation time [Min]"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:inputType="number"
+                                android:ems="10"
+                                android:id="@+id/preparationTime"
+                                android:layout_weight="1"
+                                android:textColor="@color/redPastel"
+                                android:textColorHint="@color/redPastel"
+                                android:gravity="center_vertical" />
+                        </android.support.design.widget.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical">
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textColorHint="@color/redPastel"
+                            android:id="@+id/TxtLayoutCookingTime">
+                            <EditText
+                                android:hint="Cooking time [Min]"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:inputType="number"
+                                android:ems="10"
+                                android:id="@+id/cookTime"
+                                android:layout_weight="1"
+                                android:textColor="@color/redPastel"
+                                android:textColorHint="@color/redPastel"
+                                android:layout_below="@+id/TxtLayoutCookingTime"
+                                android:gravity="center_vertical" />
+                        </android.support.design.widget.TextInputLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical">
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textColorHint="@color/redPastel">
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="textMultiLine"
+                                android:ems="10"
+                                android:id="@+id/recipeInstructions"
+                                android:layout_weight="1"
+                                android:hint="Instructions"
+                                android:textColor="@color/redPastel"
+                                android:textColorHint="@color/redPastel"
+                                android:gravity="center_vertical|center_horizontal" />
+                        </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
+
+
+        </LinearLayout>
+        <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="bottom">
+
+
+                    <Button
+                        android:text="Add +"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/addBtn"
+                        android:background="@color/redPastel"
+                        android:layout_weight="1"
+                        android:textColor="@color/darkPastel"/>
+
+                </LinearLayout>
+   </LinearLayout>
