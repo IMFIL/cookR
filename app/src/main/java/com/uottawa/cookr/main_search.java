@@ -1,17 +1,14 @@
 package com.uottawa.cookr;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 
 public class main_search extends AppCompatActivity {
     ListView list = null;
@@ -36,29 +33,34 @@ public class main_search extends AppCompatActivity {
 
 
     private void populateListView(String[] els) {
-        list = null;
+
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.single_listview_item,R.id.txtitem, els);
         list = new ListView(this);
         list.setAdapter(adapter);
+        list.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+
+        for (int i=0; i < currentList.getArray().length;i++ ){
+            if(currentList.isSelected(i)){
+                list.setItemChecked(i,true);
+            }
+        }
 
 
         list.setOnItemClickListener( new AdapterView.OnItemClickListener(){
 
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int
-                    position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
 
-                ViewGroup vg=(ViewGroup)view;
-                TextView txt=(TextView)vg.findViewById(R.id.txtitem);
 
                 if(!currentList.isSelected(position)) {
-                    txt.setBackgroundResource(R.color.redPastel);
                     currentList.select(position);
+                    list.setItemChecked(position,true);
                 }
 
                 else{
-                    txt.setBackgroundResource(R.color.white);
                     currentList.unselect(position);
+                    list.setItemChecked(position,false);
                 }
 
             }
@@ -66,6 +68,7 @@ public class main_search extends AppCompatActivity {
         });
 
     }
+
 
     public void showDialogListView(View view){
         String [] selection = {};

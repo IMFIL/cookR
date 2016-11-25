@@ -31,10 +31,11 @@ public class selection_items {
 
 
     public void unselect(int id) {
-        if (id - 1 > selected.length) {
-        } else {
             selected[id] = false;
-        }
+    }
+
+    public String getName(){
+        return name;
     }
 
     public String[] getArray() {
@@ -42,11 +43,7 @@ public class selection_items {
     }
 
     public boolean isSelected(int pos) {
-        if (pos - 1 > selected.length) {
-            return false;
-        } else {
-            return selected[pos];
-        }
+        return selected[pos];
 
     }
 
@@ -54,11 +51,11 @@ public class selection_items {
         int repetitions = 0;
 
         for(int i = 0; i < elements.length;i++){
-            if (repetitions > 1) return true;
             if (isSelected(i)){
                 repetitions++;
             }
         }
+        if (repetitions > 1) return true;
 
         return false;
     }
