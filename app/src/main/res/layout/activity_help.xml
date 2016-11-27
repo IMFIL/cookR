@@ -27,7 +27,8 @@
             android:id="@+id/helpHeader"
             android:gravity="center|clip_horizontal"
             android:textSize="60sp"
-            android:textColor="@color/redPastel" />
+            android:textColor="@color/redPastel"
+            android:background="@color/lightNavy" />
 
         <LinearLayout
             android:orientation="horizontal"
