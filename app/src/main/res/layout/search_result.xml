@@ -30,14 +30,17 @@
                     android:textAlignment="center"
                     android:textSize="36sp"
                     android:layout_weight="1"
-                    android:textColor="@color/redPastel" />
+                    android:textColor="@color/redPastel"
+                    android:paddingLeft="50dp" />
 
                 <ImageButton
-                    android:layout_width="45dp"
+                    android:layout_width="47dp"
                     android:layout_height="match_parent"
-                    app:srcCompat="@android:drawable/star_off"
+                    app:srcCompat="@drawable/heart_white"
                     android:id="@+id/imageButton"
-                    android:background="@color/darkPastel" />
+                    android:background="@color/darkPastel"
+                    android:scaleType="fitXY"
+                    android:paddingRight="10dp" />
 
             </LinearLayout>
 
