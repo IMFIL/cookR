@@ -34,7 +34,7 @@
                     android:paddingLeft="50dp" />
 
                 <ImageButton
-                    android:layout_width="47dp"
+                    android:layout_width="51dp"
                     android:layout_height="match_parent"
                     app:srcCompat="@drawable/heart_white"
                     android:id="@+id/imageButton"
