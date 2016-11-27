@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_help"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.uottawa.cookr.HelpActivity"
+    android:background="@color/darkPastel">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:text="@string/help_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/helpHeader"
+            android:gravity="center|clip_horizontal"
+            android:textSize="60sp"
+            android:textColor="@color/redPastel" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="124dp"
+            android:layout_weight="0.41">
+
+            <TextView
+                android:text="Need help with anything?"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/needHelp"
+                android:gravity="center_horizontal|center"
+                android:textColor="@color/yellowPastel"
+                android:textSize="25sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:text="What Is Quick Select?"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_help_quickSelect"
+                android:background="@drawable/border"
+                android:layout_marginBottom="20dp"
+                android:textColor="@color/redPastel"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:onClick="helpWhatSelect"
+                android:soundEffectsEnabled="true" />
+
+            <Button
+                android:text="How Do I Search A Recipe?"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_help_SearchRecipe"
+                android:background="@drawable/border"
+                android:layout_marginBottom="20dp"
+                android:textColor="@color/redPastel"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:onClick="helpSearchRecipe"
+                android:soundEffectsEnabled="true" />
+
+            <Button
+                android:text="What Are Favourites?"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_help_favourites"
+                android:background="@drawable/border"
+                android:layout_marginBottom="20dp"
+                android:textColor="@color/redPastel"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:onClick="helpWhatFavourites"
+                android:soundEffectsEnabled="true" />
+
+            <Button
+                android:text="How Can I add A new Recipe?"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_help_addNewRecipe"
+                android:background="@drawable/border"
+                android:layout_marginBottom="20dp"
+                android:textColor="@color/redPastel"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:onClick="helpAddRecipe"
+                android:soundEffectsEnabled="true" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
