@@ -2,6 +2,7 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
+
     <color name="colorAccent">#FF4081</color>
 
     <color name="lightPink">#fec8c9</color>
@@ -13,4 +14,12 @@
     <color name="yellowPastel">#ffc952</color>
     <color name="bluePastel">#47b8e0</color>
     <color name="darkPastel">#34314c</color>
+
+    <color name="white">#ffffff</color>
+    <color name="background">#353848</color>
+    <color name="text">#ef9e9f</color>
+    <color name="button">#a3c9c7</color>
+    <color name="actioBar">#2a2d39</color>
+
+
 </resources>
