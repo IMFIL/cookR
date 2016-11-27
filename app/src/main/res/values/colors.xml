@@ -2,7 +2,17 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
+<<<<<<< HEAD
     <color name="colorAccent">#ff7473</color>
+=======
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="lightPink">#fec8c9</color>
+    <color name="darkPink">#fd999a</color>
+    <color name="lightNavy">#444f59</color>
+    <color name="darkNavy">#3e4149</color>
+
+>>>>>>> 0f7811530c729e0f43db4381c5b287b84ae42762
     <color name="redPastel">#ff7473</color>
     <color name="yellowPastel">#ffc952</color>
     <color name="bluePastel">#47b8e0</color>
