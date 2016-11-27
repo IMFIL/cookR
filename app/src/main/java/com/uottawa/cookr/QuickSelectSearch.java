@@ -9,6 +9,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -28,6 +29,20 @@ public class QuickSelectSearch extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.quick_select_search);
 
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.customToolBar);
+        setSupportActionBar(myToolbar);
+
+
+
+        android.support.v7.app.ActionBar currentActionBar = getSupportActionBar();
+
+        currentActionBar.setDisplayShowHomeEnabled(false);
+        currentActionBar.setDisplayShowTitleEnabled(false);
+
+        currentActionBar.setCustomView( ActionBarSetter.getActionBarView("Quick Select",this));
+
+        currentActionBar.setDisplayShowCustomEnabled(true);
+
         times = new selection_items(getResources().getStringArray(R.array.mealTime_Array),"Meal Time");
         cuisines = new selection_items(getResources().getStringArray(R.array.cuisine_Array),"Cuisines");
 
@@ -42,7 +57,7 @@ public class QuickSelectSearch extends AppCompatActivity {
         list.setAdapter(adapter);
         list.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
-        for (int i=1; i < currentList.getArray().length+1;i++ ){
+        for (int i=0; i < currentList.getArray().length;i++ ){
             if(currentList.isSelected(i)){
                 list.setItemChecked(i,true);
             }

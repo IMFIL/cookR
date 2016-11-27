@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -23,6 +24,23 @@ public class main_search extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_search);
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.customToolBar);
+        setSupportActionBar(myToolbar);
+
+
+
+        android.support.v7.app.ActionBar currentActionBar = getSupportActionBar();
+
+        currentActionBar.setDisplayShowHomeEnabled(false);
+        currentActionBar.setDisplayShowTitleEnabled(false);
+
+        currentActionBar.setCustomView( ActionBarSetter.getActionBarView("Search",this));
+
+        currentActionBar.setDisplayShowCustomEnabled(true);
+
+
+
 
         times = new selection_items(getResources().getStringArray(R.array.mealTime_Array),"Meal Time");
         cuisines = new selection_items(getResources().getStringArray(R.array.cuisine_Array),"Cuisines");

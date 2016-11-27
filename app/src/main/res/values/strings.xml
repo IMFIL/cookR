@@ -18,11 +18,11 @@
 
     <string-array name="type_Array">
         <item>Main dish</item>
-        <item>starter</item>
-        <item>dessert</item>
-        <item>appetizer</item>
-        <item>drink</item>
-        <item>sauce</item>
+        <item>Starter</item>
+        <item>Dessert</item>
+        <item>Appetizer</item>
+        <item>Drink</item>
+        <item>Sauce</item>
     </string-array>
 
 </resources>

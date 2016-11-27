@@ -8,6 +8,7 @@ package com.uottawa.cookr;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -24,6 +25,21 @@ public class Favorites_results extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.favorite_page);
+
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.customToolBar);
+        setSupportActionBar(myToolbar);
+
+
+
+        android.support.v7.app.ActionBar currentActionBar = getSupportActionBar();
+
+        currentActionBar.setDisplayShowHomeEnabled(false);
+        currentActionBar.setDisplayShowTitleEnabled(false);
+
+        currentActionBar.setCustomView( ActionBarSetter.getActionBarView("Favorites",this));
+
+        currentActionBar.setDisplayShowCustomEnabled(true);
 
         ImageAndNameAdapter adapter = new ImageAndNameAdapter(this,images,recipename);
 
