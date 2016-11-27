@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-public class SearchResult extends AppCompatActivity {
+public class SingleRecipeResult extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
