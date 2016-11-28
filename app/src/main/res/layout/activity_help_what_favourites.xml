@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.uottawa.cookr.helpWhatFavourites"
-    android:background="@color/darkPastel">
+    android:background="@color/background">
 
     <LinearLayout
         android:orientation="vertical"
@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/helpWhatFavouritesHeader"
             android:textSize="25sp"
-            android:textColor="@color/yellowPastel" />
+            android:textColor="@color/text" />
 
         <TextView
             android:text="@string/helpTextWhatFavourites"
@@ -30,7 +30,6 @@
             android:layout_height="wrap_content"
             android:id="@+id/textView2"
             android:layout_weight="1"
-            android:textColor="@color/redPastel"
             android:textSize="18sp"
             android:layout_marginBottom="20dp"
             android:layout_marginTop="20dp" />

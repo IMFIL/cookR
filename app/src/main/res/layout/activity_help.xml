@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.uottawa.cookr.HelpActivity"
-    android:background="@color/darkPastel">
+    android:background="@color/background">
 
     <LinearLayout
         android:orientation="vertical"
@@ -27,8 +27,7 @@
             android:id="@+id/helpHeader"
             android:gravity="center|clip_horizontal"
             android:textSize="60sp"
-            android:textColor="@color/redPastel"
-            android:background="@color/lightNavy" />
+            android:textColor="@color/actioBar" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -42,7 +41,7 @@
                 android:layout_height="match_parent"
                 android:id="@+id/needHelp"
                 android:gravity="center_horizontal|center"
-                android:textColor="@color/yellowPastel"
+                android:textColor="@color/text"
                 android:textSize="25sp" />
 
         </LinearLayout>
@@ -59,7 +58,6 @@
                 android:id="@+id/btn_help_quickSelect"
                 android:background="@drawable/border"
                 android:layout_marginBottom="20dp"
-                android:textColor="@color/redPastel"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
@@ -73,7 +71,6 @@
                 android:id="@+id/btn_help_SearchRecipe"
                 android:background="@drawable/border"
                 android:layout_marginBottom="20dp"
-                android:textColor="@color/redPastel"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:onClick="helpSearchRecipe"
@@ -86,7 +83,6 @@
                 android:id="@+id/btn_help_favourites"
                 android:background="@drawable/border"
                 android:layout_marginBottom="20dp"
-                android:textColor="@color/redPastel"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:onClick="helpWhatFavourites"
@@ -99,7 +95,6 @@
                 android:id="@+id/btn_help_addNewRecipe"
                 android:background="@drawable/border"
                 android:layout_marginBottom="20dp"
-                android:textColor="@color/redPastel"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:onClick="helpAddRecipe"
