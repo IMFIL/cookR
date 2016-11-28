@@ -32,4 +32,16 @@
     <string name="HelpAddRecipe"> 1. In the main menu, select \"Add New Recipe\"\n\n2. Take the time to fill in the blanks\n\n3. Hit \"Add\" once your done</string>
     <string name="helpTextWhatFavourites">Got plenty of cravings? We got you covered!\n\n1. Search a recipe that you like\n\n2. Simply tap the heart\n
         \n3. At the main menu, click on \"Favourites\"\n\n4. You can view or remove any favourite saved </string>
+    <string name="recipeName">Recipe Name</string>
+    <string name="cuisine">Cuisine</string>
+    <string name="snack">Snack</string>
+    <string name="breakfast">Breakfast</string>
+    <string name="lunch">Lunch</string>
+    <string name="dinner">Dinner</string>
+    <string name="serves">Serves [People]</string>
+    <string name="cookingTime">Cooking time [min]</string>
+    <string name="preparationTime">Preparation time [min]</string>
+    <string name="instructions">Instructions</string>
+    <string name="addBtn">Add +</string>
+    <string name="addNewRecipeTitle">Add New Recipe</string>
 </resources>

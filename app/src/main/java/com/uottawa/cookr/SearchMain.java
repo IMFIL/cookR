@@ -11,14 +11,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
-public class main_search extends AppCompatActivity {
+public class SearchMain extends AppCompatActivity {
     ListView list = null;
 
-    selection_items currentList;
+    SelectionItems currentList;
 
-    selection_items times;
-    selection_items cuisines;
-    selection_items types;
+    SelectionItems times;
+    SelectionItems cuisines;
+    SelectionItems types;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +42,9 @@ public class main_search extends AppCompatActivity {
 
 
 
-        times = new selection_items(getResources().getStringArray(R.array.mealTime_Array),"Meal Time");
-        cuisines = new selection_items(getResources().getStringArray(R.array.cuisine_Array),"Cuisines");
-        types = new selection_items(getResources().getStringArray(R.array.type_Array),"Type");
+        times = new SelectionItems(getResources().getStringArray(R.array.mealTime_Array),"Meal Time");
+        cuisines = new SelectionItems(getResources().getStringArray(R.array.cuisine_Array),"Cuisines");
+        types = new SelectionItems(getResources().getStringArray(R.array.type_Array),"Type");
 
 
     }

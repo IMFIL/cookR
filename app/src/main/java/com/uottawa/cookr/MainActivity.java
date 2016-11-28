@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void searchRecipeClick(View view){
 
-        Intent intent = new Intent(this, main_search.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
@@ -40,11 +40,13 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void addRecipeClick(View view){
+
+
+    public void addNewRecipeClick(View view){
 
         Intent intent = new Intent(this, addNewRecipe.class);
         startActivity(intent);
     }
 
-
 }
+

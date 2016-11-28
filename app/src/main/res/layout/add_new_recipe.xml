@@ -1,101 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<ScrollView android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <LinearLayout android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@color/darkPastel">
+    android:layout_width="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-        <LinearLayout
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/customToolBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="5dp">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="36sp"
-            android:textColor="@color/redPastel"
-            android:text="Add New Recipe"
-            android:gravity="center_horizontal"/>
-    </LinearLayout>
+        android:layout_height="?attr/actionBarSize"
+        android:background="@android:color/transparent"
+        android:elevation="4dp"
+        android:contentInsetLeft="0dp"
+        android:contentInsetStart="0dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        android:contentInsetRight="0dp"
+        android:contentInsetEnd="0dp"
+        app:contentInsetRight="0dp"
+        app:contentInsetEnd="0dp" />
+
+    <ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/background"
+        android:paddingTop="70dp">
+
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:background="@color/darkPastel"
-            android:layout_height="614dp"
+            android:background="@color/background"
+            android:layout_height="wrap_content"
             android:paddingLeft="20dp"
-            android:paddingRight="20dp">
+            android:paddingRight="20dp"
+            android:padding="20dp">
 
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:gravity="center_horizontal"
-                android:layout_height="wrap_content">
-                <ImageView
-                    android:id="@+id/viewImage"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:background="@mipmap/ic_launcher"/>
-            </LinearLayout>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+            <ImageView
+                android:id="@+id/viewImage"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@mipmap/ic_launcher"
                 android:layout_weight="1"
-                android:gravity="center_vertical">
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textColorHint="@color/redPastel">
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textPersonName"
-                        android:ems="10"
-                        android:id="@+id/recipeName"
-                        android:layout_weight="1"
-                        android:hint="Recipe Name"
-                        android:textColor="@color/redPastel"
-                        android:textColorHint="@color/redPastel"
-                        android:gravity="center_vertical|center_horizontal" />
-                </android.support.design.widget.TextInputLayout>
-            </LinearLayout>
-            <LinearLayout
-                    android:orientation="horizontal"
+                android:layout_gravity="center_horizontal"
+                android:paddingBottom="10dp" />
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:paddingBottom="10dp"
+                android:textColorHint="@color/text"
+                app:hintTextAppearance="@style/AppTheme">
+                <AutoCompleteTextView
+                    android:hint="Cuisine"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:id="@+id/ethnicity"
+                    android:gravity="center_vertical|center_horizontal" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColorHint="@color/text"
+                android:layout_weight="1"
+                android:paddingBottom="10dp"
+                app:hintTextAppearance="@style/AppTheme">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/recipeName"
                     android:layout_weight="1"
-                    android:gravity="center_vertical">
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:textColorHint="@color/redPastel">
-                        <AutoCompleteTextView
-                            android:hint="Cuisine"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/ethnicity"
-                            android:textColor="@color/redPastel"
-                            android:textColorHint="@color/redPastel"
-                            android:gravity="center_vertical|center_horizontal" />
-                    </android.support.design.widget.TextInputLayout>
-            </LinearLayout>
+                    android:hint="Recipe Name"
+                    android:gravity="center_vertical|center_horizontal" />
+            </android.support.design.widget.TextInputLayout>
 
 
             <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:paddingBottom="10dp">
 
                     <RadioGroup
                         android:id="@+id/radioGroup1"
@@ -119,7 +108,7 @@
                             android:paddingTop="10dp"
                             android:paddingBottom="10dp"
                             android:layout_marginLeft="2dp"
-                            android:textColor="@color/redPastel"
+                            android:textColor="@color/button"
                             android:layout_marginRight="2dp" />
 
                         <RadioButton
@@ -135,7 +124,7 @@
                             android:paddingTop="10dp"
                             android:paddingBottom="10dp"
                             android:layout_marginLeft="2dp"
-                            android:textColor="@color/redPastel"
+                            android:textColor="@color/button"
                             android:layout_marginRight="2dp" />
 
                         <RadioButton
@@ -151,7 +140,7 @@
                             android:paddingTop="10dp"
                             android:paddingBottom="10dp"
                             android:layout_marginLeft="2dp"
-                            android:textColor="@color/redPastel"
+                            android:textColor="@color/button"
                             android:layout_marginRight="2dp" />
 
                         <RadioButton
@@ -167,7 +156,7 @@
                             android:paddingTop="10dp"
                             android:paddingBottom="10dp"
                             android:layout_marginLeft="2dp"
-                            android:textColor="@color/redPastel"
+                            android:textColor="@color/button"
                             android:layout_marginRight="2dp" />
 
 
@@ -176,126 +165,97 @@
                 </LinearLayout>
 
 
-                <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_gravity="bottom"
-                        android:gravity="center_vertical">
-                        <android.support.design.widget.TextInputLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="top"
-                            android:layout_weight="1"
-                            android:textColorHint="@color/redPastel">
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="top"
+                android:layout_weight="1"
+                android:textColorHint="@color/text"
+                android:paddingBottom="10dp"
+                app:hintTextAppearance="@style/AppTheme">
 
-                            <EditText
-                                android:hint="Serves [People]"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:inputType="number"
-                                android:ems="10"
-                                android:id="@+id/servings"
-                                android:layout_weight="1"
-                                android:textColor="@color/redPastel"
-                                android:textColorHint="@color/redPastel"
-                                android:gravity="center_horizontal" />
-                        </android.support.design.widget.TextInputLayout>
-                </LinearLayout>
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical|center_horizontal">
-                        <android.support.design.widget.TextInputLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:textColorHint="@color/redPastel">
-                            <EditText
-                                android:hint="Preparation time [Min]"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:inputType="number"
-                                android:ems="10"
-                                android:id="@+id/preparationTime"
-                                android:layout_weight="1"
-                                android:textColor="@color/redPastel"
-                                android:textColorHint="@color/redPastel"
-                                android:gravity="center_vertical|center_horizontal" />
-                        </android.support.design.widget.TextInputLayout>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical|center_horizontal">
-                        <android.support.design.widget.TextInputLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:textColorHint="@color/redPastel"
-                            android:id="@+id/TxtLayoutCookingTime">
-
-                            <EditText
-                                android:hint="Cooking time [Min]"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:inputType="number"
-                                android:ems="10"
-                                android:id="@+id/cookTime"
-                                android:layout_weight="1"
-                                android:textColor="@color/redPastel"
-                                android:textColorHint="@color/redPastel"
-                                android:layout_below="@+id/TxtLayoutCookingTime"
-                                android:gravity="center_vertical|center_horizontal" />
-                        </android.support.design.widget.TextInputLayout>
-                    </LinearLayout>
-
-                <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical">
-                        <android.support.design.widget.TextInputLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:textColorHint="@color/redPastel">
-                            <EditText
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:inputType="textMultiLine"
-                                android:ems="10"
-                                android:id="@+id/recipeInstructions"
-                                android:layout_weight="1"
-                                android:hint="Instructions"
-                                android:textColor="@color/redPastel"
-                                android:textColorHint="@color/redPastel"
-                                android:gravity="center_vertical|center_horizontal" />
-
-
-                        </android.support.design.widget.TextInputLayout>
-                </LinearLayout>
-                <LinearLayout
-                    android:orientation="horizontal"
+                <EditText
+                    android:hint="Serving"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:ems="10"
+                    android:id="@+id/servings"
                     android:layout_weight="1"
-                    android:gravity="center_vertical">
+                    android:textColor="@color/redPastel"
+                    android:textColorHint="@color/redPastel"
+                    android:gravity="center_horizontal" />
+            </android.support.design.widget.TextInputLayout>
 
-                    <Button
-                        android:text="Add +"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/addBtn"
-                        android:background="@drawable/customized_btn"
-                        android:layout_weight="1"
-                        android:textColor="@color/redPastel"/>
-                </LinearLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColorHint="@color/text"
+                android:layout_weight="1"
+                android:paddingBottom="10dp"
+                app:hintTextAppearance="@style/AppTheme">
+
+                <EditText
+                    android:hint="Preparation time [Min]"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:ems="10"
+                    android:id="@+id/preparationTime"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical|center_horizontal" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColorHint="@color/text"
+                android:id="@+id/TxtLayoutCookingTime"
+                android:layout_weight="1"
+                android:paddingBottom="10dp"
+                app:hintTextAppearance="@style/AppTheme">
+
+                <EditText
+                    android:hint="Cooking time [Min]"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:ems="10"
+                    android:id="@+id/cookTime"
+                    android:layout_weight="1"
+                    android:layout_below="@+id/TxtLayoutCookingTime"
+                    android:gravity="center_vertical|center_horizontal" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColorHint="@color/text"
+                android:layout_weight="1"
+                android:paddingBottom="10dp"
+                app:hintTextAppearance="@style/AppTheme">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:ems="10"
+                    android:id="@+id/recipeInstructions"
+                    android:layout_weight="1"
+                    android:hint="Instructions"
+                    android:gravity="center_vertical|center_horizontal" />
+
+
+            </android.support.design.widget.TextInputLayout>
+
+            <Button
+                android:text="Add +"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/addBtn"
+                android:background="@drawable/customized_btn"
+                android:layout_weight="1" />
 
         </LinearLayout>
-    </LinearLayout>
 </ScrollView>
+</RelativeLayout>
