@@ -22,9 +22,31 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void addNewRecipe(View view){
+    public void quickSelectClick(View view){
+
+        Intent intent = new Intent(this, QuickSelectSearch.class);
+        startActivity(intent);
+    }
+
+    public void searchRecipeClick(View view){
+
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    public void favouritesClick(View view){
+
+        Intent intent = new Intent(this, Favorites_results.class);
+        startActivity(intent);
+    }
+
+
+
+    public void addNewRecipeClick(View view){
 
         Intent intent = new Intent(this, addNewRecipe.class);
         startActivity(intent);
     }
+
 }
+

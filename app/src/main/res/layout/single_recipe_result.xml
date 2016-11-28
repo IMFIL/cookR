@@ -84,7 +84,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:id="@+id/LS1"
-                    android:background="@color/lightPink" />
+                    android:background="@color/background" />
             </LinearLayout>
 
             <LinearLayout
@@ -118,7 +118,7 @@
                     android:layout_height="match_parent"
                     android:elevation="24dp"
                     android:id="@+id/LS2"
-                    android:background="@color/lightPink" />
+                    android:background="@color/background" />
 
             </LinearLayout>
 
@@ -127,7 +127,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="105dp"
                 android:paddingTop="10dp"
-                android:paddingLeft="5dp">
+                android:paddingLeft="5dp"
+                android:layout_marginBottom="10dp">
 
                 <TextView
                     android:text="Serves: 5 people"
@@ -150,10 +151,10 @@
                 <TextView
                     android:text="Cooking Time: 5 min"
                     android:layout_width="match_parent"
-                    android:layout_height="34dp"
                     android:id="@+id/textView7"
                     android:textColor="@color/redPastel"
-                    android:textSize="16dp" />
+                    android:textSize="16dp"
+                    android:layout_height="35dp" />
             </LinearLayout>
 
         </LinearLayout>
