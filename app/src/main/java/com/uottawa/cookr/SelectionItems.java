@@ -4,13 +4,13 @@ package com.uottawa.cookr;
  * Created by filipslatinac on 2016-11-23.
  */
 
-public class selection_items {
+public class SelectionItems {
 
     private String[] elements;
     private boolean[] selected;
     private String name;
 
-    public selection_items(String[] items,String title) {
+    public SelectionItems(String[] items, String title) {
         elements = items;
         selected = new boolean[elements.length];
         name = title;
