@@ -21,4 +21,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, HelpActivity.class);
         startActivity(intent);
     }
+
+    public void addNewRecipe(View view){
+
+        Intent intent = new Intent(this, addNewRecipe.class);
+        startActivity(intent);
+    }
 }
