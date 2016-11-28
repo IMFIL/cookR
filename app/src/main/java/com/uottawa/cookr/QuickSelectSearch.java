@@ -19,10 +19,10 @@ import android.widget.ListView;
 public class QuickSelectSearch extends AppCompatActivity {
     ListView list = null;
 
-    selection_items currentList;
+    SelectionItems currentList;
 
-    selection_items times;
-    selection_items cuisines;
+    SelectionItems times;
+    SelectionItems cuisines;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +43,8 @@ public class QuickSelectSearch extends AppCompatActivity {
 
         currentActionBar.setDisplayShowCustomEnabled(true);
 
-        times = new selection_items(getResources().getStringArray(R.array.mealTime_Array),"Meal Time");
-        cuisines = new selection_items(getResources().getStringArray(R.array.cuisine_Array),"Cuisines");
+        times = new SelectionItems(getResources().getStringArray(R.array.mealTime_Array),"Meal Time");
+        cuisines = new SelectionItems(getResources().getStringArray(R.array.cuisine_Array),"Cuisines");
 
 
     }
