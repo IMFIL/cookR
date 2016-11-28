@@ -82,7 +82,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
                 android:layout_weight="1"
                 android:onClick="addNewRecipeClick"
-                android:textColor="@color/redPastel"
+                android:textColor="@color/button"
                 android:soundEffectsEnabled="true" />
 
             <TextView
