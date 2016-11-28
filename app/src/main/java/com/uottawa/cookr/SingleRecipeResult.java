@@ -12,7 +12,7 @@ public class SingleRecipeResult extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.SingleRecipeResult);
+        setContentView(R.layout.single_recipe_result);
 
         String [] els = {"1 teapsoon Salt","2 teapsoon Pepper","3 Eggs","Cooking spray","1/4 cup Milk"};
 
