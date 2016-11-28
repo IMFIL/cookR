@@ -59,16 +59,6 @@
             </intent-filter>
         </activity>
 
-<<<<<<< HEAD
-        <activity android:name=".MainActivity">
-=======
-        <activity android:name=".addNewRecipe">
->>>>>>> master
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-            </intent-filter>
-        </activity>
-
         <activity android:name=".HelpActivity" />
         <activity android:name=".helpWhatSelect" />
         <activity android:name=".helpSearchRecipe" />

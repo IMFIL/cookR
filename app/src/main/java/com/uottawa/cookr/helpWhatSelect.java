@@ -2,6 +2,10 @@ package com.uottawa.cookr;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.TextView;
 
 public class helpWhatSelect extends AppCompatActivity {
 
@@ -9,5 +13,24 @@ public class helpWhatSelect extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_help_what_select);
+
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.customToolBar);
+        setSupportActionBar(myToolbar);
+
+
+
+        android.support.v7.app.ActionBar currentActionBar = getSupportActionBar();
+
+        currentActionBar.setDisplayShowHomeEnabled(false);
+        currentActionBar.setDisplayShowTitleEnabled(false);
+
+        currentActionBar.setCustomView( ActionBarSetter.getActionBarView("What is quick select?",this));
+
+
+
+        currentActionBar.setDisplayShowCustomEnabled(true);
+
+
     }
 }

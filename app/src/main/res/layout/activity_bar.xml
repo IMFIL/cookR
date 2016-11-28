@@ -9,8 +9,9 @@
         <TextView
             android:layout_width="match_parent"
             android:id="@+id/titleOfActionBar"
-            android:textColor="@color/text"
+            android:textColor="@color/redPastel"
             android:textSize="40sp"
+            android:paddingTop="10dp"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal" />
 
