@@ -28,7 +28,8 @@
         android:layout_height="match_parent"
         android:elevation="0dp"
         android:fillViewport="true"
-        android:paddingTop="70dp">
+        android:paddingTop="70dp"
+        android:background="@color/background">
 
         <LinearLayout
             android:orientation="vertical"
@@ -55,15 +56,12 @@
                         app:hintTextAppearance="@style/AppTheme"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="1">
-
+                        android:layout_weight="1"
+                        android:textColorHint="@color/text">
                         <EditText
                             android:layout_width="match_parent"
                             android:hint="Ingredients"
-                            android:textColorHint="@color/text"
-                            android:textColor="@color/text"
-                            android:layout_height="match_parent"
-                            android:textColorLink="@color/text" />
+                            android:layout_height="match_parent"/>
                     </android.support.design.widget.TextInputLayout>
 
                 </LinearLayout>
