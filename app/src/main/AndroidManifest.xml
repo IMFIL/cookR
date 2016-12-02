@@ -28,7 +28,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".QuickSelectSearch">
+        <activity android:name=".SupriseMe">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>

@@ -25,7 +25,7 @@
         <item>Sauce</item>
     </string-array>
     <string name="SearchTag">Search</string>
-    <string name="QuickSearchTag">Quick\nSearch</string>
+    <string name="SupriseMe">Suprise\nMe</string>
     <string name="AddRecipeTag">Add\nRecipe</string>
     <string name="FavoritesTag">Faves</string>
     <string name="ManageTag">Manage\nrecipes</string>

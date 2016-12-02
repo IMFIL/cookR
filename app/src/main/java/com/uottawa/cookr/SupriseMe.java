@@ -16,7 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
-public class QuickSelectSearch extends AppCompatActivity {
+public class SupriseMe extends AppCompatActivity {
     ListView list = null;
 
     SelectionItems currentList;
@@ -27,7 +27,7 @@ public class QuickSelectSearch extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.quick_select_search);
+        setContentView(R.layout.suprise_me);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.customToolBar);
         setSupportActionBar(myToolbar);

@@ -49,16 +49,16 @@
                     android:onClick="searchRecipeClick" />
 
                 <TextView
-                    android:text="@string/QuickSearchTag"
+                    android:text="@string/SupriseMe"
                     android:layout_width="0px"
                     android:layout_height="wrap_content"
-                    android:id="@+id/QS"
+                    android:id="@+id/SM"
                     android:layout_weight="1"
                     android:layout_gravity="center_vertical"
                     android:gravity="center_vertical|center_horizontal"
                     android:textAlignment="center"
                     android:textSize="25sp"
-                    android:onClick="quickSelectClick" />
+                    android:onClick="supriseMeClick" />
 
                 <TextView
                     android:text="@string/AddRecipeTag"
