@@ -24,11 +24,13 @@
         <item>Drink</item>
         <item>Sauce</item>
     </string-array>
-    <string name="SearchTag">Search</string>
-    <string name="SupriseMe">Suprise\nMe</string>
+
+    <string name="SearchTag">Search\nRecipe</string>
+    <string name="QuickSearchTag">Quick\nSearch</string>
+    <string name="RandomTag">Random\nRecipe</string>
     <string name="AddRecipeTag">Add\nRecipe</string>
     <string name="FavoritesTag">Faves</string>
-    <string name="ManageTag">Manage\nrecipes</string>
+    <string name="SettingsTag">Settings</string>
     <string name="HelpTag">Help</string>
 
 
@@ -53,4 +55,13 @@
     <string name="addNewRecipeTitle">Add New Recipe</string>
 
     <string name="Ingredients">Ingredients</string>
+
+    <string name="searchIcon">&#xf002;</string>
+    <string name="randomIcon">&#xf0e7;</string>
+    <string name="addIcon">&#xf067;</string>
+    <string name="faveIcon">&#xf004;</string>
+    <string name="settingsIcon">&#xf085;</string>
+    <string name="helpIcon">&#xf128;</string>
+
+
 </resources>
