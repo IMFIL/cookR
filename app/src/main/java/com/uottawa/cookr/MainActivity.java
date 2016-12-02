@@ -7,8 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import java.util.Locale;
-
 public class MainActivity extends AppCompatActivity {
 
     TextView textView;
@@ -60,9 +58,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void quickSelectClick(View view){
+    public void supriseMeClick(View view){
 
-        Intent intent = new Intent(this, QuickSelectSearch.class);
+        Intent intent = new Intent(this, SupriseMe.class);
         startActivity(intent);
     }
 

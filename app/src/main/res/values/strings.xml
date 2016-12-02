@@ -24,6 +24,7 @@
         <item>Drink</item>
         <item>Sauce</item>
     </string-array>
+
     <string name="SearchTag">Search\nRecipe</string>
     <string name="QuickSearchTag">Quick\nSearch</string>
     <string name="RandomTag">Random\nRecipe</string>
