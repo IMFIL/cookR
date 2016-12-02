@@ -37,7 +37,7 @@ public class Favorites_results extends AppCompatActivity {
         currentActionBar.setDisplayShowHomeEnabled(false);
         currentActionBar.setDisplayShowTitleEnabled(false);
 
-        currentActionBar.setCustomView( ActionBarSetter.getActionBarView("Favorites",this));
+        currentActionBar.setCustomView( ActionBarSetter.getActionBarView("Favourites",this));
 
         currentActionBar.setDisplayShowCustomEnabled(true);
 

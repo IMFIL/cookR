@@ -3,8 +3,8 @@
     <string-array name="mealTime_Array">
         <item>BreakFast</item>
         <item>Lunch</item>
-        <item>Supper</item>
-        <item>Snack</item>
+        <item>Dinner</item>
+        <item>Appetizer/Snack</item>
     </string-array>
 
     <string-array name="cuisine_Array">
@@ -20,10 +20,17 @@
         <item>Main dish</item>
         <item>Starter</item>
         <item>Dessert</item>
-        <item>Appetizer</item>
+        <item>Appetizer/Snack</item>
         <item>Drink</item>
         <item>Sauce</item>
     </string-array>
+    <string name="SearchTag">Search</string>
+    <string name="QuickSearchTag">Quick\nSearch</string>
+    <string name="AddRecipeTag">Add\nRecipe</string>
+    <string name="FavoritesTag">Faves</string>
+    <string name="ManageTag">Manage\nrecipes</string>
+    <string name="HelpTag">Help</string>
+
 
     <string name="title_activity_help">helpActivity</string>
     <string name="action_settings">Settings</string>
@@ -44,4 +51,6 @@
     <string name="instructions">Instructions</string>
     <string name="addBtn">Add +</string>
     <string name="addNewRecipeTitle">Add New Recipe</string>
+
+    <string name="Ingredients">Ingredients</string>
 </resources>

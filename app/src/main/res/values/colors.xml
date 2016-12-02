@@ -14,10 +14,11 @@
     <color name="darkPastel">#34314c</color>
 
     <color name="white">#ffffff</color>
-    <color name="background">#353848</color>
-    <color name="text">#ef9e9f</color>
-    <color name="button">#a3c9c7</color>
-    <color name="actioBar">#2a2d39</color>
+    <color name="background">#f2f2f5</color>
+    <color name="button">#34314c</color>
+    <color name="text">#a3c9c7</color>
+    <color name="actioBar">#e9ebeb</color>
+    <color name="grey">#d8d8d8</color>
 
 
 </resources>
