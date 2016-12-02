@@ -11,8 +11,7 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/customToolBar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@android:color/transparent"
+        android:background="@color/actioBar"
         android:elevation="4dp"
         android:contentInsetLeft="0dp"
         android:contentInsetStart="0dp"
@@ -21,7 +20,8 @@
         android:contentInsetRight="0dp"
         android:contentInsetEnd="0dp"
         app:contentInsetRight="0dp"
-        app:contentInsetEnd="0dp"/>
+        app:contentInsetEnd="0dp"
+        android:layout_height="80dp" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -57,6 +57,15 @@
                     android:gravity="center_horizontal"
                     android:paddingTop="70dp">
 
+                    <TextView
+                        android:text="Type of cuisine"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/cuisineText"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="@color/text" />
+
                     <Button
                         android:layout_width="match_parent"
                         android:layout_height="60dip"
@@ -72,13 +81,15 @@
                         android:onClick="showDialogListView" />
 
                     <TextView
-                        android:text="Type of cuisine"
+                        android:text="Meal classification"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/cuisineText"
+                        android:id="@+id/mealTimeText"
                         android:layout_weight="1"
+                        android:keepScreenOn="true"
                         android:gravity="center"
-                        android:textColor="@color/text" />
+                        android:textColor="@color/text"
+                        android:paddingTop="15dp" />
 
                     <Button
                         android:layout_width="match_parent"
@@ -94,24 +105,14 @@
                         android:textAllCaps="false"
                         android:onClick="showDialogListView" />
 
-                    <TextView
-                        android:text="Meal classification"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/mealTimeText"
-                        android:layout_weight="1"
-                        android:keepScreenOn="true"
-                        android:gravity="center"
-                        android:textColor="@color/text"
-                        android:paddingBottom="30dp" />
-
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:srcCompat="?attr/actionModeShareDrawable"
                         android:id="@+id/searchRecipes"
                         android:layout_weight="1"
-                        android:clickable="true" />
+                        android:clickable="true"
+                        android:paddingTop="15dp" />
 
                 </LinearLayout>
 
