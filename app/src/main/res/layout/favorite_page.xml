@@ -8,8 +8,7 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/customToolBar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@android:color/transparent"
+        android:background="@color/actioBar"
         android:elevation="4dp"
         android:contentInsetLeft="0dp"
         android:contentInsetStart="0dp"
@@ -18,14 +17,17 @@
         android:contentInsetRight="0dp"
         android:contentInsetEnd="0dp"
         app:contentInsetRight="0dp"
-        app:contentInsetEnd="0dp"/>
+        app:contentInsetEnd="0dp"
+        android:layout_height="80dp" />
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/listOfRecipesFavorites"
-        android:paddingTop="80dp"
-        android:layout_margin="10dp" />
+        android:paddingTop="100dp"
+        android:layout_margin="10dp"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10.0sp"/>
 
 </RelativeLayout>
 

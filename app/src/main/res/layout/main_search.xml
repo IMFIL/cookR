@@ -11,8 +11,8 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/customToolBar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@android:color/transparent"
+        android:layout_height="80dp"
+        android:background="@color/actioBar"
         android:elevation="4dp"
         android:contentInsetLeft="0dp"
         android:contentInsetStart="0dp"
@@ -44,7 +44,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight=".3"
-                android:layout_margin="15dp">
+                android:layout_margin="15dp"
+                android:paddingTop="15dp">
 
                 <LinearLayout
                     android:orientation="vertical"
@@ -55,13 +56,27 @@
                     <android.support.design.widget.TextInputLayout
                         app:hintTextAppearance="@style/AppTheme"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:textColorHint="@color/text"
+                        android:layout_height="wrap_content">
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:hint="Recipe Name"
+                            android:layout_height="match_parent"
+                            android:textSize="25sp" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        app:hintTextAppearance="@style/AppTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textColorHint="@color/text">
                         <EditText
                             android:layout_width="match_parent"
-                            android:hint="Ingredients"
-                            android:layout_height="match_parent"/>
+                            android:hint="@string/Ingredients"
+                            android:layout_height="match_parent"
+                            android:textSize="25sp"/>
                     </android.support.design.widget.TextInputLayout>
 
                 </LinearLayout>
@@ -84,6 +99,15 @@
                     android:weightSum="1"
                     android:gravity="center_horizontal">
 
+                    <TextView
+                        android:text="Type of cuisine"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/cuisineText"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="@color/darkPastel" />
+
                     <Button
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
@@ -99,13 +123,15 @@
                         android:onClick="showDialogListView" />
 
                     <TextView
-                        android:text="Type of cuisine"
+                        android:text="Meal classification"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/cuisineText"
+                        android:id="@+id/mealTimeText"
                         android:layout_weight="1"
+                        android:keepScreenOn="true"
                         android:gravity="center"
-                        android:textColor="@color/text" />
+                        android:textColor="@color/darkPastel"
+                        android:paddingTop="10dp" />
 
                     <Button
                         android:layout_width="match_parent"
@@ -122,14 +148,14 @@
                         android:onClick="showDialogListView" />
 
                     <TextView
-                        android:text="Meal classification"
+                        android:text="Type of food"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/mealTimeText"
+                        android:id="@+id/typeText"
                         android:layout_weight="1"
-                        android:keepScreenOn="true"
                         android:gravity="center"
-                        android:textColor="@color/text" />
+                        android:textColor="@color/darkPastel"
+                        android:paddingTop="10dp" />
 
                     <Button
                         android:layout_width="match_parent"
@@ -144,16 +170,6 @@
                         android:text="Type"
                         android:textAllCaps="false"
                         android:onClick="showDialogListView" />
-
-                    <TextView
-                        android:text="Type of food"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/typeText"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:textColor="@color/text"
-                        android:paddingBottom="30dp" />
 
                     <ImageView
                         android:layout_width="match_parent"

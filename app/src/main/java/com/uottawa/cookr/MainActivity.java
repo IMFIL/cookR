@@ -1,10 +1,13 @@
 package com.uottawa.cookr;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,6 +17,25 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        TextView searchTxv = (TextView) findViewById(R.id.Search);
+        TextView qsTxv = (TextView) findViewById(R.id.QS);
+        TextView addTxv = (TextView) findViewById(R.id.AddRecipe);
+        TextView manageTxv = (TextView) findViewById(R.id.Manage);
+        TextView faveTxv = (TextView) findViewById(R.id.Favorites);
+        TextView helpTxv = (TextView) findViewById(R.id.Help);
+
+        Typeface face=Typeface.createFromAsset(getAssets(),"fonts/SanFranciscoDisplay-Light.otf");
+
+        searchTxv.setTypeface(face);
+        qsTxv.setTypeface(face);
+        addTxv.setTypeface(face);
+        manageTxv.setTypeface(face);
+        faveTxv.setTypeface(face);
+        helpTxv.setTypeface(face);
+
+
+
     }
 
     public void helpClick(View view){
