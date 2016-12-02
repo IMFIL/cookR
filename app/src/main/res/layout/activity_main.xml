@@ -11,7 +11,9 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
 
         <ImageView
             android:layout_width="match_parent"
@@ -36,41 +38,92 @@
                 android:layout_weight="1"
                 android:paddingTop="25dp">
 
-                <TextView
-                    android:text="@string/SearchTag"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/Search"
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:layout_gravity="center_vertical"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:textAlignment="center"
-                    android:textSize="25sp"
-                    android:layout_width="0px"
-                    android:onClick="searchRecipeClick" />
+                    android:elevation="0dp"
+                    android:onClick="searchRecipeClick">
 
-                <TextView
-                    android:text="@string/QuickSearchTag"
-                    android:layout_width="0px"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/QS"
-                    android:layout_weight="1"
-                    android:layout_gravity="center_vertical"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:textAlignment="center"
-                    android:textSize="25sp"
-                    android:onClick="quickSelectClick" />
+                    <TextView
+                        android:text="@string/searchIcon"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/searchIcon"
+                        android:layout_weight="1"
+                        android:textAlignment="center"
+                        android:gravity="bottom"
+                        android:textSize="25sp" />
 
-                <TextView
-                    android:text="@string/AddRecipeTag"
-                    android:layout_width="0px"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/AddRecipe"
+                    <TextView
+                        android:text="@string/SearchTag"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/Search"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:textAlignment="center"
+                        android:textSize="25sp"
+                        android:layout_width="match_parent" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:text="@string/randomIcon"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/randomIcon"
+                        android:layout_weight="1"
+                        android:textAlignment="center"
+                        android:textSize="25sp"
+                        android:gravity="bottom" />
+
+                    <TextView
+                        android:text="@string/RandomTag"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/RandomRecipe"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:textAlignment="center"
+                        android:textSize="25sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:layout_gravity="center_vertical"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:textAlignment="center"
-                    android:textSize="25sp"
-                    android:onClick="addNewRecipeClick" />
+                    android:onClick="addNewRecipeClick">
+
+                    <TextView
+                        android:text="@string/addIcon"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/addIcon"
+                        android:layout_weight="1"
+                        android:textAlignment="center"
+                        android:textSize="25sp"
+                        android:gravity="bottom" />
+
+                    <TextView
+                        android:text="@string/AddRecipeTag"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/AddRecipe"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:textAlignment="center"
+                        android:textSize="25sp" />
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -80,40 +133,93 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1">
 
-                <TextView
-                    android:text="@string/FavoritesTag"
-                    android:layout_width="0px"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/Favorites"
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:layout_gravity="center_vertical"
-                    android:textAlignment="center"
-                    android:textSize="25sp"
-                    android:onClick="favouritesClick" />
+                    android:onClick="favouritesClick">
 
-                <TextView
-                    android:text="@string/ManageTag"
-                    android:layout_width="0px"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/Manage"
-                    android:layout_weight="1"
-                    android:layout_gravity="center_vertical"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:textAlignment="center"
-                    android:textSize="25sp" />
+                    <TextView
+                        android:text="@string/faveIcon"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/faveIcon"
+                        android:layout_weight="1"
+                        android:gravity="bottom"
+                        android:textAlignment="center"
+                        android:textSize="25sp" />
 
-                <TextView
-                    android:text="@string/HelpTag"
-                    android:layout_width="0px"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/Help"
+                    <TextView
+                        android:text="@string/FavoritesTag"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/Favorites"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:layout_gravity="center_vertical"
+                        android:textAlignment="center"
+                        android:textSize="25sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:text="@string/settingsIcon"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/settingsIcon"
+                        android:layout_weight="1"
+                        android:gravity="bottom"
+                        android:textAlignment="center"
+                        android:textSize="25sp" />
+
+                    <TextView
+                        android:text="@string/SettingsTag"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/Settings"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:textAlignment="center"
+                        android:textSize="25sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:layout_gravity="center_vertical"
-                    android:textAlignment="center"
-                    android:textSize="25sp"
-                    android:onClick="helpClick" />
+                    android:onClick="helpClick">
+
+                    <TextView
+                        android:text="@string/helpIcon"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/helpIcon"
+                        android:layout_weight="1"
+                        android:gravity="bottom"
+                        android:textAlignment="center"
+                        android:textSize="25sp" />
+
+                    <TextView
+                        android:text="@string/HelpTag"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/Help"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:layout_gravity="center_vertical"
+                        android:textAlignment="center"
+                        android:textSize="25sp" />
+                </LinearLayout>
+
             </LinearLayout>
 
         </LinearLayout>
