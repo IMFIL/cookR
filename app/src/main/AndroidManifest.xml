@@ -59,7 +59,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".AddNewRecipeEdit">
+        <activity android:name=".AddNewRecipeV2">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
