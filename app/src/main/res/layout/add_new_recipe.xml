@@ -2,14 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="wrap_content"
     android:layout_width="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white">
 
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/customToolBar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@android:color/transparent"
+        android:background="@color/actioBar"
         android:elevation="4dp"
         android:contentInsetLeft="0dp"
         android:contentInsetStart="0dp"
@@ -18,7 +18,8 @@
         android:contentInsetRight="0dp"
         android:contentInsetEnd="0dp"
         app:contentInsetRight="0dp"
-        app:contentInsetEnd="0dp" />
+        app:contentInsetEnd="0dp"
+        android:layout_height="80dp" />
 
     <ScrollView android:layout_width="match_parent"
     android:layout_height="match_parent"

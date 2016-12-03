@@ -7,8 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import java.util.Locale;
-
 public class MainActivity extends AppCompatActivity {
 
     TextView textView;
@@ -19,20 +17,36 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         TextView searchTxv = (TextView) findViewById(R.id.Search);
-        TextView qsTxv = (TextView) findViewById(R.id.QS);
+        TextView randomTxv = (TextView) findViewById(R.id.RandomRecipe);
         TextView addTxv = (TextView) findViewById(R.id.AddRecipe);
-        TextView manageTxv = (TextView) findViewById(R.id.Manage);
+        TextView settingsTxv = (TextView) findViewById(R.id.Settings);
         TextView faveTxv = (TextView) findViewById(R.id.Favorites);
         TextView helpTxv = (TextView) findViewById(R.id.Help);
 
         Typeface face=Typeface.createFromAsset(getAssets(),"fonts/SanFranciscoDisplay-Light.otf");
 
         searchTxv.setTypeface(face);
-        qsTxv.setTypeface(face);
+        randomTxv.setTypeface(face);
         addTxv.setTypeface(face);
-        manageTxv.setTypeface(face);
+        settingsTxv.setTypeface(face);
         faveTxv.setTypeface(face);
         helpTxv.setTypeface(face);
+
+        Typeface fontAwesome = Typeface.createFromAsset( getAssets(), "fonts/fontawesome-webfont.ttf" );
+
+        TextView searchIcon = (TextView)findViewById( R.id.searchIcon );
+        TextView randomIcon = (TextView)findViewById( R.id.randomIcon );
+        TextView addIcon = (TextView)findViewById( R.id.addIcon );
+        TextView faveIcon = (TextView)findViewById( R.id.faveIcon );
+        TextView settingsIcon = (TextView)findViewById( R.id.settingsIcon );
+        TextView helpIcon = (TextView)findViewById( R.id.helpIcon );
+
+        searchIcon.setTypeface(fontAwesome);
+        randomIcon.setTypeface(fontAwesome);
+        addIcon.setTypeface(fontAwesome);
+        faveIcon.setTypeface(fontAwesome);
+        settingsIcon.setTypeface(fontAwesome);
+        helpIcon.setTypeface(fontAwesome);
 
 
 
@@ -44,9 +58,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void quickSelectClick(View view){
+    public void supriseMeClick(View view){
 
-        Intent intent = new Intent(this, QuickSelectSearch.class);
+        Intent intent = new Intent(this, SupriseMe.class);
         startActivity(intent);
     }
 
