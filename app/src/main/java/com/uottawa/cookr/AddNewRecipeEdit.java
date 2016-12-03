@@ -15,8 +15,7 @@ public class AddNewRecipeEdit extends AppCompatActivity {
     ListView list = null;
 
     SelectionItems currentList;
-
-    SelectionItems times;
+    int tmpPos = 0;
     SelectionItems cuisines;
     SelectionItems types;
 
@@ -42,7 +41,6 @@ public class AddNewRecipeEdit extends AppCompatActivity {
 
 
 
-        times = new SelectionItems(getResources().getStringArray(R.array.mealTime_Array),"Meal Time");
         cuisines = new SelectionItems(getResources().getStringArray(R.array.cuisine_Array),"Cuisines");
         types = new SelectionItems(getResources().getStringArray(R.array.type_Array),"Type");
 
@@ -55,13 +53,8 @@ public class AddNewRecipeEdit extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.single_listview_item,R.id.txtitem, els);
         list = new ListView(this);
         list.setAdapter(adapter);
-        list.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+        list.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
-        for (int i=0; i < currentList.getArray().length;i++ ){
-            if(currentList.isSelected(i)){
-                list.setItemChecked(i,true);
-            }
-        }
 
 
         list.setOnItemClickListener( new AdapterView.OnItemClickListener(){
@@ -69,18 +62,9 @@ public class AddNewRecipeEdit extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
-
-
-                if(!currentList.isSelected(position)) {
-                    currentList.select(position);
-                    list.setItemChecked(position,true);
-                }
-
-                else{
-                    currentList.unselect(position);
-                    list.setItemChecked(position,false);
-                }
-
+                currentList.unselect(tmpPos);
+                tmpPos = position;
+                currentList.select(tmpPos);
             }
 
         });
@@ -98,15 +82,10 @@ public class AddNewRecipeEdit extends AppCompatActivity {
                 currentList = cuisines;
                 buttonUsed = (Button) findViewById(R.id.cuisineButton);
                 break;
-            case R.id.mealTimeButton:
-                selection = times.getArray();
-                currentList = times;
-                buttonUsed = (Button) findViewById(R.id.mealTimeButton);
-                break;
-            case R.id.typeButton:
+            case R.id.mealTypeButton:
                 selection = types.getArray();
                 currentList = types;
-                buttonUsed = (Button) findViewById(R.id.typeButton);
+                buttonUsed = (Button) findViewById(R.id.mealTypeButton);
                 break;
         }
 
