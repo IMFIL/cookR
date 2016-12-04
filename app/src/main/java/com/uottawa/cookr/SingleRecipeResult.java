@@ -1,11 +1,13 @@
 package com.uottawa.cookr;
 
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class SingleRecipeResult extends AppCompatActivity {
 
@@ -51,6 +53,10 @@ public class SingleRecipeResult extends AppCompatActivity {
                 return false;
             }
         });
+
+        Typeface fontAwesome = Typeface.createFromAsset( getAssets(), "fonts/fontawesome-webfont.ttf" );
+        TextView faveIcon = (TextView)findViewById( R.id.faveIcon );
+        faveIcon.setTypeface(fontAwesome);
 
     }
 
