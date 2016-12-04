@@ -77,10 +77,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
     public void addNewRecipeClick(View view){
 
-        Intent intent = new Intent(this, addNewRecipe.class);
+        Intent intent = new Intent(this, AddNewRecipeV2.class);
+        startActivity(intent);
+    }
+
+    public void settingsClick(View view){
+
+        Intent intent = new Intent(this, Settings.class);
         startActivity(intent);
     }
 

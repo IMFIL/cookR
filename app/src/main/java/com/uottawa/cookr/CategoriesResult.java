@@ -1,30 +1,27 @@
 package com.uottawa.cookr;
 
-/**
- * Created by filipslatinac on 2016-11-24.
- */
-
-
-
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-public class Recipe_results extends AppCompatActivity {
+/**
+ * Created by filipslatinac on 2016-12-03.
+ */
 
-    ListView list = null;
+public class CategoriesResult extends AppCompatActivity{
 
-    String [] recipename = {"burger","hotdog","pizza"};
-
-    Integer [] images = {R.drawable.burger,R.drawable.hotdog,R.drawable.pizza};
+    String [] els = {"African","pre-meal","vegan","vegeterian"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.recipe_page);
+        setContentView(R.layout.added_categories_page);
+
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.customToolBar);
         setSupportActionBar(myToolbar);
@@ -36,13 +33,14 @@ public class Recipe_results extends AppCompatActivity {
         currentActionBar.setDisplayShowHomeEnabled(false);
         currentActionBar.setDisplayShowTitleEnabled(false);
 
-        currentActionBar.setCustomView( ActionBarSetter.getActionBarView("Recipes",this));
+        currentActionBar.setCustomView( ActionBarSetter.getActionBarView("Added Categories",this));
 
         currentActionBar.setDisplayShowCustomEnabled(true);
 
-        RecipeDisplayAdapter adapter = new RecipeDisplayAdapter(this,images,recipename);
+        CategoryAdapter adapter = new CategoryAdapter(this,els);
 
-        list = (ListView)findViewById(R.id.listOfRecipes);
+
+        ListView list = (ListView) findViewById(R.id.listOfCategories);
         list.setAdapter(adapter);
 
 

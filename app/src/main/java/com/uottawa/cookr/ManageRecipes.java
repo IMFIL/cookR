@@ -5,7 +5,6 @@ package com.uottawa.cookr;
  */
 
 
-
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -13,7 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-public class Recipe_results extends AppCompatActivity {
+public class ManageRecipes extends AppCompatActivity {
 
     ListView list = null;
 
@@ -24,7 +23,8 @@ public class Recipe_results extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.recipe_page);
+        setContentView(R.layout.manage_recipes);
+
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.customToolBar);
         setSupportActionBar(myToolbar);
@@ -36,13 +36,13 @@ public class Recipe_results extends AppCompatActivity {
         currentActionBar.setDisplayShowHomeEnabled(false);
         currentActionBar.setDisplayShowTitleEnabled(false);
 
-        currentActionBar.setCustomView( ActionBarSetter.getActionBarView("Recipes",this));
+        currentActionBar.setCustomView( ActionBarSetter.getActionBarView("Added Recipes",this));
 
         currentActionBar.setDisplayShowCustomEnabled(true);
 
         RecipeDisplayAdapter adapter = new RecipeDisplayAdapter(this,images,recipename);
 
-        list = (ListView)findViewById(R.id.listOfRecipes);
+        list = (ListView)findViewById(R.id.listOfRecipesAdded);
         list.setAdapter(adapter);
 
 

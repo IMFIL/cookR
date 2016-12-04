@@ -36,8 +36,8 @@
             android:id="@+id/btn_help_quickSelect"
             android:background="@drawable/border"
             android:layout_marginBottom="20dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:onClick="helpWhatSelect"
             android:soundEffectsEnabled="true" />
 
@@ -48,8 +48,8 @@
             android:id="@+id/btn_help_SearchRecipe"
             android:background="@drawable/border"
             android:layout_marginBottom="20dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:onClick="helpSearchRecipe"
             android:soundEffectsEnabled="true" />
 
@@ -60,8 +60,8 @@
             android:id="@+id/btn_help_favourites"
             android:background="@drawable/border"
             android:layout_marginBottom="20dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:onClick="helpWhatFavourites"
             android:soundEffectsEnabled="true" />
 
@@ -72,8 +72,8 @@
             android:id="@+id/btn_help_addNewRecipe"
             android:background="@drawable/border"
             android:layout_marginBottom="20dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:onClick="helpAddRecipe"
             android:soundEffectsEnabled="true" />
 

@@ -59,7 +59,31 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".AddNewRecipeEdit">
+        <activity android:name=".AddNewRecipeV2">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".Settings">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".ManageRecipes">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".ManageCategories">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".CategoriesResult">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
