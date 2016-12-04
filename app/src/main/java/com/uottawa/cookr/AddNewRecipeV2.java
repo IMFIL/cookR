@@ -11,7 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
-public class AddNewRecipeEdit extends AppCompatActivity {
+public class AddNewRecipeV2 extends AppCompatActivity {
     ListView list = null;
 
     SelectionItems currentList;

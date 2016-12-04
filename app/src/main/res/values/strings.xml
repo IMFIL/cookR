@@ -66,6 +66,8 @@
     <string name="faveIcon">&#xf004;</string>
     <string name="settingsIcon">&#xf085;</string>
     <string name="helpIcon">&#xf128;</string>
+    <string name="XIcon">&#xf00d;</string>
+
 
 
 </resources>

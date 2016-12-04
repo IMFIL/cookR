@@ -12,13 +12,13 @@ import android.widget.TextView;
  * Created by filipslatinac on 2016-11-25.
  */
 
-public class ImageAndNameAdapter extends ArrayAdapter<String> {
+public class RecipeDisplayAdapter extends ArrayAdapter<String> {
 
     private Integer [] imageIds;
     private String [] recipeNames;
     private final Activity context;
 
-    public ImageAndNameAdapter(Activity context, Integer [] images, String [] texts) {
+    public RecipeDisplayAdapter(Activity context, Integer [] images, String [] texts) {
         super(context, R.layout.recipe_list_item,texts);
 
         imageIds = images;
