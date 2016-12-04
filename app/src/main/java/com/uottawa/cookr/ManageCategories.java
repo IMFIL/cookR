@@ -7,12 +7,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 
-public class Settings extends AppCompatActivity {
+public class ManageCategories extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.settings);
+        setContentView(R.layout.manage_categories);
 
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.customToolBar);
@@ -25,21 +25,23 @@ public class Settings extends AppCompatActivity {
         currentActionBar.setDisplayShowHomeEnabled(false);
         currentActionBar.setDisplayShowTitleEnabled(false);
 
-        currentActionBar.setCustomView( ActionBarSetter.getActionBarView("Settings",this));
+        currentActionBar.setCustomView( ActionBarSetter.getActionBarView("Manage Categories",this));
 
         currentActionBar.setDisplayShowCustomEnabled(true);
     }
 
 
-    public void manageRecipeClick(View view){
+    public void addTypeClick(View view){
 
-        Intent intent = new Intent(this, ManageRecipes.class);
-        startActivity(intent);
     }
 
-    public void manageCategoriesClick(View view){
+    public void addCuisineClick(View view){
 
-        Intent intent = new Intent(this, ManageCategories.class);
+    }
+
+    public void seeAllAddedClick(View view){
+
+        Intent intent = new Intent(this, CategoriesResult.class);
         startActivity(intent);
     }
 

@@ -41,7 +41,7 @@ public class Favorites_results extends AppCompatActivity {
 
         currentActionBar.setDisplayShowCustomEnabled(true);
 
-        ImageAndNameAdapter adapter = new ImageAndNameAdapter(this,images,recipename);
+        RecipeDisplayAdapter adapter = new RecipeDisplayAdapter(this,images,recipename);
 
         list = (ListView)findViewById(R.id.listOfRecipesFavorites);
         list.setAdapter(adapter);

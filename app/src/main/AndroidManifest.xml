@@ -77,6 +77,18 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".ManageCategories">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".CategoriesResult">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+
         <activity android:name=".HelpActivity" />
         <activity android:name=".helpWhatSelect" />
         <activity android:name=".helpSearchRecipe" />
