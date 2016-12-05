@@ -24,7 +24,7 @@ public class HelpActivity extends AppCompatActivity {
         currentActionBar.setDisplayShowHomeEnabled(false);
         currentActionBar.setDisplayShowTitleEnabled(false);
 
-        currentActionBar.setCustomView( ActionBarSetter.getActionBarView("Need Help ?",this));
+        currentActionBar.setCustomView( ActionBarSetter.getActionBarView("Need Help?",this));
 
         currentActionBar.setDisplayShowCustomEnabled(true);
     }
