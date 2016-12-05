@@ -41,8 +41,7 @@
     <string name="HelpAddRecipe">You came up with a masterpiece? Why not add it to your recipes?\n\n1. In the main menu, select \"Add New Recipe\"\n\n2. Take the time to fill in the blanks\n\n3. Hit \"Add\" once your done</string>
     <string name="helpTextWhatFavourites">Got plenty of cravings? We got you covered!\n\n1. Search a recipe that you like\n\n2. Simply tap the heart\n
         \n3. At the main menu, click on \"Favorites\"\n\n4. You can view all your favorite recipes </string>
-    <string name="helpTextWhatRandomRecipe">Got no idea about what eat?\"Random Recipe\" takes care of that! \n\n1. In the main menu, hit \"Random Recipe\"
-    \n\n2. \n\n3.</string>
+    <string name="helpTextWhatRandomRecipe">Have no idea about what to eat?\ "Random Recipe\" takes care of that! \n\n1. In the main menu, hit \"Random Recipe\"\n\n2. bla bla bla \n\n3. bla bla bla bla</string>
     <string name="helpTextSettings">Do you want to manage all of your recipes? Let us show you how!\n\n1. \n\n2. \n\n3.</string>
 
     <string name="recipeName">Recipe Name</string>
