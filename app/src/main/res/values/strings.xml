@@ -86,4 +86,16 @@
     <string name="addCuisine">Add Cuisine</string>
     <string name="seeCategories">See All Added Categories</string>
 
+    <string name="manageRecipes">Manage Recipes</string>
+    <string name="manageCategories">Manage Categories</string>
+
+    <string name="ingredients">Ingredients</string>
+    <string name="prepTime">Prep: </string>
+    <string name="cookTime">Add Type</string>
+    <string name="servings">Serves</string>
+    <string name="addToFavourites">Add To Favourites</string>
+
+
+
+
 </resources>
