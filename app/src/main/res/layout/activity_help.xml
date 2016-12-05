@@ -30,7 +30,7 @@
         android:paddingTop="115dp">
 
         <Button
-            android:text="What Is Quick Select?"
+            android:text="@string/helpRandomButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/btn_help_quickSelect"
@@ -54,7 +54,7 @@
             android:soundEffectsEnabled="true" />
 
         <Button
-            android:text="@string/helpFavouritehButton"
+            android:text="@string/helpFavouriteButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/btn_help_favourites"

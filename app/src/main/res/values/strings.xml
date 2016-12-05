@@ -42,6 +42,7 @@
     <string name="helpSearchButton">How Do I Search A Recipe?</string>
     <string name="helpFavouriteButton">What Are Favourites?</string>
     <string name="helpAddButton">How Can I Add a New Recipe?</string>
+    <string name="helpRandomButton">What Does Random Recipe Do?</string>
 
     <string name="HelpAddRecipe">You came up with a masterpiece? Why not add it to your recipes?\n\n1. In the main menu, select \"Add New Recipe\"\n\n2. Take the time to fill in the blanks\n\n3. Hit \"Add\" once your done</string>
     <string name="helpTextWhatFavourites">Got plenty of cravings? We got you covered!\n\n1. Search a recipe that you like\n\n2. Simply tap the heart\n
