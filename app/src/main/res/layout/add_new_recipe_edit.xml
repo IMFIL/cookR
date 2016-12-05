@@ -46,7 +46,8 @@
                 app:srcCompat="@drawable/plus"
                 android:id="@+id/imageView2"
                 android:layout_height="140dp"
-                android:onClick="setImage" />
+                android:onClick="setImage"
+                android:paddingBottom="10dp" />
 
             <LinearLayout
             android:orientation="vertical"
