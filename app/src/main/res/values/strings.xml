@@ -76,5 +76,9 @@
 
     <string name="addImageText">Recipe Image</string>
     <string name="addPlus">Add +</string>
+    <string name="cuisineType">Type of Cuisine</string>
+    <string name="foodType">Type of Food</string>
+    <string name="type">Type</string>
+    <string name="mealTime">Meal Time</string>
 
 </resources>
