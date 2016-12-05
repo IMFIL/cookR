@@ -15,7 +15,7 @@ import android.widget.ListView;
 
 public class CategoriesResult extends AppCompatActivity{
 
-    String [] els = {"African","pre-meal","vegan","vegeterian"};
+    String [] els = {"African","pre-meal","vegan","vegetarian"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

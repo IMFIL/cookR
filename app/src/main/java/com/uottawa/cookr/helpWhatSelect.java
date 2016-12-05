@@ -25,7 +25,7 @@ public class helpWhatSelect extends AppCompatActivity {
         currentActionBar.setDisplayShowHomeEnabled(false);
         currentActionBar.setDisplayShowTitleEnabled(false);
 
-        currentActionBar.setCustomView( ActionBarSetter.getActionBarView("What is quick select?",this));
+        currentActionBar.setCustomView( ActionBarSetter.getActionBarView("What is random recipe?",this));
 
 
 
