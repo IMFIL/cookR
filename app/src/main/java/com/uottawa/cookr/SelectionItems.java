@@ -73,6 +73,29 @@ public class SelectionItems {
         else return getOnlyNotSelected();
     }
 
+    private int getTotalSelected(){
+        int count = 0;
+
+        for(int i=0; i<elements.length;i++){
+            if(selected[i]){
+                count++;
+            }
+        }
+        return  count;
+    }
+
+    public String [] getSelected(){
+        String [] tmp = new String [getTotalSelected()];
+        int count = 0;
+
+        for(int i=0; i < elements.length;i++){
+            if(selected[i]){
+                tmp[count++] = elements[i];
+            }
+        }
+        return tmp;
+    };
+
 }
 
 

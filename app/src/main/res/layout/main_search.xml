@@ -63,7 +63,9 @@
                             android:layout_width="match_parent"
                             android:hint="Recipe Name"
                             android:layout_height="match_parent"
-                            android:textSize="25sp" />
+                            android:textSize="25sp"
+                            android:id="@+id/recipeNameSearch"
+                            android:maxLines="1" />
                     </android.support.design.widget.TextInputLayout>
 
                     <android.support.design.widget.TextInputLayout
@@ -76,7 +78,9 @@
                             android:layout_width="match_parent"
                             android:hint="@string/Ingredients"
                             android:layout_height="match_parent"
-                            android:textSize="25sp"/>
+                            android:textSize="25sp"
+                            android:id="@+id/ingredientsSearch"
+                            android:maxLines="1" />
                     </android.support.design.widget.TextInputLayout>
 
                 </LinearLayout>
@@ -171,19 +175,26 @@
                         android:textAllCaps="false"
                         android:onClick="showDialogListView" />
 
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:srcCompat="?attr/actionModeShareDrawable"
-                        android:id="@+id/searchRecipes"
-                        android:layout_weight="1"
-                        android:clickable="true" />
 
                 </LinearLayout>
 
             </LinearLayout>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="&#xf061;"
+                android:id="@+id/searchRecipes"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:textSize="30sp"
+                android:gravity="right|center_horizontal"
+                android:paddingRight="20dp"
+                android:onClick="searchOnClick" />
+
         </LinearLayout>
+
     </ScrollView>
+
 
 </RelativeLayout>
