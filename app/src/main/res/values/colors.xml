@@ -3,4 +3,22 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="lightPink">#fec8c9</color>
+    <color name="darkPink">#fd999a</color>
+    <color name="lightNavy">#456c49b8</color>
+    <color name="darkNavy">#3e4149</color>
+
+    <color name="redPastel">#ff7473</color>
+    <color name="yellowPastel">#ffc952</color>
+    <color name="bluePastel">#47b8e0</color>
+    <color name="darkPastel">#34314c</color>
+
+    <color name="white">#ffffff</color>
+    <color name="background">#f2f2f5</color>
+    <color name="button">#34314c</color>
+    <color name="text">#a3c9c7</color>
+    <color name="actioBar">#e9ebeb</color>
+    <color name="grey">#d8d8d8</color>
+
+
 </resources>

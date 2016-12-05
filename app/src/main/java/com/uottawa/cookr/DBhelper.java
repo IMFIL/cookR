@@ -155,7 +155,7 @@ public class DBhelper extends SQLiteOpenHelper {
                         while(search.getIngredients().charAt(i) == ' '){
                             i++;
                         }
-                            i--;
+                        i--;
                     }
 
                     else if (ingredient){
@@ -229,7 +229,7 @@ public class DBhelper extends SQLiteOpenHelper {
 
     private String generateQuery(Stack<String> stack,Searchable search){
         String query = "SELECT * FROM Recipes " +
-                "JOIN Amounts ON Amounts.RecipeID=Recipes.RecipeID " +
+                "JOIN Amounts ON Amounts.RecipeID=Recipes._id " +
                 "JOIN Ingredients ON Amounts.IngredientID = Ingredients.IngredientID " +
                 "WHERE Ingredients.IngredientName LIKE ? ";
 
@@ -318,7 +318,7 @@ public class DBhelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor;
 
-        String query = "SELECT * FROM Amounts JOIN Recipes ON Recipes.RecipeID = " +
+        String query = "SELECT * FROM Amounts JOIN Recipes ON Recipes._id = " +
                 "Amounts.RecipeID JOIN Ingredients ON Ingredients.IngredientID = " +
                 "Amounts.IngredientID WHERE RecipeName=?";
 
@@ -355,7 +355,7 @@ public class DBhelper extends SQLiteOpenHelper {
                 tmp = new ResultRecipe(Ingredients, cursor.getString(cursor.getColumnIndex("RecipeName")),
                         cursor.getString(cursor.getColumnIndex("Servings")), cursor.getString(cursor.getColumnIndex("CookingTime")),
                         cursor.getString(cursor.getColumnIndex("PreparationTime")), cursor.getString(cursor.getColumnIndex("Instructions")),
-                       Integer.parseInt(cursor.getString(cursor.getColumnIndex("RecipeID"))));
+                        Integer.parseInt(cursor.getString(cursor.getColumnIndex("RecipeID"))));
             }
 
             while (cursor.moveToNext());
