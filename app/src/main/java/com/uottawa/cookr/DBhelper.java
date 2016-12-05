@@ -1,14 +1,12 @@
 package com.uottawa.cookr;
 
-import android.annotation.SuppressLint;
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.os.Build;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,114 +15,110 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Stack;
 
+/**
+ * Created by Abdulwahaab on 2016-12-05.
+ */
 
 public class DBhelper extends SQLiteOpenHelper {
-
-    private static String DB_PATH="";
-    private static String DB_NAME="Cookr.db";
-    private SQLiteDatabase DB;
-    private Context myContext = null;
-
     String [] StringsNeeded;
-
-    public DBhelper(Context context) {
-        super(context, DB_NAME, null, 1);
-
-        if(Build.VERSION.SDK_INT >= 17){
-            DB_PATH = context.getApplicationInfo().dataDir +"/databases/";
-        }
-
-        else{
-            DB_PATH = "/data/data/" + context.getPackageName() + "/databases/";
-        }
-
-        myContext = context;
+    public DBhelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+        super(context, "Cookr.db", factory, version);
     }
-
 
     @Override
-    public synchronized void close() {
-        if (DB != null) {
-            DB.close();
-        }
-        super.close();
+    public void onCreate(SQLiteDatabase sqLiteDatabase) {
+        sqLiteDatabase.execSQL("CREATE TABLE Recipes (_id INTEGER UNIQUE NOT NULL PRIMARY KEY ASC AUTOINCREMENT, RecipeName STRING NOT NULL, Instructions STRING NOT NULL, TimeOfDay STRING NOT NULL, Cuisine STRING NOT NULL, Servings INTEGER, Favourite INT NOT NULL, PreparationTime INTEGER, CookingTime INTEGER, Type STRING, userCreated INT);");
     }
 
-
-    private boolean checkDataBase(){
-        SQLiteDatabase tmpDB = null;
-
-        try{
-            String path = DB_PATH+ DB_NAME;
-            tmpDB = SQLiteDatabase.openDatabase(path,null,SQLiteDatabase.OPEN_READWRITE);
-        }
-
-        catch(SQLException e){
-
-        }
-
-        if(tmpDB != null){
-            tmpDB.close();
-        }
-
-        return tmpDB != null;
+    @Override
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+        sqLiteDatabase.execSQL("DROP IF EXISTS Recipes;");
+        onCreate(sqLiteDatabase);
     }
 
+//
+//    @Override
+//    public synchronized void close() {
+//        if (DB != null) {
+//            DB.close();
+//        }
+//        super.close();
+//    }
 
-    public void copyDataBase() throws IOException{
-        try{
-            InputStream myInput = myContext.getAssets().open(DB_NAME);
-            String outputFileName = DB_PATH+DB_NAME;
-            OutputStream myOutput = new FileOutputStream(outputFileName);
 
-            byte []  buffer = new byte [1024];
-            int length;
+//    private boolean checkDataBase(){
+//        SQLiteDatabase tmpDB = null;
+//
+//        try{
+//            String path = DB_PATH+ DB_NAME;
+//            tmpDB = SQLiteDatabase.openDatabase(path,null,SQLiteDatabase.NO_LOCALIZED_COLLATORS | SQLiteDatabase.OPEN_READWRITE);
+//        }
+//
+//        catch(SQLException e){
+//
+//        }
+//
+//        if(tmpDB != null){
+//            tmpDB.close();
+//        }
+//
+//        return tmpDB != null;
+//    }
 
-            while ((length=myInput.read(buffer))>0){
-                myOutput.write(buffer,0,length);
-            }
-            myOutput.flush();
-            myOutput.close();
-            myInput.close();
-        }
-        catch (IOException e){
-            e.printStackTrace();
-        }
-    }
 
-    public void openDataBase() throws SQLException {
-
-        String myPath = DB_PATH + DB_NAME;
-        DB = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READWRITE);
-
-    }
-
-    public void createDataBase() throws IOException{
-
-        boolean dbExist = checkDataBase();
-
-        if(dbExist){
-
-        }
-
-        else{
-            this.getReadableDatabase();
-
-            try {
-                copyDataBase();
-
-            }
-            catch (IOException e) {
-                throw new Error("Error copying database");
-            }
-        }
-
-    }
+//    public void copyDataBase() throws IOException {
+//        try{
+//            InputStream myInput = myContext.getAssets().open(DB_NAME);
+//            String outputFileName = DB_PATH+DB_NAME;
+//            OutputStream myOutput = new FileOutputStream(outputFileName);
+//
+//            byte []  buffer = new byte [1024];
+//            int length;
+//
+//            while ((length=myInput.read(buffer))>0){
+//                myOutput.write(buffer,0,length);
+//            }
+//            myOutput.flush();
+//            myOutput.close();
+//            myInput.close();
+//        }
+//        catch (IOException e){
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    public void openDataBase() throws SQLException {
+//
+//        String myPath = DB_PATH + DB_NAME;
+//        this.DB = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.NO_LOCALIZED_COLLATORS | SQLiteDatabase.OPEN_READWRITE);
+//
+//    }
+//
+//    public void createDataBase() throws IOException{
+//
+//        boolean dbExist = checkDataBase();
+//        if(dbExist){
+//
+//        }
+//
+//        else{
+//            this.getReadableDatabase();
+//
+//            try {
+//                copyDataBase();
+//
+//            }
+//            catch (IOException e) {
+//                throw new Error("Error copying database");
+//            }
+//        }
+//
+//    }
 
     //make it return a resultRecipe Object
 
     public String [] getRecipes(Searchable search){
-        SQLiteDatabase db = getWritableDatabase();
+        SQLiteDatabase db = getReadableDatabase();
         Cursor cursor;
         String [] returnNames = null;
 
@@ -156,7 +150,7 @@ public class DBhelper extends SQLiteOpenHelper {
                         while(search.getIngredients().charAt(i) == ' '){
                             i++;
                         }
-                            i--;
+                        i--;
                     }
 
                     else if (ingredient){
@@ -213,19 +207,24 @@ public class DBhelper extends SQLiteOpenHelper {
 
 
 
-    @Override
-    public void onCreate(SQLiteDatabase sqLiteDatabase) {
-
-    }
-
-    @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
-    }
+//    @Override
+//    public void onCreate(SQLiteDatabase sqLiteDatabase) {
+//
+//    }
+//
+//    @Override
+//    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+//        if(newVersion>oldVersion)
+//            try {
+//                copyDataBase();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//    }
 
     private String generateQuery(Stack<String> stack,Searchable search){
         String query = "SELECT * FROM Recipes " +
-                "JOIN Amounts ON Amounts.RecipeID=Recipes.RecipeID " +
+                "JOIN Amounts ON Amounts.RecipeID=Recipes._id " +
                 "JOIN Ingredients ON Amounts.IngredientID = Ingredients.IngredientID " +
                 "WHERE Ingredients.IngredientName LIKE ? ";
 
@@ -311,10 +310,10 @@ public class DBhelper extends SQLiteOpenHelper {
     }
 
     public ResultRecipe getSingleResult(String recipeName){
-        SQLiteDatabase db = getWritableDatabase();
+        SQLiteDatabase db = getReadableDatabase();
         Cursor cursor;
 
-        String query = "SELECT * FROM Amounts JOIN Recipes ON Recipes.RecipeID = " +
+        String query = "SELECT * FROM Amounts JOIN Recipes ON Recipes._id = " +
                 "Amounts.RecipeID JOIN Ingredients ON Ingredients.IngredientID = " +
                 "Amounts.IngredientID WHERE RecipeName=?";
 
@@ -351,7 +350,7 @@ public class DBhelper extends SQLiteOpenHelper {
                 tmp = new ResultRecipe(Ingredients, cursor.getString(cursor.getColumnIndex("RecipeName")),
                         cursor.getString(cursor.getColumnIndex("Servings")), cursor.getString(cursor.getColumnIndex("CookingTime")),
                         cursor.getString(cursor.getColumnIndex("PreparationTime")), cursor.getString(cursor.getColumnIndex("Instructions")),
-                       Integer.parseInt(cursor.getString(cursor.getColumnIndex("RecipeID"))));
+                        Integer.parseInt(cursor.getString(cursor.getColumnIndex("RecipeID"))));
             }
 
             while (cursor.moveToNext());
@@ -377,9 +376,24 @@ public class DBhelper extends SQLiteOpenHelper {
     }
 
     public String [] getFavorite(){
-        SQLiteDatabase db = getWritableDatabase();
+//        SQLiteDatabase db = getReadableDatabase();
+//
+//        System.out.println(DB_PATH);
+//        File folder = new File(DB_PATH);
+//        File[] listOfFiles = folder.listFiles();
+//        System.out.println(listOfFiles);
+        System.out.println("========START HERE========");
+        Cursor c = this.getReadableDatabase().rawQuery("SELECT name FROM sqlite_master WHERE type='table'", null);
+
+        if (c.moveToFirst()) {
+            while ( !c.isAfterLast() ) {
+                System.out.println(c.getString(0));
+                c.moveToNext();
+            }
+        }
+        System.out.println("========END HERE========");
         String query = "SELECT RecipeName FROM Recipes WHERE Favourite = 1";
-        Cursor c = db.rawQuery(query,null);
+        c = this.getReadableDatabase().rawQuery(query,null);
         ArrayList<String> faves = new ArrayList<String>();
 
         if (c.getCount() == 0) return new String[]{};
@@ -397,13 +411,14 @@ public class DBhelper extends SQLiteOpenHelper {
             favorties[i] = faves.get(i);
         }
         c.close();
+        System.out.println(favorties);
         return  favorties;
     }
 
     public ResultRecipe generateRandomRecipe(){
-        SQLiteDatabase db = getWritableDatabase();
+        //SQLiteDatabase db = getReadableDatabase();
         String query = "SELECT * FROM Recipes";
-        Cursor c = db.rawQuery(query,null);
+        Cursor c = this.getReadableDatabase().rawQuery(query,null);
         ArrayList<String> faves = new ArrayList<String>();
 
         if (c.getCount() == 0) return null;
@@ -412,7 +427,7 @@ public class DBhelper extends SQLiteOpenHelper {
         int randomNum = rand.nextInt((c.getCount() - 1) + 1) + 1;
         c.close();
 
-        c = db.rawQuery("SELECT RecipeName FROM Recipes WHERE RecipeID = " + randomNum,null);
+        c = this.getReadableDatabase().rawQuery("SELECT RecipeName FROM Recipes WHERE _id = " + randomNum,null);
         c.moveToFirst();
         return getSingleResult(c.getString(c.getColumnIndex("RecipeName")));
 
