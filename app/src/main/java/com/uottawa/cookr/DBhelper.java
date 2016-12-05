@@ -1,7 +1,5 @@
 package com.uottawa.cookr;
 
-import android.annotation.SuppressLint;
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -9,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Build;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -28,7 +27,7 @@ public class DBhelper extends SQLiteOpenHelper {
     String [] StringsNeeded;
 
     public DBhelper(Context context) {
-        super(context, DB_NAME, null, 1);
+        super(context, DB_NAME, null, 2);
 
         if(Build.VERSION.SDK_INT >= 17){
             DB_PATH = context.getApplicationInfo().dataDir +"/databases/";
@@ -38,8 +37,9 @@ public class DBhelper extends SQLiteOpenHelper {
         else{
             DB_PATH = "/data/data/" + context.getPackageName() + "/databases/";
         }
-
         myContext = context;
+        openDataBase();
+        //createTables();
     }
 
 
@@ -96,14 +96,13 @@ public class DBhelper extends SQLiteOpenHelper {
     public void openDataBase() throws SQLException {
 
         String myPath = DB_PATH + DB_NAME;
-        DB = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READWRITE);
+        DB = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.NO_LOCALIZED_COLLATORS | SQLiteDatabase.OPEN_READWRITE);
 
     }
 
     public void createDataBase() throws IOException{
 
         boolean dbExist = checkDataBase();
-
         if(dbExist){
 
         }
@@ -125,7 +124,7 @@ public class DBhelper extends SQLiteOpenHelper {
     //make it return a resultRecipe Object
 
     public String [] getRecipes(Searchable search){
-        openDataBase();
+        SQLiteDatabase db = getReadableDatabase();
         Cursor cursor;
         String [] returnNames = null;
 
@@ -157,7 +156,7 @@ public class DBhelper extends SQLiteOpenHelper {
                         while(search.getIngredients().charAt(i) == ' '){
                             i++;
                         }
-                            i--;
+                        i--;
                     }
 
                     else if (ingredient){
@@ -176,11 +175,11 @@ public class DBhelper extends SQLiteOpenHelper {
                     //this is not a correct query.
                 }
 
-                cursor = DB.rawQuery(generateQuery(booleanStack,search),StringsNeeded);
+                cursor = db.rawQuery(generateQuery(booleanStack,search),StringsNeeded);
             }
 
             else{
-                cursor = DB.rawQuery("SELECT RecipeName FROM Recipes WHERE RecipeName=?", new String [] {search.getRecipeName()});
+                cursor = db.rawQuery("SELECT RecipeName FROM Recipes WHERE RecipeName=?", new String [] {search.getRecipeName()});
             }
 
             if(cursor==null) return new String [] {"empty"};
@@ -208,7 +207,7 @@ public class DBhelper extends SQLiteOpenHelper {
         }
 
 
-        DB.close();
+        db.close();
         return returnNames;
     }
 
@@ -220,13 +219,18 @@ public class DBhelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        if(newVersion>oldVersion)
+            try {
+                copyDataBase();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
     }
 
     private String generateQuery(Stack<String> stack,Searchable search){
         String query = "SELECT * FROM Recipes " +
-                "JOIN Amounts ON Amounts.RecipeID=Recipes.RecipeID " +
+                "JOIN Amounts ON Amounts.RecipeID=Recipes._id " +
                 "JOIN Ingredients ON Amounts.IngredientID = Ingredients.IngredientID " +
                 "WHERE Ingredients.IngredientName LIKE ? ";
 
@@ -312,10 +316,10 @@ public class DBhelper extends SQLiteOpenHelper {
     }
 
     public ResultRecipe getSingleResult(String recipeName){
-        openDataBase();
+        SQLiteDatabase db = getReadableDatabase();
         Cursor cursor;
 
-        String query = "SELECT * FROM Amounts JOIN Recipes ON Recipes.RecipeID = " +
+        String query = "SELECT * FROM Amounts JOIN Recipes ON Recipes._id = " +
                 "Amounts.RecipeID JOIN Ingredients ON Ingredients.IngredientID = " +
                 "Amounts.IngredientID WHERE RecipeName=?";
 
@@ -323,7 +327,7 @@ public class DBhelper extends SQLiteOpenHelper {
 
         try {
 
-            cursor = DB.rawQuery(query, new String[]{recipeName});
+            cursor = db.rawQuery(query, new String[]{recipeName});
 
             cursor.moveToFirst();
 
@@ -342,7 +346,7 @@ public class DBhelper extends SQLiteOpenHelper {
             }
 
 
-            cursor = DB.rawQuery("SELECT * FROM RECIPES WHERE RecipeName=?", new String[]{recipeName});
+            cursor = db.rawQuery("SELECT * FROM RECIPES WHERE RecipeName=?", new String[]{recipeName});
 
             cursor.moveToFirst();
 
@@ -352,7 +356,7 @@ public class DBhelper extends SQLiteOpenHelper {
                 tmp = new ResultRecipe(Ingredients, cursor.getString(cursor.getColumnIndex("RecipeName")),
                         cursor.getString(cursor.getColumnIndex("Servings")), cursor.getString(cursor.getColumnIndex("CookingTime")),
                         cursor.getString(cursor.getColumnIndex("PreparationTime")), cursor.getString(cursor.getColumnIndex("Instructions")),
-                       Integer.parseInt(cursor.getString(cursor.getColumnIndex("RecipeID"))));
+                        Integer.parseInt(cursor.getString(cursor.getColumnIndex("RecipeID"))));
             }
 
             while (cursor.moveToNext());
@@ -370,17 +374,30 @@ public class DBhelper extends SQLiteOpenHelper {
 
 
     public void setUnsetFavorite(int sou,int id){
-        openDataBase();
+        SQLiteDatabase db = getReadableDatabase();
         String query = "UPDATE Recipes SET Favourite = " + sou + " WHERE RecipeID = " +id;
-        Cursor c = DB.rawQuery(query,null);
+        Cursor c = db.rawQuery(query,null);
         c.moveToFirst();
         c.close();
     }
 
     public String [] getFavorite(){
-        openDataBase();
+        SQLiteDatabase db = getReadableDatabase();
+        System.out.println(DB_PATH);
+        File folder = new File(DB_PATH);
+        File[] listOfFiles = folder.listFiles();
+        System.out.println("========START HERE========");
+        Cursor c = db.rawQuery("SELECT name FROM sqlite_master WHERE type='table'", null);
+
+        if (c.moveToFirst()) {
+            while ( !c.isAfterLast() ) {
+                System.out.println(c.getString(0));
+                c.moveToNext();
+            }
+        }
+        System.out.println("========END HERE========");
         String query = "SELECT RecipeName FROM Recipes WHERE Favourite = 1";
-        Cursor c = DB.rawQuery(query,null);
+        c = db.rawQuery(query,null);
         ArrayList<String> faves = new ArrayList<String>();
 
         if (c.getCount() == 0) return new String[]{};
@@ -398,13 +415,14 @@ public class DBhelper extends SQLiteOpenHelper {
             favorties[i] = faves.get(i);
         }
         c.close();
+        System.out.println(favorties);
         return  favorties;
     }
 
     public ResultRecipe generateRandomRecipe(){
-        openDataBase();
+        SQLiteDatabase db = getReadableDatabase();
         String query = "SELECT * FROM Recipes";
-        Cursor c = DB.rawQuery(query,null);
+        Cursor c = db.rawQuery(query,null);
         ArrayList<String> faves = new ArrayList<String>();
 
         if (c.getCount() == 0) return null;
@@ -413,11 +431,19 @@ public class DBhelper extends SQLiteOpenHelper {
         int randomNum = rand.nextInt((c.getCount() - 1) + 1) + 1;
         c.close();
 
-        c = DB.rawQuery("SELECT RecipeName FROM Recipes WHERE RecipeID = " + randomNum,null);
+        c = db.rawQuery("SELECT RecipeName FROM Recipes WHERE _id = " + randomNum,null);
         c.moveToFirst();
         return getSingleResult(c.getString(c.getColumnIndex("RecipeName")));
 
 
 
+    }
+
+    private boolean createTables(){
+        String query = "CREATE TABLE Recipes (_id INTEGER UNIQUE NOT NULL PRIMARY KEY ASC AUTOINCREMENT, RecipeName STRING NOT NULL, Instructions STRING NOT NULL, TimeOfDay STRING NOT NULL, Cuisine STRING NOT NULL, Servings INTEGER, Favourite INT NOT NULL, PreparationTime INTEGER, CookingTime INTEGER, Type STRING, userCreated INT)";
+        SQLiteDatabase db = getReadableDatabase();
+        //Cursor c;
+        db.execSQL(query);
+        return true;
     }
 }
