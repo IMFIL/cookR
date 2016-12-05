@@ -32,6 +32,15 @@
         android:layout_height="wrap_content"
         android:paddingTop="90dp">
 
+            <TextView
+                android:text="@string/addImageText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/addImageText"
+                android:textColor="@color/darkPastel"
+                android:textAlignment="center"
+                android:paddingBottom="5dp" />
+
             <ImageView
                 android:layout_width="match_parent"
                 app:srcCompat="@drawable/plus"
