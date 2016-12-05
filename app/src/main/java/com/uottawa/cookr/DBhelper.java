@@ -1,6 +1,7 @@
 package com.uottawa.cookr;
 
 import android.annotation.SuppressLint;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -13,6 +14,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Stack;
 
 
@@ -173,7 +175,7 @@ public class DBhelper extends SQLiteOpenHelper {
                     //this is not a correct query.
                 }
 
-                cursor = db.rawQuery(generateQuery(booleanStack),StringsNeeded);
+                cursor = db.rawQuery(generateQuery(booleanStack,search),StringsNeeded);
             }
 
             else{
@@ -221,7 +223,7 @@ public class DBhelper extends SQLiteOpenHelper {
 
     }
 
-    private String generateQuery(Stack<String> stack){
+    private String generateQuery(Stack<String> stack,Searchable search){
         String query = "SELECT * FROM Recipes " +
                 "JOIN Amounts ON Amounts.RecipeID=Recipes.RecipeID " +
                 "JOIN Ingredients ON Amounts.IngredientID = Ingredients.IngredientID " +
@@ -255,12 +257,166 @@ public class DBhelper extends SQLiteOpenHelper {
             }
             count++;
 
+            if(search.getCuisines().length>1){
+                query+="AND Recipes.Ethnicity LIKE ? ";
+                list.add("%" + search.getCuisines()[0] + "%");
+
+                for(int i=1;i<search.getCuisines().length;i++){
+                    query+="OR Recipes.Ethnicity LIKE ? ";
+                    list.add("%" + search.getCuisines()[i] + "%");
+                }
+            }
+
+            else if(search.getCuisines().length==1){
+                query+="AND Recipes.Ethnicity LIKE ? ";
+                list.add("%" +search.getCuisines()[0]+ "%");
+            }
+
+            if(search.getTypes().length>1){
+                query+="AND Recipes.Type LIKE ? ";
+                list.add("%"+search.getTypes()[0]+ "%");
+
+                for(int i=1;i<search.getTypes().length;i++){
+                    query+="OR Recipes.Type LIKE ?";
+                    list.add("%"+search.getTypes()[i]+ "%");
+                }
+            }
+
+            else if(search.getTypes().length==1){
+                query+="AND Recipes.Type LIKE ? ";
+                list.add("%"+search.getTypes()[0] + "%");
+            }
+
+            if(search.getTimes().length>1){
+                query+="AND Recipes.TimeOfDay=? ";
+                list.add(search.getTimes()[0]);
+
+                for(int i=1;i<search.getTimes().length;i++){
+                    query+="OR Recipes.TimeOfDay=?";
+                    list.add(search.getTimes()[i]);
+                }
+            }
+
+            else if(search.getTimes().length==1){
+                query+="AND Recipes.TimeOfDay=? ";
+                list.add(search.getTimes()[0]);
+            }
+
         }
         StringsNeeded = new String [list.size()];
         for(int i=0;i<list.size();i++){
             StringsNeeded[i] = list.get(i);
-            System.out.println(StringsNeeded[i]);
         }
         return query;
+    }
+
+    public ResultRecipe getSingleResult(String recipeName){
+        SQLiteDatabase db = getWritableDatabase();
+        Cursor cursor;
+
+        String query = "SELECT * FROM Amounts JOIN Recipes ON Recipes.RecipeID = " +
+                "Amounts.RecipeID JOIN Ingredients ON Ingredients.IngredientID = " +
+                "Amounts.IngredientID WHERE RecipeName=?";
+
+        ArrayList <String> ingredients = new ArrayList <String>();
+
+        try {
+
+            cursor = db.rawQuery(query, new String[]{recipeName});
+
+            cursor.moveToFirst();
+
+            do {
+                ingredients.add(cursor.getString(cursor.getColumnIndex("IngredientName")));
+            }
+
+            while (cursor.moveToNext());
+
+            cursor.close();
+
+            String[] Ingredients = new String[ingredients.size()];
+
+            for (int i = 0; i < ingredients.size(); i++) {
+                Ingredients[i] = ingredients.get(i);
+            }
+
+
+            cursor = db.rawQuery("SELECT * FROM RECIPES WHERE RecipeName=?", new String[]{recipeName});
+
+            cursor.moveToFirst();
+
+            ResultRecipe tmp;
+
+            do {
+                tmp = new ResultRecipe(Ingredients, cursor.getString(cursor.getColumnIndex("RecipeName")),
+                        cursor.getString(cursor.getColumnIndex("Servings")), cursor.getString(cursor.getColumnIndex("CookingTime")),
+                        cursor.getString(cursor.getColumnIndex("PreparationTime")), cursor.getString(cursor.getColumnIndex("Instructions")),
+                       Integer.parseInt(cursor.getString(cursor.getColumnIndex("RecipeID"))));
+            }
+
+            while (cursor.moveToNext());
+
+            cursor.close();
+            return tmp;
+        }
+
+        catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
+
+    public void setUnsetFavorite(int sou,int id){
+        SQLiteDatabase db = getWritableDatabase();
+        String query = "UPDATE Recipes SET Favourite = " + sou + " WHERE RecipeID = " +id;
+        Cursor c = db.rawQuery(query,null);
+        c.moveToFirst();
+        c.close();
+    }
+
+    public String [] getFavorite(){
+        SQLiteDatabase db = getWritableDatabase();
+        String query = "SELECT RecipeName FROM Recipes WHERE Favourite = 1";
+        Cursor c = db.rawQuery(query,null);
+        ArrayList<String> faves = new ArrayList<String>();
+
+        if (c.getCount() == 0) return new String[]{};
+
+        c.moveToFirst();
+        do{
+            faves.add(c.getString(c.getColumnIndex("RecipeName")));
+        }
+
+        while(c.moveToNext());
+
+        String [] favorties = new String [faves.size()];
+
+        for(int i=0;i<faves.size();i++){
+            favorties[i] = faves.get(i);
+        }
+        c.close();
+        return  favorties;
+    }
+
+    public ResultRecipe generateRandomRecipe(){
+        SQLiteDatabase db = getWritableDatabase();
+        String query = "SELECT * FROM Recipes";
+        Cursor c = db.rawQuery(query,null);
+        ArrayList<String> faves = new ArrayList<String>();
+
+        if (c.getCount() == 0) return null;
+
+        Random rand = new Random();
+        int randomNum = rand.nextInt((c.getCount() - 1) + 1) + 1;
+        c.close();
+
+        c = db.rawQuery("SELECT RecipeName FROM Recipes WHERE RecipeID = " + randomNum,null);
+        c.moveToFirst();
+        return getSingleResult(c.getString(c.getColumnIndex("RecipeName")));
+
+
+
     }
 }

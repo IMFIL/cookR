@@ -2,6 +2,7 @@ package com.uottawa.cookr;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -165,7 +166,9 @@ public class SearchMain extends AppCompatActivity {
            }
 
             else{
-
+               Intent intent = new Intent(this, Recipe_results.class);
+               intent.putExtra("recipeNames",result);
+               startActivity(intent);
            }
 
         }

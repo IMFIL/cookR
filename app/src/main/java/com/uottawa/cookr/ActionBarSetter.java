@@ -30,6 +30,14 @@ public class ActionBarSetter {
         textOfActionBar.setText(text);
         textOfActionBar.setTypeface(face);
 
+        if(context.getClass() == SingleRecipeResult.class){
+            textOfActionBar.setTextSize(20);
+
+            Typeface face2=Typeface.createFromAsset(c.getAssets(),"fonts/SanFranciscoDisplay-Medium.otf");
+            textOfActionBar.setTypeface(face2);
+
+        }
+
 
         return actionView;
 
