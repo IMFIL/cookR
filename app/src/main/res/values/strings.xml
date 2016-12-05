@@ -75,5 +75,6 @@
     <string name="Type">Type</string>
 
     <string name="addImageText">Recipe Image</string>
+    <string name="addPlus">Add +</string>
 
 </resources>
