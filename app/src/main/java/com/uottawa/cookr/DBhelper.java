@@ -32,6 +32,7 @@ public class DBhelper extends SQLiteOpenHelper {
 
         if(Build.VERSION.SDK_INT >= 17){
             DB_PATH = context.getApplicationInfo().dataDir +"/databases/";
+            System.out.println(DB_PATH);
         }
 
         else{
