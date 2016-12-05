@@ -378,9 +378,8 @@ public class DBhelper extends SQLiteOpenHelper {
 
     public String [] getFavorite(){
         openDataBase();
-        SQLiteDatabase db = getWritableDatabase();
         String query = "SELECT RecipeName FROM Recipes WHERE Favourite = 1";
-        Cursor c = db.rawQuery(query,null);
+        Cursor c = DB.rawQuery(query,null);
         ArrayList<String> faves = new ArrayList<String>();
 
         if (c.getCount() == 0) return new String[]{};
