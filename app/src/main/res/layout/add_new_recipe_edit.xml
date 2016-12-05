@@ -303,7 +303,7 @@
                     android:paddingBottom="20dp">
                     <EditText
                         android:layout_width="match_parent"
-                        android:hint="Cook time"
+                        android:hint="Cook Time"
                         android:layout_height="match_parent"
                         android:textSize="18sp" />
                 </android.support.design.widget.TextInputLayout>
