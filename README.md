@@ -1,2 +1,1 @@
-# NeedsBetterName
-Cook Helper
+Cookr is a Recipe finder aplication where one can enter a specific range of recipe related information to find the most relevant recipes. It was design as a course project but grew to be more than that. 

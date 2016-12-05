@@ -10,11 +10,14 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     TextView textView;
+    DBhelper dataBase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        dataBase = new DBhelper(this.getApplicationContext());
+
 
         TextView searchTxv = (TextView) findViewById(R.id.Search);
         TextView randomTxv = (TextView) findViewById(R.id.RandomRecipe);
@@ -60,8 +63,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void supriseMeClick(View view){
 
-        Intent intent = new Intent(this, SupriseMe.class);
+        Intent intent = new Intent (this,SingleRecipeResult.class);
+        ResultRecipe RR = dataBase.generateRandomRecipe();
+        intent.putExtra("RR",RR);
         startActivity(intent);
+
     }
 
     public void searchRecipeClick(View view){

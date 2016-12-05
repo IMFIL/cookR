@@ -5,6 +5,21 @@
     android:layout_height="match_parent"
     android:background="@color/background">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/customToolBar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/actioBar"
+        android:elevation="4dp"
+        android:contentInsetLeft="0dp"
+        android:contentInsetStart="0dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        android:contentInsetRight="0dp"
+        android:contentInsetEnd="0dp"
+        app:contentInsetRight="0dp"
+        app:contentInsetEnd="0dp"/>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -16,35 +31,8 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_height="match_parent">
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:text="Recipe Name"
-                    android:layout_width="305dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/recipeName"
-                    android:textAlignment="center"
-                    android:textSize="36sp"
-                    android:textColor="@color/redPastel"
-                    android:paddingLeft="50dp" />
-
-                <TextView
-                    android:text="@string/faveIcon"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/faveIcon"
-                    android:layout_weight="1"
-                    android:textAlignment="center"
-                    android:gravity="center_vertical"
-                    android:textSize="25sp"
-                    android:textColor="@color/redPastel" />
-
-            </LinearLayout>
+            android:layout_height="match_parent"
+            android:paddingTop="120dp">
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -71,9 +59,8 @@
                     android:layout_height="match_parent"
                     android:id="@+id/textView3"
                     android:layout_weight="1"
-                    android:textColor="@color/redPastel"
                     android:gravity="center_vertical|center_horizontal"
-                    android:textSize="18sp" />
+                    android:textSize="25sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -86,7 +73,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:id="@+id/LS1"
-                    android:background="@color/grey" />
+                    android:background="@color/white"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -101,9 +90,8 @@
                     android:layout_height="match_parent"
                     android:id="@+id/textView4"
                     android:layout_weight="1"
-                    android:textColor="@color/redPastel"
                     android:gravity="center_vertical|center_horizontal"
-                    android:textSize="18sp" />
+                    android:textSize="25sp" />
 
             </LinearLayout>
 
@@ -120,7 +108,9 @@
                     android:layout_height="match_parent"
                     android:elevation="24dp"
                     android:id="@+id/LS2"
-                    android:background="@color/grey" />
+                    android:background="@color/white"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp" />
 
             </LinearLayout>
 
@@ -128,40 +118,50 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingTop="5dp">
+                    android:layout_marginBottom="40dp"
+                    android:layout_marginTop="40dp">
 
                     <TextView
                         android:text="Prep: 5"
                         android:layout_width="match_parent"
-                        android:layout_height="35dp"
-                        android:id="@+id/textView6"
-                        android:textColor="@color/redPastel"
+                        android:id="@+id/prepTime"
                         android:paddingBottom="1dp"
                         android:textSize="16dp"
                         android:layout_weight="1"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:layout_height="60dp" />
 
                     <TextView
                         android:text="Cook: 5"
                         android:layout_width="match_parent"
-                        android:id="@+id/textView7"
-                        android:textColor="@color/redPastel"
+                        android:id="@+id/cookTime"
                         android:textSize="16dp"
-                        android:layout_height="35dp"
                         android:layout_weight="1"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:layout_height="60dp" />
 
                     <TextView
                         android:text="Serves: 5"
                         android:layout_width="match_parent"
-                        android:layout_height="35dp"
-                        android:id="@+id/textView5"
+                        android:id="@+id/serving"
                         android:paddingBottom="1dp"
                         android:textSize="16dp"
-                        android:textColor="@color/redPastel"
                         android:layout_weight="1"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:layout_height="60dp" />
+
                 </LinearLayout>
+
+            <TextView
+                android:text="Add To Favorites"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/AddToFavorite"
+                android:layout_alignParentBottom="true"
+                android:gravity="center_horizontal"
+                android:textSize="20sp"
+                android:paddingBottom="20dp"
+                android:onClick="addToFavoriteClick" />
 
         </LinearLayout>
     </ScrollView>
