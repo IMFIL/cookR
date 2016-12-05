@@ -125,7 +125,7 @@ public class DBhelper extends SQLiteOpenHelper {
     //make it return a resultRecipe Object
 
     public String [] getRecipes(Searchable search){
-        SQLiteDatabase db = getWritableDatabase();
+        openDataBase();
         Cursor cursor;
         String [] returnNames = null;
 
@@ -176,11 +176,11 @@ public class DBhelper extends SQLiteOpenHelper {
                     //this is not a correct query.
                 }
 
-                cursor = db.rawQuery(generateQuery(booleanStack,search),StringsNeeded);
+                cursor = DB.rawQuery(generateQuery(booleanStack,search),StringsNeeded);
             }
 
             else{
-                cursor = db.rawQuery("SELECT RecipeName FROM Recipes WHERE RecipeName=?", new String [] {search.getRecipeName()});
+                cursor = DB.rawQuery("SELECT RecipeName FROM Recipes WHERE RecipeName=?", new String [] {search.getRecipeName()});
             }
 
             if(cursor==null) return new String [] {"empty"};
@@ -208,7 +208,7 @@ public class DBhelper extends SQLiteOpenHelper {
         }
 
 
-        db.close();
+        DB.close();
         return returnNames;
     }
 
@@ -312,7 +312,7 @@ public class DBhelper extends SQLiteOpenHelper {
     }
 
     public ResultRecipe getSingleResult(String recipeName){
-        SQLiteDatabase db = getWritableDatabase();
+        openDataBase();
         Cursor cursor;
 
         String query = "SELECT * FROM Amounts JOIN Recipes ON Recipes.RecipeID = " +
@@ -323,7 +323,7 @@ public class DBhelper extends SQLiteOpenHelper {
 
         try {
 
-            cursor = db.rawQuery(query, new String[]{recipeName});
+            cursor = DB.rawQuery(query, new String[]{recipeName});
 
             cursor.moveToFirst();
 
@@ -342,7 +342,7 @@ public class DBhelper extends SQLiteOpenHelper {
             }
 
 
-            cursor = db.rawQuery("SELECT * FROM RECIPES WHERE RecipeName=?", new String[]{recipeName});
+            cursor = DB.rawQuery("SELECT * FROM RECIPES WHERE RecipeName=?", new String[]{recipeName});
 
             cursor.moveToFirst();
 
@@ -370,17 +370,17 @@ public class DBhelper extends SQLiteOpenHelper {
 
 
     public void setUnsetFavorite(int sou,int id){
-        SQLiteDatabase db = getWritableDatabase();
+        openDataBase();
         String query = "UPDATE Recipes SET Favourite = " + sou + " WHERE RecipeID = " +id;
-        Cursor c = db.rawQuery(query,null);
+        Cursor c = DB.rawQuery(query,null);
         c.moveToFirst();
         c.close();
     }
 
     public String [] getFavorite(){
-        SQLiteDatabase db = getWritableDatabase();
+        openDataBase();
         String query = "SELECT RecipeName FROM Recipes WHERE Favourite = 1";
-        Cursor c = db.rawQuery(query,null);
+        Cursor c = DB.rawQuery(query,null);
         ArrayList<String> faves = new ArrayList<String>();
 
         if (c.getCount() == 0) return new String[]{};
@@ -402,9 +402,9 @@ public class DBhelper extends SQLiteOpenHelper {
     }
 
     public ResultRecipe generateRandomRecipe(){
-        SQLiteDatabase db = getWritableDatabase();
+        openDataBase();
         String query = "SELECT * FROM Recipes";
-        Cursor c = db.rawQuery(query,null);
+        Cursor c = DB.rawQuery(query,null);
         ArrayList<String> faves = new ArrayList<String>();
 
         if (c.getCount() == 0) return null;
@@ -413,7 +413,7 @@ public class DBhelper extends SQLiteOpenHelper {
         int randomNum = rand.nextInt((c.getCount() - 1) + 1) + 1;
         c.close();
 
-        c = db.rawQuery("SELECT RecipeName FROM Recipes WHERE RecipeID = " + randomNum,null);
+        c = DB.rawQuery("SELECT RecipeName FROM Recipes WHERE RecipeID = " + randomNum,null);
         c.moveToFirst();
         return getSingleResult(c.getString(c.getColumnIndex("RecipeName")));
 
