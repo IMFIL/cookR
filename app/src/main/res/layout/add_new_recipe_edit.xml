@@ -32,13 +32,14 @@
         android:layout_height="wrap_content"
         android:paddingTop="90dp">
 
-        <ImageView
-            android:layout_width="match_parent"
-            app:srcCompat="@mipmap/ic_launcher"
-            android:id="@+id/imageView2"
-            android:layout_height="140dp" />
+            <ImageView
+                android:layout_width="match_parent"
+                app:srcCompat="@drawable/plus"
+                android:id="@+id/imageView2"
+                android:layout_height="140dp"
+                android:onClick="setImage" />
 
-        <LinearLayout
+            <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -156,24 +157,7 @@
                         android:layout_marginRight="10dp">
 
                         <RadioButton
-                            android:id="@+id/radio3"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/custom_radio_button"
-                            android:button="@android:color/transparent"
-                            android:checked="false"
-                            android:text="Snack"
-                            android:gravity="center_vertical|center_horizontal"
-                            android:layout_weight="1"
-                            android:layout_width="wrap_content"
-                            android:paddingTop="10dp"
-                            android:paddingBottom="10dp"
-                            android:layout_marginLeft="2dp"
-                            android:textColor="@color/button"
-                            android:layout_marginRight="2dp" />
-
-                        <RadioButton
                             android:id="@+id/radio0"
-                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/custom_radio_button"
                             android:button="@android:color/transparent"
@@ -185,7 +169,8 @@
                             android:paddingBottom="10dp"
                             android:layout_marginLeft="2dp"
                             android:textColor="@color/button"
-                            android:layout_marginRight="2dp" />
+                            android:layout_marginRight="2dp"
+                            android:layout_width="65dp" />
 
                         <RadioButton
                             android:id="@+id/radio1"
@@ -196,7 +181,7 @@
                             android:text="Lunch"
                             android:gravity="center_vertical|center_horizontal"
                             android:layout_weight="1"
-                            android:layout_width="wrap_content"
+                            android:layout_width="65dp"
                             android:paddingTop="10dp"
                             android:paddingBottom="10dp"
                             android:layout_marginLeft="2dp"
@@ -212,7 +197,23 @@
                             android:text="Dinner"
                             android:gravity="center_vertical|center_horizontal"
                             android:layout_weight="1"
-                            android:layout_width="wrap_content"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:layout_marginLeft="2dp"
+                            android:textColor="@color/button"
+                            android:layout_marginRight="2dp"
+                            android:layout_width="65dp" />
+
+                        <RadioButton
+                            android:id="@+id/radio3"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/custom_radio_button"
+                            android:button="@android:color/transparent"
+                            android:checked="false"
+                            android:text="Snack"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:layout_weight="1"
+                            android:layout_width="65dp"
                             android:paddingTop="10dp"
                             android:paddingBottom="10dp"
                             android:layout_marginLeft="2dp"
