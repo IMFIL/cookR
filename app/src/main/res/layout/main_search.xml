@@ -187,10 +187,12 @@
                 android:id="@+id/searchRecipes"
                 android:layout_weight="1"
                 android:clickable="true"
-                android:textSize="30sp"
+                android:textSize="40sp"
                 android:gravity="right|center_horizontal"
                 android:paddingRight="20dp"
-                android:onClick="searchOnClick" />
+                android:onClick="searchOnClick"
+                android:textColor="@color/text"
+                android:paddingBottom="10dp" />
 
         </LinearLayout>
 

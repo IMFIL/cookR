@@ -68,5 +68,7 @@
     <string name="XIcon">&#xf00d;</string>
     <string name="Type">Type</string>
 
+    <string name="addImageText">Recipe Image</string>
+
 
 </resources>
