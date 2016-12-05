@@ -104,7 +104,7 @@
                     android:gravity="center_horizontal">
 
                     <TextView
-                        android:text="Type of cuisine"
+                        android:text="@string/cuisineType"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/cuisineText"
@@ -122,12 +122,12 @@
                         android:layout_gravity="center"
                         android:textColor="@color/button"
                         android:textSize="20sp"
-                        android:text="Cuisine"
+                        android:text="@string/cuisine"
                         android:textAllCaps="false"
                         android:onClick="showDialogListView" />
 
                     <TextView
-                        android:text="Meal classification"
+                        android:text="@string/mealClassification"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/mealTimeText"
@@ -147,12 +147,12 @@
                         android:layout_gravity="center"
                         android:textColor="@color/button"
                         android:textSize="20sp"
-                        android:text="Meal time"
+                        android:text="@string/mealTime"
                         android:textAllCaps="false"
                         android:onClick="showDialogListView" />
 
                     <TextView
-                        android:text="Type of food"
+                        android:text="@string/foodType"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/typeText"
@@ -171,7 +171,7 @@
                         android:layout_gravity="center"
                         android:textColor="@color/button"
                         android:textSize="20sp"
-                        android:text="Type"
+                        android:text="@string/type"
                         android:textAllCaps="false"
                         android:onClick="showDialogListView" />
 
