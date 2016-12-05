@@ -80,5 +80,6 @@
     <string name="foodType">Type of Food</string>
     <string name="type">Type</string>
     <string name="mealTime">Meal Time</string>
+    <string name="mealClassification">Meal Classification</string>
 
 </resources>
