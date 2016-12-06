@@ -325,6 +325,7 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:hint="Cook Time"
+                        android:inputType="number"
                         android:layout_height="match_parent"
                         android:textSize="18sp"
                         android:id="@+id/cookEntry" />
@@ -333,7 +334,6 @@
 
             <Button
                 android:text="@string/addPlus"
-                android:inputType="number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/addBtn"
