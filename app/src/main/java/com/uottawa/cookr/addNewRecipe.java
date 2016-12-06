@@ -255,7 +255,11 @@ public class addNewRecipe extends AppCompatActivity {
 
         if(checkIfNull(StringMap)){
             dataBase.addRecipe(addRecipe);
+            Toast.makeText(this,"Recipe added", Toast.LENGTH_LONG).show();
+
         }
+
+
     }
 
 
