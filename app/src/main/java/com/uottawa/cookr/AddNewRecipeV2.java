@@ -15,6 +15,7 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -155,6 +156,21 @@ public class AddNewRecipeV2 extends AppCompatActivity {
         builder.setView(list);
         AlertDialog dialog=builder.create();
         dialog.show();
+
+    }
+
+    private void checkIfNull(String element, String name){
+    }
+
+    public void onAddClick(View view){
+        String name = ((EditText) findViewById(R.id.recipeNameEntry)).getText().toString();
+        String prep = ((EditText) findViewById(R.id.prepEntry)).getText().toString();
+        String cook = ((EditText) findViewById(R.id.cookEntry)).getText().toString();
+        String serving = ((EditText) findViewById(R.id.servingEntry)).getText().toString();
+        String instructions = ((EditText) findViewById(R.id.instructionsEntry)).getText().toString();
+        String ingredients = ((EditText) findViewById(R.id.ingredientsEntry)).getText().toString();
+
+
 
     }
 

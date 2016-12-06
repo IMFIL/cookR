@@ -32,7 +32,6 @@ public class DBhelper extends SQLiteOpenHelper {
 
         if(Build.VERSION.SDK_INT >= 17){
             DB_PATH = context.getApplicationInfo().dataDir +"/databases/";
-            System.out.println(DB_PATH);
         }
 
         else{
@@ -96,6 +95,7 @@ public class DBhelper extends SQLiteOpenHelper {
     public void openDataBase() throws SQLException {
 
         String myPath = DB_PATH + DB_NAME;
+        System.out.print("THIS IS THE PATH: " + DB_PATH+DB_NAME);
         DB = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READWRITE);
 
     }
@@ -358,6 +358,7 @@ public class DBhelper extends SQLiteOpenHelper {
             while (cursor.moveToNext());
 
             cursor.close();
+            DB.close();
             return tmp;
         }
 
@@ -398,6 +399,7 @@ public class DBhelper extends SQLiteOpenHelper {
             favorties[i] = faves.get(i);
         }
         c.close();
+        DB.close();
         return  favorties;
     }
 
@@ -415,6 +417,7 @@ public class DBhelper extends SQLiteOpenHelper {
 
         c = DB.rawQuery("SELECT RecipeName FROM Recipes WHERE RecipeID = " + randomNum,null);
         c.moveToFirst();
+        DB.close();
         return getSingleResult(c.getString(c.getColumnIndex("RecipeName")));
 
 
