@@ -69,7 +69,7 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="224dp">
+                android:layout_height="260dp">
 
                 <ListView
                     style="@style/CodeFont"
@@ -78,7 +78,12 @@
                     android:id="@+id/LS1"
                     android:background="@color/white"
                     android:paddingBottom="10dp"
-                    android:paddingTop="10dp" />
+                    android:paddingTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:elevation="25dp"
+                    android:layout_marginBottom="5dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -105,16 +110,20 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_height="224dp">
+                android:layout_height="260dp">
 
                 <ListView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:elevation="24dp"
+                    android:elevation="25dp"
                     android:id="@+id/LS2"
                     android:background="@color/white"
                     android:paddingBottom="10dp"
-                    android:paddingTop="10dp" />
+                    android:paddingTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp" />
 
             </LinearLayout>
 
