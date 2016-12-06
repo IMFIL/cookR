@@ -85,7 +85,7 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="38dp"
-                android:paddingBottom="5dp">
+                android:paddingBottom="10dp">
 
                 <TextView
                     android:text="@string/instructions"
@@ -121,8 +121,7 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="40dp"
-                    android:layout_marginTop="40dp">
+                    android:layout_marginTop="10dp">
 
                     <TextView
                         android:text="@string/prepTime"
@@ -164,7 +163,12 @@
                 android:gravity="center_horizontal"
                 android:textSize="20sp"
                 android:paddingBottom="20dp"
-                android:onClick="addToFavoriteClick" />
+                android:onClick="addToFavoriteClick"
+                android:paddingTop="20dp"
+                android:background="@drawable/customized_btn"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp" />
 
         </LinearLayout>
     </ScrollView>
