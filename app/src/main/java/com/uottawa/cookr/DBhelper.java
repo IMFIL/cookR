@@ -566,7 +566,6 @@ public class DBhelper extends SQLiteOpenHelper {
             favorties[i] = faves.get(i);
         }
         c.close();
-        System.out.println(favorties);
         return  favorties;
     }
 
