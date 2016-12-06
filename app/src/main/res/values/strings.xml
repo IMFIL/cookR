@@ -95,10 +95,15 @@
     <string name="prepTime">Prep: </string>
     <string name="cookTime">Add Type</string>
     <string name="servings">Serves</string>
+
     <string name="addToFavourites">Add To Favorites</string>
     <string name="helpSearchQuestion">Need help searching a recipe?</string>
     <string name="helpSearchText">1. In main menu select \"Search Recipe\"\n\n2. Fill in the blanks\n\n3. Separate ingredients using AND, OR, NOT\n\n4. Hit \"Search\"\n\n5. View the list of available recipes</string>
     <string name="helpFavoriteQuestion">Got favorites? We got you covered!</string>
     <string name="helpQuickSelectQuestion">No idea what to eat?</string>
+
+    <string name="Delete">Delete this recipe</string>
+
+
 
 </resources>

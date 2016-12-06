@@ -24,6 +24,7 @@
         android:layout_width="80dp"
         android:textSize="29sp"
         android:textColor="@color/redPastel"
-        android:gravity="center_horizontal" />
+        android:gravity="center_horizontal"
+        android:onClick="onDeleteClick" />
 
 </LinearLayout>

@@ -1,21 +1,41 @@
 package com.uottawa.cookr;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Typeface;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.Manifest;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView textView;
+    private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 1;
     DBhelper dataBase;
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.READ_EXTERNAL_STORAGE)) {
+
+            } else {
+
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                        MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+            }
+        }
+        
         dataBase = new DBhelper(this.getApplicationContext(), "", null, 2);
 
 
@@ -50,9 +70,6 @@ public class MainActivity extends AppCompatActivity {
         faveIcon.setTypeface(fontAwesome);
         settingsIcon.setTypeface(fontAwesome);
         helpIcon.setTypeface(fontAwesome);
-
-
-
     }
 
     public void helpClick(View view){
@@ -81,8 +98,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Favorites_results.class);
         startActivity(intent);
     }
-
-
+    
     public void addNewRecipeClick(View view){
 
         Intent intent = new Intent(this, addNewRecipe.class);
