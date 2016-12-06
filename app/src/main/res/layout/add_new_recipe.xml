@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="wrap_content"
-    android:layout_width="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/white">
 
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/background">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/customToolBar"
         android:layout_width="match_parent"
+        android:layout_height="80dp"
         android:background="@color/actioBar"
         android:elevation="4dp"
         android:contentInsetLeft="0dp"
@@ -18,236 +20,305 @@
         android:contentInsetRight="0dp"
         android:contentInsetEnd="0dp"
         app:contentInsetRight="0dp"
-        app:contentInsetEnd="0dp"
-        android:layout_height="80dp" />
+        app:contentInsetEnd="0dp"/>
 
-    <ScrollView android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@color/background"
-        android:paddingTop="80dp">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="20dp">
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:background="@color/background"
+        <LinearLayout
+            android:orientation="vertical" android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:padding="20dp">
+            android:paddingTop="90dp">
+
+            <TextView
+                android:text="@string/addImageText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/addImageText"
+                android:textColor="@color/darkPastel"
+                android:textAlignment="center"
+                android:paddingBottom="5dp" />
 
             <ImageView
-                android:id="@+id/viewImage"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:background="@mipmap/ic_launcher"
-                android:layout_weight="1"
-                android:layout_gravity="center_horizontal"
+                android:layout_width="match_parent"
+                app:srcCompat="@drawable/plus"
+                android:id="@+id/imageView2"
+                android:layout_height="140dp"
+                android:onClick="setImage"
                 android:paddingBottom="10dp" />
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:paddingBottom="10dp"
-                android:textColorHint="@color/text"
-                app:hintTextAppearance="@style/AppTheme">
-                <AutoCompleteTextView
-                    android:hint="Cuisine"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/ethnicity"
-                    android:gravity="center_vertical|center_horizontal" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textColorHint="@color/text"
-                android:layout_weight="1"
-                android:paddingBottom="10dp"
-                app:hintTextAppearance="@style/AppTheme">
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:ems="10"
-                    android:id="@+id/recipeName"
-                    android:layout_weight="1"
-                    android:hint="Recipe Name"
-                    android:gravity="center_vertical|center_horizontal" />
-            </android.support.design.widget.TextInputLayout>
-
-
             <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <android.support.design.widget.TextInputLayout
+                    app:hintTextAppearance="@style/AppTheme"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:textColorHint="@color/text"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp">
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:hint="Recipe Name"
+                        android:layout_height="match_parent"
+                        android:textSize="25sp" />
+                </android.support.design.widget.TextInputLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|center_horizontal|center"
+                    android:weightSum="1"
+                    android:gravity="center_horizontal"
+                    android:layout_margin="20dp">
+
+                    <TextView
+                        android:text="@string/cuisineType"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/cuisineText"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="@color/darkPastel" />
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:id="@+id/cuisineButton"
+                        android:layout_weight="1"
+                        android:background="@drawable/border"
+                        android:layout_margin="10dp"
+                        android:layout_gravity="center"
+                        android:textColor="@color/button"
+                        android:textSize="20sp"
+                        android:text="@string/cuisine"
+                        android:textAllCaps="false"
+                        android:onClick="showDialogListView" />
+
+                    <TextView
+                        android:text="@string/foodType"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/mealTypeText"
+                        android:layout_weight="1"
+                        android:keepScreenOn="true"
+                        android:gravity="center"
+                        android:textColor="@color/darkPastel"
+                        android:paddingTop="10dp" />
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:id="@+id/mealTypeButton"
+                        android:layout_weight="1"
+                        android:background="@drawable/border"
+                        android:layout_margin="10dp"
+                        android:layout_gravity="center"
+                        android:textColor="@color/button"
+                        android:textSize="20sp"
+                        android:text="@string/type"
+                        android:textAllCaps="false"
+                        android:onClick="showDialogListView" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center_vertical"
-                    android:paddingBottom="10dp">
+                    android:paddingBottom="10dp"
+                    android:orientation="vertical">
 
-                    <RadioGroup
-                        android:id="@+id/radioGroup1"
-                        android:layout_above="@+id/view_below"
-                        android:orientation="horizontal"
-                        android:layout_width="wrap_content"
+                    <TextView
+                        android:text="@string/mealTime"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:id="@+id/mealTimeText"
                         android:layout_weight="1"
-                        android:gravity="center_horizontal">
+                        android:keepScreenOn="true"
+                        android:gravity="center"
+                        android:textColor="@color/darkPastel" />
 
-                        <RadioButton
-                            android:id="@+id/radio0"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/custom_radio_button"
-                            android:button="@android:color/transparent"
-                            android:text="@string/breakfast"
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <RadioGroup
+                            android:id="@+id/radioGroup1"
+                            android:layout_above="@+id/view_below"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:checked="false"
-                            android:gravity="center_vertical|center_horizontal"
+                            android:gravity="center_horizontal"
                             android:paddingTop="10dp"
-                            android:paddingBottom="10dp"
-                            android:layout_marginLeft="2dp"
-                            android:textColor="@color/button"
-                            android:layout_marginRight="2dp"
-                            android:layout_width="65dp" />
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp">
 
-                        <RadioButton
-                            android:id="@+id/radio1"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/custom_radio_button"
-                            android:button="@android:color/transparent"
-                            android:checked="false"
-                            android:text="@string/lunch"
-                            android:gravity="center_vertical|center_horizontal"
-                            android:layout_weight="1"
-                            android:paddingTop="10dp"
-                            android:paddingBottom="10dp"
-                            android:layout_marginLeft="2dp"
-                            android:textColor="@color/button"
-                            android:layout_marginRight="2dp"
-                            android:layout_width="65dp" />
+                            <RadioButton
+                                android:id="@+id/radio0"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/custom_radio_button"
+                                android:button="@android:color/transparent"
+                                android:text="@string/breakfast"
+                                android:layout_weight="1"
+                                android:checked="false"
+                                android:gravity="center_vertical|center_horizontal"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp"
+                                android:layout_marginLeft="2dp"
+                                android:textColor="@color/button"
+                                android:layout_marginRight="2dp"
+                                android:layout_width="65dp" />
 
-                        <RadioButton
-                            android:id="@+id/radio2"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/custom_radio_button"
-                            android:button="@android:color/transparent"
-                            android:checked="false"
-                            android:text="@string/lunch"
-                            android:gravity="center_vertical|center_horizontal"
-                            android:layout_weight="1"
-                            android:paddingTop="10dp"
-                            android:paddingBottom="10dp"
-                            android:layout_marginLeft="2dp"
-                            android:textColor="@color/button"
-                            android:layout_marginRight="2dp"
-                            android:layout_width="65dp" />
+                            <RadioButton
+                                android:id="@+id/radio1"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/custom_radio_button"
+                                android:button="@android:color/transparent"
+                                android:checked="false"
+                                android:text="@string/lunch"
+                                android:gravity="center_vertical|center_horizontal"
+                                android:layout_weight="1"
+                                android:layout_width="65dp"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp"
+                                android:layout_marginLeft="2dp"
+                                android:textColor="@color/button"
+                                android:layout_marginRight="2dp" />
 
-                        <RadioButton
-                            android:id="@+id/radio3"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/custom_radio_button"
-                            android:button="@android:color/transparent"
-                            android:checked="false"
-                            android:text="@string/snack"
-                            android:gravity="center_vertical|center_horizontal"
-                            android:layout_weight="1"
-                            android:paddingTop="10dp"
-                            android:paddingBottom="10dp"
-                            android:layout_marginLeft="2dp"
-                            android:textColor="@color/button"
-                            android:layout_marginRight="2dp"
-                            android:layout_width="65dp" />
+                            <RadioButton
+                                android:id="@+id/radio2"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/custom_radio_button"
+                                android:button="@android:color/transparent"
+                                android:checked="false"
+                                android:text="@string/dinner"
+                                android:gravity="center_vertical|center_horizontal"
+                                android:layout_weight="1"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp"
+                                android:layout_marginLeft="2dp"
+                                android:textColor="@color/button"
+                                android:layout_marginRight="2dp"
+                                android:layout_width="65dp" />
+
+                            <RadioButton
+                                android:id="@+id/radio3"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/custom_radio_button"
+                                android:button="@android:color/transparent"
+                                android:checked="false"
+                                android:text="@string/snack"
+                                android:gravity="center_vertical|center_horizontal"
+                                android:layout_weight="1"
+                                android:layout_width="65dp"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp"
+                                android:layout_marginLeft="2dp"
+                                android:textColor="@color/button"
+                                android:layout_marginRight="2dp" />
 
 
-                    </RadioGroup>
+                        </RadioGroup>
+                    </LinearLayout>
 
                 </LinearLayout>
-
+            </LinearLayout>
 
             <android.support.design.widget.TextInputLayout
+                app:hintTextAppearance="@style/AppTheme"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="top"
                 android:layout_weight="1"
                 android:textColorHint="@color/text"
-                android:paddingBottom="10dp"
-                app:hintTextAppearance="@style/AppTheme">
-
+                android:layout_height="wrap_content"
+                android:paddingBottom="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:paddingTop="10dp">
                 <EditText
-                    android:hint="Serving"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:ems="10"
-                    android:id="@+id/servings"
-                    android:layout_weight="1"
-                    android:textColor="@color/redPastel"
-                    android:textColorHint="@color/redPastel"
-                    android:gravity="center_horizontal" />
+                    android:hint="Ingredients"
+                    android:layout_height="match_parent"
+                    android:textSize="25sp" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                app:hintTextAppearance="@style/AppTheme"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textColorHint="@color/text"
                 android:layout_weight="1"
-                android:paddingBottom="10dp"
-                app:hintTextAppearance="@style/AppTheme">
-
-                <EditText
-                    android:hint="Preparation time (min)"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:ems="10"
-                    android:id="@+id/preparationTime"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical|center_horizontal" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
                 android:textColorHint="@color/text"
-                android:id="@+id/TxtLayoutCookingTime"
-                android:layout_weight="1"
-                android:paddingBottom="10dp"
-                app:hintTextAppearance="@style/AppTheme">
-
-                <EditText
-                    android:hint="Cooking time (min)"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:ems="10"
-                    android:id="@+id/cookTime"
-                    android:layout_weight="1"
-                    android:layout_below="@+id/TxtLayoutCookingTime"
-                    android:gravity="center_vertical|center_horizontal" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textColorHint="@color/text"
-                android:layout_weight="1"
-                android:paddingBottom="10dp"
-                app:hintTextAppearance="@style/AppTheme">
-
+                android:layout_height="wrap_content"
+                android:paddingBottom="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
                 <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textMultiLine"
-                    android:ems="10"
-                    android:id="@+id/recipeInstructions"
-                    android:layout_weight="1"
                     android:hint="Instructions"
-                    android:gravity="center_vertical|center_horizontal" />
-
-
+                    android:layout_height="match_parent"
+                    android:textSize="25sp" />
             </android.support.design.widget.TextInputLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp">
+
+                <android.support.design.widget.TextInputLayout
+                    app:hintTextAppearance="@style/AppTheme"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:textColorHint="@color/text"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="20dp">
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:hint="Serving"
+                        android:layout_height="match_parent"
+                        android:textSize="18sp" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    app:hintTextAppearance="@style/AppTheme"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:textColorHint="@color/text"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="20dp">
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:hint="Prep Time"
+                        android:layout_height="match_parent"
+                        android:textSize="18sp" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    app:hintTextAppearance="@style/AppTheme"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:textColorHint="@color/text"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="20dp">
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:hint="Cook Time"
+                        android:layout_height="match_parent"
+                        android:textSize="18sp" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
 
             <Button
                 android:text="@string/addPlus"
@@ -255,8 +326,14 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/addBtn"
                 android:background="@drawable/customized_btn"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:paddingTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:paddingBottom="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" />
 
         </LinearLayout>
-</ScrollView>
+    </ScrollView>
+
 </RelativeLayout>
