@@ -31,7 +31,7 @@ public class Favorites_results extends AppCompatActivity {
         setContentView(R.layout.favorite_page);
         final Context context = this;
 
-        dataBase = new DBhelper(this.getApplicationContext());
+        dataBase = new DBhelper(this.getApplicationContext(), "", null, 2);
 
 
         recipename = dataBase.getFavorite();
