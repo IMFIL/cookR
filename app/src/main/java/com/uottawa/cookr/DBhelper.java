@@ -581,7 +581,6 @@ public class DBhelper extends SQLiteOpenHelper {
 
         c = this.getReadableDatabase().rawQuery("SELECT RecipeName FROM Recipes WHERE RecipeID = " + randomNum,null);
         c.moveToFirst();
-        System.out.println(c.getString(c.getColumnIndex("RecipeName")));
         return getSingleResult(c.getString(c.getColumnIndex("RecipeName")));
 
 
