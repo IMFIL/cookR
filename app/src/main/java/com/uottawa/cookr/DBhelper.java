@@ -32,11 +32,11 @@ public class DBhelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         System.out.println("Upgrade");
-        sqLiteDatabase.execSQL("DROP IF EXISTS Recipes;");
-        sqLiteDatabase.execSQL("DROP IF EXISTS MealTypes;");
-        sqLiteDatabase.execSQL("DROP IF EXISTS Ingredients;");
-        sqLiteDatabase.execSQL("DROP IF EXISTS Cuisines;");
-        sqLiteDatabase.execSQL("DROP IF EXISTS Amount;");
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS Recipes;");
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS MealTypes;");
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS Ingredients;");
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS Cuisines;");
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS Amount;");
         onCreate(sqLiteDatabase);
     }
 
