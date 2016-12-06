@@ -1,5 +1,6 @@
 package com.uottawa.cookr;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -8,14 +9,13 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Stack;
 
-/**
- * Created by Abdulwahaab on 2016-12-05.
- */
 
 public class DBhelper extends SQLiteOpenHelper {
     String [] StringsNeeded;
+
     public DBhelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, "Cookr.db", factory, version);
+
     }
 
     @Override
@@ -75,6 +75,7 @@ public class DBhelper extends SQLiteOpenHelper {
                 "                          8\n" +
                 "                      );\n");
     }
+
 
     private void createIngredientsTable(SQLiteDatabase sqLiteDatabase){
         sqLiteDatabase.execSQL("CREATE TABLE Ingredients (IngredientID INTEGER NOT NULL UNIQUE PRIMARY KEY ASC AUTOINCREMENT, IngredientName STRING NOT NULL UNIQUE)");
@@ -389,7 +390,7 @@ public class DBhelper extends SQLiteOpenHelper {
         }
 
 
-        db.close();
+        cursor.close();
         return returnNames;
     }
 
@@ -533,7 +534,7 @@ public class DBhelper extends SQLiteOpenHelper {
 
         catch (Exception e){
             e.printStackTrace();
-            return null;
+            return new ResultRecipe(new String [] {},"","","","","",0);
         }
 
     }
@@ -583,7 +584,135 @@ public class DBhelper extends SQLiteOpenHelper {
         c.moveToFirst();
         return getSingleResult(c.getString(c.getColumnIndex("RecipeName")));
 
-
-
     }
+
+    public void addRecipe(Addable toAdd){
+
+        ContentValues values = new ContentValues();
+
+        values.put("RecipeName", toAdd.getName());
+        values.put("Instructions", toAdd.getInstructions());
+        values.put("TimeOfDay", toAdd.getTime());
+        values.put("Cuisine", toAdd.getCuisine());
+        values.put("Servings", toAdd.getServing());
+        values.put("Favourite", 1);
+        values.put("PreparationTime", toAdd.getPrepTime());
+        values.put("CookingTime", toAdd.getCookingTime());
+        values.put("Type", toAdd.getType());
+        values.put("userCreated", 1);
+
+       this.getWritableDatabase().insert("Recipes",null,values);
+
+        values = new ContentValues();
+        String ingredients="";
+
+        for(int i=0;i<toAdd.getIngredients().length;i++){
+            values.put("IngredientName",toAdd.getIngredients()[i]);
+            ingredients+="'"+ toAdd.getIngredients()[i]+"'";
+            if(i != toAdd.getIngredients().length - 1){
+                ingredients+=", ";
+            }
+        }
+
+        this.getWritableDatabase().insertWithOnConflict("Ingredients", null, values, SQLiteDatabase.CONFLICT_IGNORE);
+
+        String query = "SELECT IngredientID FROM Ingredients WHERE IngredientName IN (" + ingredients +")";
+        ArrayList<Integer> ids = new ArrayList<Integer>();
+        Cursor cursor = this.getReadableDatabase().rawQuery(query,null);
+        cursor.moveToFirst();
+
+        do{
+            ids.add(Integer.parseInt(cursor.getString(cursor.getColumnIndex("IngredientID"))));
+        }
+
+        while(cursor.moveToNext());
+        cursor.close();
+
+        String newRecipeID = "SELECT COUNT(*) FROM Recipes";
+        cursor = this.getReadableDatabase().rawQuery(newRecipeID,null);
+        cursor.moveToFirst();
+
+        int idOfRecipe = Integer.parseInt(cursor.getString(cursor.getColumnIndex("COUNT(*)")));
+        cursor.close();
+
+        for(int i=0; i<ids.size();i++){
+            values = new ContentValues();
+            values.put("RecipeID",idOfRecipe);
+            values.put("IngredientID",ids.get(i));
+            this.getWritableDatabase().insert("Amounts",null,values);
+        }
+    }
+
+    public String [] getAdded(){
+        String query = "SELECT RecipeName FROM Recipes WHERE userCreated = 1";
+        Cursor c = this.getWritableDatabase().rawQuery(query,null);
+        ArrayList<String> faves = new ArrayList<String>();
+        if (c.getCount() == 0) return new String[]{};
+
+        c.moveToFirst();
+        do{
+            faves.add(c.getString(c.getColumnIndex("RecipeName")));
+        }
+
+        while(c.moveToNext());
+
+        String [] favorties = new String [faves.size()];
+
+        for(int i=0;i<faves.size();i++){
+            favorties[i] = faves.get(i);
+        }
+        c.close();
+        return  favorties;
+    }
+
+    public void deleteAddedRecipe(int id){
+        this.getWritableDatabase().delete("Recipes", "RecipeID" + "=" +id , null);
+    }
+
+    public String [] getAllCuisines(){
+        String query = "SELECT CuisineName FROM Cuisines";
+        Cursor cursor = this.getReadableDatabase().rawQuery(query,null);
+        ArrayList<String> cuisines = new ArrayList<String>();
+        cursor.moveToFirst();
+
+        do{
+            cuisines.add((cursor.getString(cursor.getColumnIndex("CuisineName"))));
+        }
+
+        while(cursor.moveToNext());
+
+        cursor.close();
+
+        String [] cuisinesReturned = new String [cuisines.size()];
+
+        for(int i=0; i < cuisines.size();i++){
+            cuisinesReturned[i] = cuisines.get(i);
+        }
+
+        return cuisinesReturned;
+    }
+
+    public String [] getAllTypes(){
+        String query = "SELECT TypeName FROM MealTypes";
+        Cursor cursor = this.getReadableDatabase().rawQuery(query,null);
+        ArrayList<String> types = new ArrayList<String>();
+        cursor.moveToFirst();
+
+        do{
+            types.add((cursor.getString(cursor.getColumnIndex("TypeName"))));
+        }
+
+        while(cursor.moveToNext());
+
+        cursor.close();
+
+        String [] typesReturned = new String [types.size()];
+
+        for(int i=0; i < types.size();i++){
+            typesReturned[i] = types.get(i);
+        }
+
+        return typesReturned;
+    }
+
 }
