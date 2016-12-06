@@ -63,11 +63,15 @@
                     android:paddingBottom="20dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp">
+
                     <EditText
                         android:layout_width="match_parent"
                         android:hint="Recipe Name"
                         android:layout_height="match_parent"
-                        android:textSize="25sp" />
+                        android:textSize="25sp"
+                        android:maxLines="1"
+                        android:id="@+id/editText"
+                        android:inputType="textPersonName" />
                 </android.support.design.widget.TextInputLayout>
 
                 <LinearLayout
@@ -335,7 +339,6 @@
                 android:paddingBottom="20dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp" />
-
         </LinearLayout>
     </ScrollView>
 
