@@ -33,14 +33,13 @@
     <string name="SettingsTag">Settings</string>
     <string name="HelpTag">Help</string>
 
-
     <string name="title_activity_help">helpActivity</string>
     <string name="action_settings">Settings</string>
     <string name="help_header">Help</string>
     <string name="header_main">CookR</string>
 
     <string name="helpSearchButton">How Do I Search A Recipe?</string>
-    <string name="helpFavouriteButton">What Are Favourites?</string>
+    <string name="helpFavouriteButton">What Are Favorites?</string>
     <string name="helpAddButton">How Can I Add a New Recipe?</string>
     <string name="helpRandomButton">What Does Random Recipe Do?</string>
 
@@ -95,7 +94,6 @@
     <string name="servings">Serves</string>
     <string name="addToFavourites">Add To Favourites</string>
     <string name="Delete">Delete this recipe</string>
-
 
 
 </resources>
