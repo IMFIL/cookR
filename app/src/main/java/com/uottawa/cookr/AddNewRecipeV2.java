@@ -1,6 +1,7 @@
 package com.uottawa.cookr;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -10,13 +11,17 @@ import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class AddNewRecipeV2 extends AppCompatActivity {
@@ -156,6 +161,30 @@ public class AddNewRecipeV2 extends AppCompatActivity {
         AlertDialog dialog=builder.create();
         dialog.show();
 
+    }
+
+    public void addNewIngredients(View view){
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View v = inflater.inflate(R.layout.add_new_recipe_edit, null);
+
+        // Find the ScrollView
+        //ScrollView sv = (ScrollView) v.findViewById(R.id.scrollView);
+        LinearLayout sv = (LinearLayout) v.findViewById(R.id.ingredientsContainer);
+
+        // Create a LinearLayout element
+        LinearLayout ll = new LinearLayout(this);
+        ll.setOrientation(LinearLayout.HORIZONTAL);
+
+        // Add text
+        TextView tv = new TextView(this);
+        tv.setText("my text");
+        ll.addView(tv);
+
+        // Add the LinearLayout element to the ScrollView
+        sv.addView(ll);
+
+        // Display the view
+        setContentView(v);
     }
 
 }
