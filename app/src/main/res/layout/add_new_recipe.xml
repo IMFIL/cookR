@@ -285,6 +285,7 @@
                     android:layout_height="wrap_content"
                     android:paddingBottom="20dp">
                     <EditText
+                        android:inputType="number"
                         android:layout_width="match_parent"
                         android:hint="Serving"
                         android:layout_height="match_parent"
@@ -299,6 +300,7 @@
                     android:layout_height="wrap_content"
                     android:paddingBottom="20dp">
                     <EditText
+                        android:inputType="number"
                         android:layout_width="match_parent"
                         android:hint="Prep Time"
                         android:layout_height="match_parent"
@@ -322,6 +324,7 @@
 
             <Button
                 android:text="@string/addPlus"
+                android:inputType="number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/addBtn"
