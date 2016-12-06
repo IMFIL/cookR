@@ -27,11 +27,57 @@ public class DBhelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
+        System.out.println("Creating new tables");
         sqLiteDatabase.execSQL("CREATE TABLE Recipes (RecipeID INTEGER UNIQUE NOT NULL PRIMARY KEY ASC AUTOINCREMENT, RecipeName STRING NOT NULL, Instructions STRING NOT NULL, TimeOfDay STRING NOT NULL, Cuisine STRING NOT NULL, Servings INTEGER, Favourite INT NOT NULL, PreparationTime INTEGER, CookingTime INTEGER, Type STRING, userCreated INT);");
+        sqLiteDatabase.execSQL("INSERT INTO Recipes (\n" +
+                "                        userCreated,\n" +
+                "                        Type,\n" +
+                "                        CookingTime,\n" +
+                "                        PreparationTime,\n" +
+                "                        Favourite,\n" +
+                "                        Servings,\n" +
+                "                        Cuisine,\n" +
+                "                        TimeOfDay,\n" +
+                "                        Instructions,\n" +
+                "                        RecipeName,\n" +
+                "                        RecipeID\n" +
+                "                    )\n" +
+                "                    VALUES (\n" +
+                "                        0,\n" +
+                "                        'Food',\n" +
+                "                        2,\n" +
+                "                        2,\n" +
+                "                        1,\n" +
+                "                        1,\n" +
+                "                        'American',\n" +
+                "                        'Breakfast',\n" +
+                "                        'Whisk eggs, milk, salt and pepper in small bowl. Spray skillet with cooking spray. Heat skillet over medium-high heat until hot enough to sizzle a drop of water.\n" +
+                "Pour in egg mixture and immediately reduce heat to medium-low. As eggs begin to set, gently move spatula across bottom and side of skillet to form large, soft curds.\n" +
+                "Cook until eggs are thickened and no visible liquid egg remains, but they eggs are not dry.',\n" +
+                "                        'Scrambled Eggs',\n" +
+                "                        1\n" +
+                "                    ),\n" +
+                "                    (\n" +
+                "                        0,\n" +
+                "                        'Food',\n" +
+                "                        30,\n" +
+                "                        15,\n" +
+                "                        1,\n" +
+                "                        6,\n" +
+                "                        'Universal',\n" +
+                "                        'Appetizer/Snack',\n" +
+                "                        'Preheat oven to 400 degrees F (200 degrees C). Spray a 9x13-inch baking pan or cast iron skillet with cooking spray; pour in about 1 teaspoon vegetable oil to coat the bottom.\n" +
+                "Mix Parmesan cheese, salt, garlic powder, paprika, and black pepper together in a bowl.\n" +
+                "Blot the cut-side of potatoes with a paper towel to remove any moisture. Place potatoes in a bowl and drizzle with 1 tablespoon vegetable oil; toss until potatoes are lightly coated. Sprinkle potatoes with Parmesan cheese mixture; toss to coat. Arrange potatoes, cut-side down, onto the prepared baking pan.\n" +
+                "Bake in the preheated oven for 15 to 20 minutes. Turn potatoes to cut-side up; continue baking until golden and crispy, about 15 to 20 more minutes. Serve with sour cream.',\n" +
+                "                        'Oven Roasted Parmesan Potatoes',\n" +
+                "                        2\n" +
+                "                    );\n");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+        System.out.println("Upgrade");
         sqLiteDatabase.execSQL("DROP IF EXISTS Recipes;");
         onCreate(sqLiteDatabase);
     }
@@ -310,7 +356,6 @@ public class DBhelper extends SQLiteOpenHelper {
     }
 
     public ResultRecipe getSingleResult(String recipeName){
-        SQLiteDatabase db = getReadableDatabase();
         Cursor cursor;
 
         String query = "SELECT * FROM Amounts JOIN Recipes ON Recipes.RecipeID = " +
@@ -321,7 +366,7 @@ public class DBhelper extends SQLiteOpenHelper {
 
         try {
 
-            cursor = db.rawQuery(query, new String[]{recipeName});
+            cursor = this.getReadableDatabase().rawQuery(query, new String[]{recipeName});
 
             cursor.moveToFirst();
 
@@ -340,7 +385,7 @@ public class DBhelper extends SQLiteOpenHelper {
             }
 
 
-            cursor = db.rawQuery("SELECT * FROM RECIPES WHERE RecipeName=?", new String[]{recipeName});
+            cursor = this.getReadableDatabase().rawQuery("SELECT * FROM RECIPES WHERE RecipeName=?", new String[]{recipeName});
 
             cursor.moveToFirst();
 
@@ -394,7 +439,7 @@ public class DBhelper extends SQLiteOpenHelper {
         System.out.println("========END HERE========");
         String query = "SELECT RecipeName FROM Recipes WHERE Favourite = 1";
         System.out.println(query);
-        c = this.getReadableDatabase().rawQuery(query,null);
+        c = this.getWritableDatabase().rawQuery(query,null);
         System.out.println(c.getCount());
         ArrayList<String> faves = new ArrayList<String>();
         if (c.getCount() == 0) return new String[]{};
