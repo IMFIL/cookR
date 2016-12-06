@@ -550,7 +550,6 @@ public class DBhelper extends SQLiteOpenHelper {
     public String [] getFavorite(){
         String query = "SELECT RecipeName FROM Recipes WHERE Favourite = 1";
         Cursor c = this.getWritableDatabase().rawQuery(query,null);
-        System.out.println(c.getCount());
         ArrayList<String> faves = new ArrayList<String>();
         if (c.getCount() == 0) return new String[]{};
 
@@ -565,7 +564,6 @@ public class DBhelper extends SQLiteOpenHelper {
 
         for(int i=0;i<faves.size();i++){
             favorties[i] = faves.get(i);
-            System.out.println(faves.get(i));
         }
         c.close();
         System.out.println(favorties);
