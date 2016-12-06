@@ -32,12 +32,22 @@
         android:layout_height="wrap_content"
         android:paddingTop="90dp">
 
+            <TextView
+                android:text="@string/addImageText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/addImageText"
+                android:textColor="@color/darkPastel"
+                android:textAlignment="center"
+                android:paddingBottom="5dp" />
+
             <ImageView
                 android:layout_width="match_parent"
                 app:srcCompat="@drawable/plus"
                 android:id="@+id/imageView2"
                 android:layout_height="140dp"
-                android:onClick="setImage" />
+                android:onClick="setImage"
+                android:paddingBottom="10dp" />
 
             <LinearLayout
             android:orientation="vertical"
@@ -70,7 +80,7 @@
                 android:layout_margin="20dp">
 
                 <TextView
-                    android:text="Type of cuisine"
+                    android:text="@string/cuisineType"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/cuisineText"
@@ -88,12 +98,12 @@
                     android:layout_gravity="center"
                     android:textColor="@color/button"
                     android:textSize="20sp"
-                    android:text="Cuisine"
+                    android:text="@string/cuisine"
                     android:textAllCaps="false"
                     android:onClick="showDialogListView" />
 
                 <TextView
-                    android:text="Type of Food"
+                    android:text="@string/foodType"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/mealTypeText"
@@ -113,7 +123,7 @@
                     android:layout_gravity="center"
                     android:textColor="@color/button"
                     android:textSize="20sp"
-                    android:text="Type"
+                    android:text="@string/type"
                     android:textAllCaps="false"
                     android:onClick="showDialogListView" />
 
@@ -129,7 +139,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:text="Meal Time"
+                    android:text="@string/mealTime"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/mealTimeText"
@@ -161,7 +171,7 @@
                             android:layout_height="wrap_content"
                             android:background="@drawable/custom_radio_button"
                             android:button="@android:color/transparent"
-                            android:text="Breakfast"
+                            android:text="@string/breakfast"
                             android:layout_weight="1"
                             android:checked="false"
                             android:gravity="center_vertical|center_horizontal"
@@ -178,7 +188,7 @@
                             android:background="@drawable/custom_radio_button"
                             android:button="@android:color/transparent"
                             android:checked="false"
-                            android:text="Lunch"
+                            android:text="@string/lunch"
                             android:gravity="center_vertical|center_horizontal"
                             android:layout_weight="1"
                             android:layout_width="65dp"
@@ -194,7 +204,7 @@
                             android:background="@drawable/custom_radio_button"
                             android:button="@android:color/transparent"
                             android:checked="false"
-                            android:text="Dinner"
+                            android:text="@string/dinner"
                             android:gravity="center_vertical|center_horizontal"
                             android:layout_weight="1"
                             android:paddingTop="10dp"
@@ -210,7 +220,7 @@
                             android:background="@drawable/custom_radio_button"
                             android:button="@android:color/transparent"
                             android:checked="false"
-                            android:text="Snack"
+                            android:text="@string/snack"
                             android:gravity="center_vertical|center_horizontal"
                             android:layout_weight="1"
                             android:layout_width="65dp"
@@ -311,7 +321,7 @@
             </LinearLayout>
 
             <Button
-                android:text="Add +"
+                android:text="@string/addPlus"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/addBtn"

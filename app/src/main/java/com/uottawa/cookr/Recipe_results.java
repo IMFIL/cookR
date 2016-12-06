@@ -39,7 +39,7 @@ public class Recipe_results extends AppCompatActivity {
             images[i] = R.drawable.chef;
         }
 
-        dataBase = new DBhelper(this.getApplicationContext());
+        dataBase = new DBhelper(this.getApplicationContext(), "", null, 1);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.customToolBar);
         setSupportActionBar(myToolbar);

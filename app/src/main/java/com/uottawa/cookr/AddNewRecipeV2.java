@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -47,6 +48,8 @@ public class AddNewRecipeV2 extends AppCompatActivity {
 
         cuisines = new SelectionItems(getResources().getStringArray(R.array.cuisine_Array), "Cuisines");
         types = new SelectionItems(getResources().getStringArray(R.array.type_Array), "Type");
+
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 
     public void setImage(View view) {
@@ -84,7 +87,7 @@ public class AddNewRecipeV2 extends AppCompatActivity {
                 imgView.setImageBitmap(BitmapFactory.decodeFile(imgDecodableString));
 
             } else {
-                Toast.makeText(this, "You haven't picked Image",
+                Toast.makeText(this, "You haven't picked an image",
                         Toast.LENGTH_LONG).show();
             }
         } catch (Exception e) {

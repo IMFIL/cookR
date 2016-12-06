@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -33,14 +34,7 @@ public class SearchMain extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_search);
 
-        dataBase = new DBhelper(this.getApplicationContext());
-
-        try{
-            dataBase.createDataBase();
-        }
-        catch (IOException e){
-            e.printStackTrace();
-        }
+        dataBase = new DBhelper(this.getApplicationContext(), "", null,2);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.customToolBar);
         setSupportActionBar(myToolbar);
@@ -61,7 +55,7 @@ public class SearchMain extends AppCompatActivity {
         cuisines = new SelectionItems(getResources().getStringArray(R.array.cuisine_Array),"Cuisines");
         types = new SelectionItems(getResources().getStringArray(R.array.type_Array),"Type");
 
-
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 
 

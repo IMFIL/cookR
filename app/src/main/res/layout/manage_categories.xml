@@ -47,7 +47,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Add Type"
+            android:text="@string/addType"
             android:id="@+id/addType"
             android:gravity="center_vertical|center_horizontal"
             android:paddingBottom="20dp"
@@ -74,7 +74,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Add Cuisine"
+            android:text="@string/addCuisine"
             android:ems="10"
             android:id="@+id/addCuisine"
             android:gravity="center_vertical|center_horizontal"
@@ -88,7 +88,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="See All Added Categories"
+        android:text="@string/seeCategories"
         android:ems="10"
         android:id="@+id/seeAllAdded"
         android:gravity="center_vertical|center_horizontal"
