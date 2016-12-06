@@ -92,6 +92,6 @@
     <string name="prepTime">Prep: </string>
     <string name="cookTime">Add Type</string>
     <string name="servings">Serves</string>
-    <string name="addToFavourites">Add To Favourites</string>
+    <string name="addToFavourites">Add To Favorites</string>
 
 </resources>
