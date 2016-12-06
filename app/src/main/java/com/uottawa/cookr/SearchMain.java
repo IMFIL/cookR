@@ -52,8 +52,8 @@ public class SearchMain extends AppCompatActivity {
         searchButton.setTypeface(fontAwesome);
 
         times = new SelectionItems(getResources().getStringArray(R.array.mealTime_Array),"Meal Time");
-        cuisines = new SelectionItems(getResources().getStringArray(R.array.cuisine_Array),"Cuisines");
-        types = new SelectionItems(getResources().getStringArray(R.array.type_Array),"Type");
+        cuisines = new SelectionItems(dataBase.getAllCuisines(),"Cuisines");
+        types = new SelectionItems(dataBase.getAllTypes(),"Type");
 
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }

@@ -8,11 +8,14 @@ import android.view.View;
 
 
 public class ManageCategories extends AppCompatActivity {
+    DBhelper dataBase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.manage_categories);
+
+        dataBase = new DBhelper(this.getApplicationContext(), "", null, 2);
 
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.customToolBar);
@@ -42,6 +45,19 @@ public class ManageCategories extends AppCompatActivity {
     public void seeAllAddedClick(View view){
 
         Intent intent = new Intent(this, CategoriesResult.class);
+        String [] cuisines = dataBase.getAllCuisines();
+        String [] types = dataBase.getAllTypes();
+        String [] allCat = new String [cuisines.length + types.length];
+
+        for (int i=0;i<cuisines.length;i++){
+            allCat[i] = cuisines[i];
+        }
+
+        for(int i = 0; i < types.length;i++){
+            allCat[cuisines.length + i] = types[i];
+        }
+
+        intent.putExtra("addedCats",allCat);
         startActivity(intent);
     }
 

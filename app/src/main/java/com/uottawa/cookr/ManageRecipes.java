@@ -5,6 +5,9 @@ package com.uottawa.cookr;
  */
 
 
+
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -14,21 +17,33 @@ import android.widget.ListView;
 
 public class ManageRecipes extends AppCompatActivity {
 
+    DBhelper dataBase;
+
     ListView list = null;
 
-    String [] recipename = {"All Dressed Burger","Sizzling Hot-Dog","Classic Cheeseburger"};
+    String [] recipename;
 
-    Integer [] images = {R.drawable.alldressedburger,R.drawable.hotdog, R.drawable.cheeseburger};
+    Integer [] images;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.manage_recipes);
+        final Context context = this;
+
+        dataBase = new DBhelper(this.getApplicationContext(), "", null, 2);
+
+
+        recipename = dataBase.getAdded();
+        images = new Integer[recipename.length];
+
+        for(int i=0;i<recipename.length;i++){
+            images[i] = R.drawable.chef;
+        }
 
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.customToolBar);
         setSupportActionBar(myToolbar);
-
 
 
         android.support.v7.app.ActionBar currentActionBar = getSupportActionBar();
@@ -51,7 +66,11 @@ public class ManageRecipes extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                System.out.println("hehe");
+                Intent intent = new Intent (context,SingleRecipeResultManage.class);
+                ResultRecipe RR = dataBase.getSingleResult(recipename[position]);
+                intent.putExtra("RR",RR);
+                startActivity(intent);
+
             }
         });
 

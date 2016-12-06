@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 /**
  * Created by filipslatinac on 2016-12-03.
@@ -15,13 +16,16 @@ import android.widget.ListView;
 
 public class CategoriesResult extends AppCompatActivity{
 
-    String [] els = {"African","pre-meal","vegan","vegetarian"};
+    String [] els;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.added_categories_page);
 
+        Bundle categories = getIntent().getExtras();
+
+        els = categories.getStringArray("addedCats");
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.customToolBar);
         setSupportActionBar(myToolbar);
@@ -52,6 +56,12 @@ public class CategoriesResult extends AppCompatActivity{
                 System.out.println("hehe");
             }
         });
+
+
+    }
+
+    public void onDeleteClick(View view){
+        Toast.makeText(this,"clicked this button", Toast.LENGTH_LONG).show();
 
 
     }
