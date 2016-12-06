@@ -73,6 +73,211 @@ public class DBhelper extends SQLiteOpenHelper {
                 "                        'Oven Roasted Parmesan Potatoes',\n" +
                 "                        2\n" +
                 "                    );\n");
+
+        sqLiteDatabase.execSQL("CREATE TABLE Amounts (RecipeID INTEGER REFERENCES Recipes (RecipeID) ON DELETE SET NULL NOT NULL, IngredientID INTEGER NOT NULL REFERENCES Ingredients (IngredientID) ON DELETE SET NULL, Amount STRING)");
+        sqLiteDatabase.execSQL("CREATE TABLE Cuisines (CuisineID INTEGER PRIMARY KEY NOT NULL, CuisineName STRING NOT NULL)");
+        sqLiteDatabase.execSQL("CREATE TABLE Ingredients (IngredientID INTEGER NOT NULL UNIQUE PRIMARY KEY ASC AUTOINCREMENT, IngredientName STRING NOT NULL UNIQUE)");
+        sqLiteDatabase.execSQL("CREATE TABLE MealTypes (TypeID INTEGER PRIMARY KEY NOT NULL, TypeName STRING NOT NULL)");
+        sqLiteDatabase.execSQL("INSERT INTO Amounts (\n" +
+                "                        Amount,\n" +
+                "                        IngredientID,\n" +
+                "                        RecipeID\n" +
+                "                    )\n" +
+                "                    VALUES (\n" +
+                "                        2,\n" +
+                "                        1,\n" +
+                "                        1\n" +
+                "                    ),\n" +
+                "                    (\n" +
+                "                        '2 tbsp',\n" +
+                "                        2,\n" +
+                "                        1\n" +
+                "                    ),\n" +
+                "                    (\n" +
+                "                        'Pinch',\n" +
+                "                        3,\n" +
+                "                        1\n" +
+                "                    ),\n" +
+                "                    (\n" +
+                "                        'Pinch',\n" +
+                "                        4,\n" +
+                "                        1\n" +
+                "                    ),\n" +
+                "                    (\n" +
+                "                        NULL,\n" +
+                "                        5,\n" +
+                "                        2\n" +
+                "                    ),\n" +
+                "                    (\n" +
+                "                        '1 tbsp',\n" +
+                "                        6,\n" +
+                "                        2\n" +
+                "                    ),\n" +
+                "                    (\n" +
+                "                        '2 tbsp',\n" +
+                "                        7,\n" +
+                "                        2\n" +
+                "                    ),\n" +
+                "                    (\n" +
+                "                        '1/2 tsp',\n" +
+                "                        8,\n" +
+                "                        2\n" +
+                "                    ),\n" +
+                "                    (\n" +
+                "                        '1/2 tsp',\n" +
+                "                        3,\n" +
+                "                        2\n" +
+                "                    ),\n" +
+                "                    (\n" +
+                "                        '1/2 tsp',\n" +
+                "                        9,\n" +
+                "                        2\n" +
+                "                    ),\n" +
+                "                    (\n" +
+                "                        '1/4 tsp',\n" +
+                "                        10,\n" +
+                "                        2\n" +
+                "                    ),\n" +
+                "                    (\n" +
+                "                        '2 lbs',\n" +
+                "                        11,\n" +
+                "                        2\n" +
+                "                    ),\n" +
+                "                    (\n" +
+                "                        '1/4 cup',\n" +
+                "                        12,\n" +
+                "                        2\n" +
+                "                    );\n");
+        sqLiteDatabase.execSQL("INSERT INTO Ingredients (\n" +
+                "                            IngredientName,\n" +
+                "                            IngredientID\n" +
+                "                        )\n" +
+                "                        VALUES (\n" +
+                "                            'Egg',\n" +
+                "                            1\n" +
+                "                        ),\n" +
+                "                        (\n" +
+                "                            'Milk',\n" +
+                "                            2\n" +
+                "                        ),\n" +
+                "                        (\n" +
+                "                            'Salt',\n" +
+                "                            3\n" +
+                "                        ),\n" +
+                "                        (\n" +
+                "                            'Pepper',\n" +
+                "                            4\n" +
+                "                        ),\n" +
+                "                        (\n" +
+                "                            'Cooking Spray',\n" +
+                "                            5\n" +
+                "                        ),\n" +
+                "                        (\n" +
+                "                            'Vegetable Oil',\n" +
+                "                            6\n" +
+                "                        ),\n" +
+                "                        (\n" +
+                "                            'Parmesan Cheese',\n" +
+                "                            7\n" +
+                "                        ),\n" +
+                "                        (\n" +
+                "                            'Garlic Powder',\n" +
+                "                            8\n" +
+                "                        ),\n" +
+                "                        (\n" +
+                "                            'Paprika',\n" +
+                "                            9\n" +
+                "                        ),\n" +
+                "                        (\n" +
+                "                            'Ground Black Pepper',\n" +
+                "                            10\n" +
+                "                        ),\n" +
+                "                        (\n" +
+                "                            'Red Potatoe',\n" +
+                "                            11\n" +
+                "                        ),\n" +
+                "                        (\n" +
+                "                            'Sour Cream',\n" +
+                "                            12\n" +
+                "                        );\n");
+
+        sqLiteDatabase.execSQL("INSERT INTO Cuisines (\n" +
+                "                         CuisineName,\n" +
+                "                         CuisineID\n" +
+                "                     )\n" +
+                "                     VALUES (\n" +
+                "                         'Universal',\n" +
+                "                         1\n" +
+                "                     ),\n" +
+                "                     (\n" +
+                "                         'American',\n" +
+                "                         2\n" +
+                "                     ),\n" +
+                "                     (\n" +
+                "                         'Italian',\n" +
+                "                         3\n" +
+                "                     ),\n" +
+                "                     (\n" +
+                "                         'Mexican',\n" +
+                "                         4\n" +
+                "                     ),\n" +
+                "                     (\n" +
+                "                         'African',\n" +
+                "                         5\n" +
+                "                     ),\n" +
+                "                     (\n" +
+                "                         'Middle Eastern',\n" +
+                "                         6\n" +
+                "                     ),\n" +
+                "                     (\n" +
+                "                         'Indian',\n" +
+                "                         7\n" +
+                "                     ),\n" +
+                "                     (\n" +
+                "                         'Other',\n" +
+                "                         8\n" +
+                "                     ),\n" +
+                "                     (\n" +
+                "                         'Asian',\n" +
+                "                         9\n" +
+                "                     ),\n" +
+                "                     (\n" +
+                "                         'Greek',\n" +
+                "                         10\n" +
+                "                     );\n");
+
+        sqLiteDatabase.execSQL("INSERT INTO MealTypes (\n" +
+                "                          TypeName,\n" +
+                "                          TypeID\n" +
+                "                      )\n" +
+                "                      VALUES (\n" +
+                "                          'Main Dish',\n" +
+                "                          1\n" +
+                "                      ),\n" +
+                "                      (\n" +
+                "                          'Starter',\n" +
+                "                          2\n" +
+                "                      ),\n" +
+                "                      (\n" +
+                "                          'Dessert',\n" +
+                "                          3\n" +
+                "                      ),\n" +
+                "                      (\n" +
+                "                          'Appetizer/Snack',\n" +
+                "                          4\n" +
+                "                      ),\n" +
+                "                      (\n" +
+                "                          'Drink',\n" +
+                "                          5\n" +
+                "                      ),\n" +
+                "                      (\n" +
+                "                          'Sauce',\n" +
+                "                          7\n" +
+                "                      ),\n" +
+                "                      (\n" +
+                "                          'Other',\n" +
+                "                          8\n" +
+                "                      );\n");
     }
 
     @Override
@@ -466,7 +671,7 @@ public class DBhelper extends SQLiteOpenHelper {
         //SQLiteDatabase db = getReadableDatabase();
         String query = "SELECT * FROM Recipes";
         Cursor c = this.getReadableDatabase().rawQuery(query,null);
-        ArrayList<String> faves = new ArrayList<String>();
+        //ArrayList<String> faves = new ArrayList<String>();
 
         if (c.getCount() == 0) return null;
 
@@ -476,6 +681,7 @@ public class DBhelper extends SQLiteOpenHelper {
 
         c = this.getReadableDatabase().rawQuery("SELECT RecipeName FROM Recipes WHERE RecipeID = " + randomNum,null);
         c.moveToFirst();
+        System.out.println(c.getString(c.getColumnIndex("RecipeName")));
         return getSingleResult(c.getString(c.getColumnIndex("RecipeName")));
 
 

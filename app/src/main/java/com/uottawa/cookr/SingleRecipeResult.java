@@ -22,7 +22,7 @@ public class SingleRecipeResult extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.single_recipe_result);
 
-        dataBase = new DBhelper(this.getApplicationContext(), "", null, 1);
+        dataBase = new DBhelper(this.getApplicationContext(), "", null, 2);
 
         ResultRecipe RR = (ResultRecipe) getIntent().getSerializableExtra("RR");
 
