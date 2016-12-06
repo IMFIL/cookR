@@ -715,4 +715,9 @@ public class DBhelper extends SQLiteOpenHelper {
         return typesReturned;
     }
 
+    public void deleteCategory(String name,String place){
+        this.getWritableDatabase().delete(place, place+"ID" + "=" + name , null);
+
+    }
+
 }
