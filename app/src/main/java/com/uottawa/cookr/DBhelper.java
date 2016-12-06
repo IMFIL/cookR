@@ -1,131 +1,312 @@
 package com.uottawa.cookr;
 
-import android.annotation.SuppressLint;
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.os.Build;
-
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Stack;
 
 
 public class DBhelper extends SQLiteOpenHelper {
-
-    private static String DB_PATH="";
-    private static String DB_NAME="Cookr.db";
-    private SQLiteDatabase DB;
-    private Context myContext = null;
-
     String [] StringsNeeded;
 
-    public DBhelper(Context context) {
-        super(context, DB_NAME, null, 1);
+    public DBhelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+        super(context, "Cookr.db", factory, version);
 
-        if(Build.VERSION.SDK_INT >= 17){
-            DB_PATH = context.getApplicationInfo().dataDir +"/databases/";
-        }
+    }
 
-        else{
-            DB_PATH = "/data/data/" + context.getPackageName() + "/databases/";
-        }
-
-        myContext = context;
+    @Override
+    public void onCreate(SQLiteDatabase sqLiteDatabase) {
+        System.out.println("Creating new tables");
+        createRecipeTable(sqLiteDatabase);
+        createAmountTable(sqLiteDatabase);
+        createCuisinesTable(sqLiteDatabase);
+        createIngredientsTable(sqLiteDatabase);
+        createMealTypesTable(sqLiteDatabase);
     }
 
 
     @Override
-    public synchronized void close() {
-        if (DB != null) {
-            DB.close();
-        }
-        super.close();
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+        System.out.println("Upgrade");
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS Recipes;");
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS MealTypes;");
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS Ingredients;");
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS Cuisines;");
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS Amount;");
+        onCreate(sqLiteDatabase);
+    }
+
+    private void createMealTypesTable(SQLiteDatabase sqLiteDatabase){
+        sqLiteDatabase.execSQL("CREATE TABLE MealTypes (TypeID INTEGER PRIMARY KEY NOT NULL, TypeName STRING NOT NULL)");
+        sqLiteDatabase.execSQL("INSERT INTO MealTypes (\n" +
+                "                          TypeName,\n" +
+                "                          TypeID\n" +
+                "                      )\n" +
+                "                      VALUES (\n" +
+                "                          'Main Dish',\n" +
+                "                          1\n" +
+                "                      ),\n" +
+                "                      (\n" +
+                "                          'Starter',\n" +
+                "                          2\n" +
+                "                      ),\n" +
+                "                      (\n" +
+                "                          'Dessert',\n" +
+                "                          3\n" +
+                "                      ),\n" +
+                "                      (\n" +
+                "                          'Appetizer/Snack',\n" +
+                "                          4\n" +
+                "                      ),\n" +
+                "                      (\n" +
+                "                          'Drink',\n" +
+                "                          5\n" +
+                "                      ),\n" +
+                "                      (\n" +
+                "                          'Sauce',\n" +
+                "                          7\n" +
+                "                      ),\n" +
+                "                      (\n" +
+                "                          'Other',\n" +
+                "                          8\n" +
+                "                      );\n");
     }
 
 
-    private boolean checkDataBase(){
-        SQLiteDatabase tmpDB = null;
-
-        try{
-            String path = DB_PATH+ DB_NAME;
-            tmpDB = SQLiteDatabase.openDatabase(path,null,SQLiteDatabase.OPEN_READWRITE);
-        }
-
-        catch(SQLException e){
-
-        }
-
-        if(tmpDB != null){
-            tmpDB.close();
-        }
-
-        return tmpDB != null;
+    private void createIngredientsTable(SQLiteDatabase sqLiteDatabase){
+        sqLiteDatabase.execSQL("CREATE TABLE Ingredients (IngredientID INTEGER NOT NULL UNIQUE PRIMARY KEY ASC AUTOINCREMENT, IngredientName STRING NOT NULL UNIQUE)");
+        sqLiteDatabase.execSQL("INSERT INTO Ingredients (\n" +
+                "                            IngredientName,\n" +
+                "                            IngredientID\n" +
+                "                        )\n" +
+                "                        VALUES (\n" +
+                "                            'Egg',\n" +
+                "                            1\n" +
+                "                        ),\n" +
+                "                        (\n" +
+                "                            'Milk',\n" +
+                "                            2\n" +
+                "                        ),\n" +
+                "                        (\n" +
+                "                            'Salt',\n" +
+                "                            3\n" +
+                "                        ),\n" +
+                "                        (\n" +
+                "                            'Pepper',\n" +
+                "                            4\n" +
+                "                        ),\n" +
+                "                        (\n" +
+                "                            'Cooking Spray',\n" +
+                "                            5\n" +
+                "                        ),\n" +
+                "                        (\n" +
+                "                            'Vegetable Oil',\n" +
+                "                            6\n" +
+                "                        ),\n" +
+                "                        (\n" +
+                "                            'Parmesan Cheese',\n" +
+                "                            7\n" +
+                "                        ),\n" +
+                "                        (\n" +
+                "                            'Garlic Powder',\n" +
+                "                            8\n" +
+                "                        ),\n" +
+                "                        (\n" +
+                "                            'Paprika',\n" +
+                "                            9\n" +
+                "                        ),\n" +
+                "                        (\n" +
+                "                            'Ground Black Pepper',\n" +
+                "                            10\n" +
+                "                        ),\n" +
+                "                        (\n" +
+                "                            'Red Potatoe',\n" +
+                "                            11\n" +
+                "                        ),\n" +
+                "                        (\n" +
+                "                            'Sour Cream',\n" +
+                "                            12\n" +
+                "                        );\n");
     }
 
-
-    public void copyDataBase() throws IOException{
-        try{
-            InputStream myInput = myContext.getAssets().open(DB_NAME);
-            String outputFileName = DB_PATH+DB_NAME;
-            OutputStream myOutput = new FileOutputStream(outputFileName);
-
-            byte []  buffer = new byte [1024];
-            int length;
-
-            while ((length=myInput.read(buffer))>0){
-                myOutput.write(buffer,0,length);
-            }
-            myOutput.flush();
-            myOutput.close();
-            myInput.close();
-        }
-        catch (IOException e){
-            e.printStackTrace();
-        }
+    private void createCuisinesTable(SQLiteDatabase sqLiteDatabase){
+        sqLiteDatabase.execSQL("CREATE TABLE Cuisines (CuisineID INTEGER PRIMARY KEY NOT NULL, CuisineName STRING NOT NULL)");
+        sqLiteDatabase.execSQL("INSERT INTO Cuisines (\n" +
+                "                         CuisineName,\n" +
+                "                         CuisineID\n" +
+                "                     )\n" +
+                "                     VALUES (\n" +
+                "                         'Universal',\n" +
+                "                         1\n" +
+                "                     ),\n" +
+                "                     (\n" +
+                "                         'American',\n" +
+                "                         2\n" +
+                "                     ),\n" +
+                "                     (\n" +
+                "                         'Italian',\n" +
+                "                         3\n" +
+                "                     ),\n" +
+                "                     (\n" +
+                "                         'Mexican',\n" +
+                "                         4\n" +
+                "                     ),\n" +
+                "                     (\n" +
+                "                         'African',\n" +
+                "                         5\n" +
+                "                     ),\n" +
+                "                     (\n" +
+                "                         'Middle Eastern',\n" +
+                "                         6\n" +
+                "                     ),\n" +
+                "                     (\n" +
+                "                         'Indian',\n" +
+                "                         7\n" +
+                "                     ),\n" +
+                "                     (\n" +
+                "                         'Other',\n" +
+                "                         8\n" +
+                "                     ),\n" +
+                "                     (\n" +
+                "                         'Asian',\n" +
+                "                         9\n" +
+                "                     ),\n" +
+                "                     (\n" +
+                "                         'Greek',\n" +
+                "                         10\n" +
+                "                     );\n");
     }
 
-    public void openDataBase() throws SQLException {
-
-        String myPath = DB_PATH + DB_NAME;
-        System.out.print("THIS IS THE PATH: " + DB_PATH+DB_NAME);
-        DB = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READWRITE);
-
+    private void createAmountTable(SQLiteDatabase sqLiteDatabase){
+        sqLiteDatabase.execSQL("CREATE TABLE Amounts (RecipeID INTEGER REFERENCES Recipes (RecipeID) ON DELETE SET NULL NOT NULL, IngredientID INTEGER NOT NULL REFERENCES Ingredients (IngredientID) ON DELETE SET NULL, Amount STRING)");
+        sqLiteDatabase.execSQL("INSERT INTO Amounts (\n" +
+                "                        Amount,\n" +
+                "                        IngredientID,\n" +
+                "                        RecipeID\n" +
+                "                    )\n" +
+                "                    VALUES (\n" +
+                "                        2,\n" +
+                "                        1,\n" +
+                "                        1\n" +
+                "                    ),\n" +
+                "                    (\n" +
+                "                        '2 tbsp',\n" +
+                "                        2,\n" +
+                "                        1\n" +
+                "                    ),\n" +
+                "                    (\n" +
+                "                        'Pinch',\n" +
+                "                        3,\n" +
+                "                        1\n" +
+                "                    ),\n" +
+                "                    (\n" +
+                "                        'Pinch',\n" +
+                "                        4,\n" +
+                "                        1\n" +
+                "                    ),\n" +
+                "                    (\n" +
+                "                        NULL,\n" +
+                "                        5,\n" +
+                "                        2\n" +
+                "                    ),\n" +
+                "                    (\n" +
+                "                        '1 tbsp',\n" +
+                "                        6,\n" +
+                "                        2\n" +
+                "                    ),\n" +
+                "                    (\n" +
+                "                        '2 tbsp',\n" +
+                "                        7,\n" +
+                "                        2\n" +
+                "                    ),\n" +
+                "                    (\n" +
+                "                        '1/2 tsp',\n" +
+                "                        8,\n" +
+                "                        2\n" +
+                "                    ),\n" +
+                "                    (\n" +
+                "                        '1/2 tsp',\n" +
+                "                        3,\n" +
+                "                        2\n" +
+                "                    ),\n" +
+                "                    (\n" +
+                "                        '1/2 tsp',\n" +
+                "                        9,\n" +
+                "                        2\n" +
+                "                    ),\n" +
+                "                    (\n" +
+                "                        '1/4 tsp',\n" +
+                "                        10,\n" +
+                "                        2\n" +
+                "                    ),\n" +
+                "                    (\n" +
+                "                        '2 lbs',\n" +
+                "                        11,\n" +
+                "                        2\n" +
+                "                    ),\n" +
+                "                    (\n" +
+                "                        '1/4 cup',\n" +
+                "                        12,\n" +
+                "                        2\n" +
+                "                    );\n");
     }
 
-    public void createDataBase() throws IOException{
-
-        boolean dbExist = checkDataBase();
-
-        if(dbExist){
-
-        }
-
-        else{
-            this.getReadableDatabase();
-
-            try {
-                copyDataBase();
-
-            }
-            catch (IOException e) {
-                throw new Error("Error copying database");
-            }
-        }
+    private void createRecipeTable(SQLiteDatabase sqLiteDatabase){
+        sqLiteDatabase.execSQL("CREATE TABLE Recipes (RecipeID INTEGER UNIQUE NOT NULL PRIMARY KEY ASC AUTOINCREMENT, RecipeName STRING NOT NULL, Instructions STRING NOT NULL, TimeOfDay STRING NOT NULL, Cuisine STRING NOT NULL, Servings INTEGER, Favourite INT NOT NULL, PreparationTime INTEGER, CookingTime INTEGER, Type STRING, userCreated INT);");
+        sqLiteDatabase.execSQL("INSERT INTO Recipes (\n" +
+                "                        userCreated,\n" +
+                "                        Type,\n" +
+                "                        CookingTime,\n" +
+                "                        PreparationTime,\n" +
+                "                        Favourite,\n" +
+                "                        Servings,\n" +
+                "                        Cuisine,\n" +
+                "                        TimeOfDay,\n" +
+                "                        Instructions,\n" +
+                "                        RecipeName,\n" +
+                "                        RecipeID\n" +
+                "                    )\n" +
+                "                    VALUES (\n" +
+                "                        0,\n" +
+                "                        'Food',\n" +
+                "                        2,\n" +
+                "                        2,\n" +
+                "                        1,\n" +
+                "                        1,\n" +
+                "                        'American',\n" +
+                "                        'Breakfast',\n" +
+                "                        'Whisk eggs, milk, salt and pepper in small bowl. Spray skillet with cooking spray. Heat skillet over medium-high heat until hot enough to sizzle a drop of water.\n" +
+                "Pour in egg mixture and immediately reduce heat to medium-low. As eggs begin to set, gently move spatula across bottom and side of skillet to form large, soft curds.\n" +
+                "Cook until eggs are thickened and no visible liquid egg remains, but they eggs are not dry.',\n" +
+                "                        'Scrambled Eggs',\n" +
+                "                        1\n" +
+                "                    ),\n" +
+                "                    (\n" +
+                "                        0,\n" +
+                "                        'Food',\n" +
+                "                        30,\n" +
+                "                        15,\n" +
+                "                        1,\n" +
+                "                        6,\n" +
+                "                        'Universal',\n" +
+                "                        'Appetizer/Snack',\n" +
+                "                        'Preheat oven to 400 degrees F (200 degrees C). Spray a 9x13-inch baking pan or cast iron skillet with cooking spray; pour in about 1 teaspoon vegetable oil to coat the bottom.\n" +
+                "Mix Parmesan cheese, salt, garlic powder, paprika, and black pepper together in a bowl.\n" +
+                "Blot the cut-side of potatoes with a paper towel to remove any moisture. Place potatoes in a bowl and drizzle with 1 tablespoon vegetable oil; toss until potatoes are lightly coated. Sprinkle potatoes with Parmesan cheese mixture; toss to coat. Arrange potatoes, cut-side down, onto the prepared baking pan.\n" +
+                "Bake in the preheated oven for 15 to 20 minutes. Turn potatoes to cut-side up; continue baking until golden and crispy, about 15 to 20 more minutes. Serve with sour cream.',\n" +
+                "                        'Oven Roasted Parmesan Potatoes',\n" +
+                "                        2\n" +
+                "                    );\n");
 
     }
 
     //make it return a resultRecipe Object
 
     public String [] getRecipes(Searchable search){
-        openDataBase();
+        SQLiteDatabase db = getReadableDatabase();
         Cursor cursor;
         String [] returnNames = null;
 
@@ -157,7 +338,7 @@ public class DBhelper extends SQLiteOpenHelper {
                         while(search.getIngredients().charAt(i) == ' '){
                             i++;
                         }
-                            i--;
+                        i--;
                     }
 
                     else if (ingredient){
@@ -176,11 +357,11 @@ public class DBhelper extends SQLiteOpenHelper {
                     //this is not a correct query.
                 }
 
-                cursor = DB.rawQuery(generateQuery(booleanStack,search),StringsNeeded);
+                cursor = db.rawQuery(generateQuery(booleanStack,search),StringsNeeded);
             }
 
             else{
-                cursor = DB.rawQuery("SELECT RecipeName FROM Recipes WHERE RecipeName=?", new String [] {search.getRecipeName()});
+                cursor = db.rawQuery("SELECT RecipeName FROM Recipes WHERE RecipeName=?", new String [] {search.getRecipeName()});
             }
 
             if(cursor==null) return new String [] {"empty"};
@@ -208,21 +389,11 @@ public class DBhelper extends SQLiteOpenHelper {
         }
 
 
-        DB.close();
+        db.close();
         return returnNames;
     }
 
 
-
-    @Override
-    public void onCreate(SQLiteDatabase sqLiteDatabase) {
-
-    }
-
-    @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
-    }
 
     private String generateQuery(Stack<String> stack,Searchable search){
         String query = "SELECT * FROM Recipes " +
@@ -312,7 +483,6 @@ public class DBhelper extends SQLiteOpenHelper {
     }
 
     public ResultRecipe getSingleResult(String recipeName){
-        openDataBase();
         Cursor cursor;
 
         String query = "SELECT * FROM Amounts JOIN Recipes ON Recipes.RecipeID = " +
@@ -323,7 +493,7 @@ public class DBhelper extends SQLiteOpenHelper {
 
         try {
 
-            cursor = DB.rawQuery(query, new String[]{recipeName});
+            cursor = this.getReadableDatabase().rawQuery(query, new String[]{recipeName});
 
             cursor.moveToFirst();
 
@@ -342,7 +512,7 @@ public class DBhelper extends SQLiteOpenHelper {
             }
 
 
-            cursor = DB.rawQuery("SELECT * FROM RECIPES WHERE RecipeName=?", new String[]{recipeName});
+            cursor = this.getReadableDatabase().rawQuery("SELECT * FROM RECIPES WHERE RecipeName=?", new String[]{recipeName});
 
             cursor.moveToFirst();
 
@@ -352,13 +522,12 @@ public class DBhelper extends SQLiteOpenHelper {
                 tmp = new ResultRecipe(Ingredients, cursor.getString(cursor.getColumnIndex("RecipeName")),
                         cursor.getString(cursor.getColumnIndex("Servings")), cursor.getString(cursor.getColumnIndex("CookingTime")),
                         cursor.getString(cursor.getColumnIndex("PreparationTime")), cursor.getString(cursor.getColumnIndex("Instructions")),
-                       Integer.parseInt(cursor.getString(cursor.getColumnIndex("RecipeID"))));
+                        Integer.parseInt(cursor.getString(cursor.getColumnIndex("RecipeID"))));
             }
 
             while (cursor.moveToNext());
 
             cursor.close();
-            DB.close();
             return tmp;
         }
 
@@ -371,19 +540,17 @@ public class DBhelper extends SQLiteOpenHelper {
 
 
     public void setUnsetFavorite(int sou,int id){
-        openDataBase();
+        SQLiteDatabase db = getWritableDatabase();
         String query = "UPDATE Recipes SET Favourite = " + sou + " WHERE RecipeID = " +id;
-        Cursor c = DB.rawQuery(query,null);
+        Cursor c = db.rawQuery(query,null);
         c.moveToFirst();
         c.close();
     }
 
     public String [] getFavorite(){
-        openDataBase();
         String query = "SELECT RecipeName FROM Recipes WHERE Favourite = 1";
-        Cursor c = DB.rawQuery(query,null);
+        Cursor c = this.getWritableDatabase().rawQuery(query,null);
         ArrayList<String> faves = new ArrayList<String>();
-
         if (c.getCount() == 0) return new String[]{};
 
         c.moveToFirst();
@@ -399,15 +566,12 @@ public class DBhelper extends SQLiteOpenHelper {
             favorties[i] = faves.get(i);
         }
         c.close();
-        DB.close();
         return  favorties;
     }
 
     public ResultRecipe generateRandomRecipe(){
-        openDataBase();
         String query = "SELECT * FROM Recipes";
-        Cursor c = DB.rawQuery(query,null);
-        ArrayList<String> faves = new ArrayList<String>();
+        Cursor c = this.getReadableDatabase().rawQuery(query,null);
 
         if (c.getCount() == 0) return null;
 
@@ -415,9 +579,8 @@ public class DBhelper extends SQLiteOpenHelper {
         int randomNum = rand.nextInt((c.getCount() - 1) + 1) + 1;
         c.close();
 
-        c = DB.rawQuery("SELECT RecipeName FROM Recipes WHERE RecipeID = " + randomNum,null);
+        c = this.getReadableDatabase().rawQuery("SELECT RecipeName FROM Recipes WHERE RecipeID = " + randomNum,null);
         c.moveToFirst();
-        DB.close();
         return getSingleResult(c.getString(c.getColumnIndex("RecipeName")));
 
 

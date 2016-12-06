@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        dataBase = new DBhelper(this.getApplicationContext());
+        dataBase = new DBhelper(this.getApplicationContext(), "", null, 2);
 
 
         TextView searchTxv = (TextView) findViewById(R.id.Search);

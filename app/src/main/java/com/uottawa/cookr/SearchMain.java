@@ -34,14 +34,7 @@ public class SearchMain extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_search);
 
-        dataBase = new DBhelper(this.getApplicationContext());
-
-        try{
-            dataBase.createDataBase();
-        }
-        catch (IOException e){
-            e.printStackTrace();
-        }
+        dataBase = new DBhelper(this.getApplicationContext(), "", null,2);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.customToolBar);
         setSupportActionBar(myToolbar);
