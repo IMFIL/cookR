@@ -24,7 +24,7 @@ public class helpWhatFavourites extends AppCompatActivity {
         currentActionBar.setDisplayShowHomeEnabled(false);
         currentActionBar.setDisplayShowTitleEnabled(false);
 
-        currentActionBar.setCustomView( ActionBarSetter.getActionBarView("What are favourites?",this));
+        currentActionBar.setCustomView( ActionBarSetter.getActionBarView("What are favorites?",this));
 
 
         currentActionBar.setDisplayShowCustomEnabled(true);

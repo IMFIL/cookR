@@ -30,7 +30,7 @@
         android:paddingTop="115dp">
 
         <Button
-            android:text="What Is Quick Select?"
+            android:text="@string/helpRandomButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/btn_help_quickSelect"
@@ -42,7 +42,7 @@
             android:soundEffectsEnabled="true" />
 
         <Button
-            android:text="How Do I Search A Recipe?"
+            android:text="@string/helpSearchButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/btn_help_SearchRecipe"
@@ -54,7 +54,7 @@
             android:soundEffectsEnabled="true" />
 
         <Button
-            android:text="What Are Favourites?"
+            android:text="@string/helpFavouriteButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/btn_help_favourites"
@@ -66,7 +66,7 @@
             android:soundEffectsEnabled="true" />
 
         <Button
-            android:text="How Can I add A new Recipe?"
+            android:text="@string/helpAddButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/btn_help_addNewRecipe"

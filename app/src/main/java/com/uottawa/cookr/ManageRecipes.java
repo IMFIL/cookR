@@ -16,9 +16,9 @@ public class ManageRecipes extends AppCompatActivity {
 
     ListView list = null;
 
-    String [] recipename = {"burger","hotdog","pizza"};
+    String [] recipename = {"All Dressed Burger","Sizzling Hot-Dog","Classic Cheeseburger"};
 
-    Integer [] images = {R.drawable.burger,R.drawable.hotdog,R.drawable.pizza};
+    Integer [] images = {R.drawable.alldressedburger,R.drawable.hotdog, R.drawable.cheeseburger};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

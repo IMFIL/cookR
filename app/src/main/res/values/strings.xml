@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">CookR</string>
     <string-array name="mealTime_Array">
-        <item>BreakFast</item>
+        <item>Breakfast</item>
         <item>Lunch</item>
         <item>Dinner</item>
-        <item>Appetizer/Snack</item>
+        <item>Snack</item>
     </string-array>
 
     <string-array name="cuisine_Array">
@@ -17,10 +17,10 @@
     </string-array>
 
     <string-array name="type_Array">
-        <item>Main dish</item>
+        <item>Main Dish</item>
         <item>Starter</item>
         <item>Dessert</item>
-        <item>Appetizer/Snack</item>
+        <item>Snack</item>
         <item>Drink</item>
         <item>Sauce</item>
     </string-array>
@@ -29,7 +29,7 @@
     <string name="QuickSearchTag">Quick\nSearch</string>
     <string name="RandomTag">Random\nRecipe</string>
     <string name="AddRecipeTag">Add\nRecipe</string>
-    <string name="FavoritesTag">Faves</string>
+    <string name="FavoritesTag">Favorites</string>
     <string name="SettingsTag">Settings</string>
     <string name="HelpTag">Help</string>
 
@@ -38,11 +38,16 @@
     <string name="action_settings">Settings</string>
     <string name="help_header">Help</string>
     <string name="header_main">CookR</string>
+
+    <string name="helpSearchButton">How Do I Search A Recipe?</string>
+    <string name="helpFavouriteButton">What Are Favourites?</string>
+    <string name="helpAddButton">How Can I Add a New Recipe?</string>
+    <string name="helpRandomButton">What Does Random Recipe Do?</string>
+
     <string name="HelpAddRecipe">You came up with a masterpiece? Why not add it to your recipes?\n\n1. In the main menu, select \"Add New Recipe\"\n\n2. Take the time to fill in the blanks\n\n3. Hit \"Add\" once your done</string>
     <string name="helpTextWhatFavourites">Got plenty of cravings? We got you covered!\n\n1. Search a recipe that you like\n\n2. Simply tap the heart\n
         \n3. At the main menu, click on \"Favorites\"\n\n4. You can view all your favorite recipes </string>
-    <string name="helpTextWhatRandomRecipe">Got no idea about what eat?\"Random Recipe\" takes care of that! \n\n1. In the main menu, hit \"Random Recipe\"
-    \n\n2. \n\n3.</string>
+    <string name="helpTextWhatRandomRecipe">Have no idea what to eat?\ "Random Recipe\" takes care of that! \n\n1. In the main menu, hit \"Random Recipe\"\n\n2. bla bla bla \n\n3. bla bla bla bla</string>
     <string name="helpTextSettings">Do you want to manage all of your recipes? Let us show you how!\n\n1. \n\n2. \n\n3.</string>
 
     <string name="recipeName">Recipe Name</string>
@@ -67,6 +72,29 @@
     <string name="settingsIcon">&#xf085;</string>
     <string name="helpIcon">&#xf128;</string>
     <string name="XIcon">&#xf00d;</string>
+    <string name="Type">Type</string>
+
+    <string name="addImageText">Recipe Image</string>
+    <string name="addPlus">Add +</string>
+    <string name="cuisineType">Type of Cuisine</string>
+    <string name="foodType">Type of Food</string>
+    <string name="type">Type</string>
+    <string name="mealTime">Meal Time</string>
+    <string name="mealClassification">Meal Classification</string>
+
+    <string name="addType">Add Type</string>
+    <string name="addCuisine">Add Cuisine</string>
+    <string name="seeCategories">See All Added Categories</string>
+
+    <string name="manageRecipes">Manage Recipes</string>
+    <string name="manageCategories">Manage Categories</string>
+
+    <string name="ingredients">Ingredients</string>
+    <string name="prepTime">Prep: </string>
+    <string name="cookTime">Add Type</string>
+    <string name="servings">Serves</string>
+    <string name="addToFavourites">Add To Favourites</string>
+
 
 
 

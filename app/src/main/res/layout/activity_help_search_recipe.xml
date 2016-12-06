@@ -30,5 +30,12 @@
         android:paddingTop="80dp"
         android:layout_margin="20dp">
 
+        <TextView
+            android:text="@string/HelpAddRecipe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView5"
+            android:layout_weight="1"
+            android:textSize="18sp" />
     </LinearLayout>
 </RelativeLayout>

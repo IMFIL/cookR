@@ -54,7 +54,7 @@
                 android:paddingBottom="5dp">
 
                 <TextView
-                    android:text="Ingredients"
+                    android:text="@string/ingredients"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:id="@+id/textView3"
@@ -85,7 +85,7 @@
                 android:paddingBottom="5dp">
 
                 <TextView
-                    android:text="Instructions"
+                    android:text="@string/instructions"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:id="@+id/textView4"
@@ -122,7 +122,7 @@
                     android:layout_marginTop="40dp">
 
                     <TextView
-                        android:text="Prep: 5"
+                        android:text="@string/prepTime"
                         android:layout_width="match_parent"
                         android:id="@+id/prepTime"
                         android:paddingBottom="1dp"
@@ -132,7 +132,7 @@
                         android:layout_height="60dp" />
 
                     <TextView
-                        android:text="Cook: 5"
+                        android:text="@string/cookTime"
                         android:layout_width="match_parent"
                         android:id="@+id/cookTime"
                         android:textSize="16dp"
@@ -141,7 +141,7 @@
                         android:layout_height="60dp" />
 
                     <TextView
-                        android:text="Serves: 5"
+                        android:text="@string/servings"
                         android:layout_width="match_parent"
                         android:id="@+id/serving"
                         android:paddingBottom="1dp"
@@ -153,7 +153,7 @@
                 </LinearLayout>
 
             <TextView
-                android:text="Add To Favorites"
+                android:text="@string/addToFavourites"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/AddToFavorite"
