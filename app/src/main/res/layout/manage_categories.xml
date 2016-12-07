@@ -40,7 +40,8 @@
                 android:hint="@string/Type"
                 android:layout_height="wrap_content"
                 android:textSize="25sp"
-                android:maxLines="1" />
+                android:maxLines="1"
+                android:id="@+id/newTypeEntry" />
         </android.support.design.widget.TextInputLayout>
 
 
@@ -68,7 +69,8 @@
                 android:hint="@string/cuisine"
                 android:layout_height="wrap_content"
                 android:textSize="25sp"
-                android:maxLines="1" />
+                android:maxLines="1"
+                android:id="@+id/newCuisineEntry" />
         </android.support.design.widget.TextInputLayout>
 
         <TextView

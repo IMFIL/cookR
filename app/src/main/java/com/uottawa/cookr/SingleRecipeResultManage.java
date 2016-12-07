@@ -1,5 +1,6 @@
 package com.uottawa.cookr;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ public class SingleRecipeResultManage extends AppCompatActivity {
     DBhelper dataBase;
     int id;
     boolean isFave = false;
+    ResultRecipe RR;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +27,7 @@ public class SingleRecipeResultManage extends AppCompatActivity {
 
         dataBase = new DBhelper(this.getApplicationContext(), "", null, 2);
 
-        ResultRecipe RR = (ResultRecipe) getIntent().getSerializableExtra("RR");
+        RR = (ResultRecipe) getIntent().getSerializableExtra("RR");
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.customToolBar);
         setSupportActionBar(myToolbar);
@@ -119,6 +121,15 @@ public class SingleRecipeResultManage extends AppCompatActivity {
     public void deleteOnClick(View view){
         dataBase.deleteAddedRecipe(id);
         Toast.makeText(this,"You deleted this recipe", Toast.LENGTH_LONG).show();
+
+    }
+
+    public void EditOnClick(View view){
+
+        Intent intent = new Intent(this, EditRecipe.class);
+        intent.putExtra("RR",RR);
+        intent.putExtra("previousName",RR.getName());
+        startActivity(intent);
 
     }
 

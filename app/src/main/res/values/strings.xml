@@ -103,6 +103,8 @@
     <string name="helpQuickSelectQuestion">No idea what to eat?</string>
 
     <string name="Delete">Delete this recipe</string>
+    <string name="Edit">Edit this recipe</string>
+    <string name="EditRecipe">Edit</string>
     <string name="helpSettingButton">What are settings?</string>
     <string name="helpSettingsQuestion">Wondering what settings do?</string>
     <string name="helpSettingsText">1. In settings, you have two options\n\n2. You can manage your recipes\n\n3. You can manage categories\n\n4. You can delete recipes from either sections </string>

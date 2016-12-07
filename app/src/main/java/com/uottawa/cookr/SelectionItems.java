@@ -96,6 +96,14 @@ public class SelectionItems {
         return tmp;
     };
 
+    public boolean isEmpty(){
+        if(getSelected().length==0){
+            return true;
+        }
+
+        return false;
+    }
+
 }
 
 

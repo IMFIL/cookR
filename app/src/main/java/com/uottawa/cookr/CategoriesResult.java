@@ -1,6 +1,7 @@
 package com.uottawa.cookr;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -71,6 +72,11 @@ public class CategoriesResult extends AppCompatActivity{
                 else{
                     dataBase.deleteCategory(els[position],"Cuisine");
                 }
+
+                Toast.makeText(context,"Deleted Recipe", Toast.LENGTH_LONG).show();
+
+//                finish();
+//                startActivity(getIntent());
 
             }
         });
