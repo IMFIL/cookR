@@ -33,7 +33,6 @@ public class ManageCategories extends AppCompatActivity {
 
 
     public void addTypeClick(View view){
-
         TextView newType = (TextView) findViewById(R.id.newTypeEntry);
         dataBase.addToType(newType.getText().toString());
         Toast.makeText(context,"Added a type", Toast.LENGTH_LONG).show();
