@@ -64,14 +64,12 @@ public class MainActivity extends AppCompatActivity {
         helpIcon.setTypeface(fontAwesome);
     }
 
-    public void helpClick(View view){
-
+    public void helpClick(View view) {
         Intent intent = new Intent(this, HelpActivity.class);
         startActivity(intent);
     }
 
-    public void supriseMeClick(View view){
-
+    public void supriseMeClick(View view) {
         Intent intent = new Intent (this,SingleRecipeResult.class);
         ResultRecipe RR = dataBase.generateRandomRecipe();
         intent.putExtra("RR", RR);
@@ -79,29 +77,24 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void searchRecipeClick(View view){
-
+    public void searchRecipeClick(View view) {
         Intent intent = new Intent(this, SearchMain.class);
         startActivity(intent);
     }
 
-    public void favouritesClick(View view){
-
+    public void favouritesClick(View view) {
         Intent intent = new Intent(this, Favorites_results.class);
         startActivity(intent);
     }
 
-    public void addNewRecipeClick(View view){
-
+    public void addNewRecipeClick(View view) {
         Intent intent = new Intent(this, addNewRecipe.class);
         startActivity(intent);
     }
 
-    public void settingsClick(View view){
-
+    public void settingsClick(View view) {
         Intent intent = new Intent(this, Settings.class);
         startActivity(intent);
     }
 
 }
-
