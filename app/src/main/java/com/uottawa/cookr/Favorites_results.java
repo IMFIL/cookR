@@ -38,21 +38,15 @@ public class Favorites_results extends AppCompatActivity {
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.customToolBar);
         setSupportActionBar(myToolbar);
-
         android.support.v7.app.ActionBar currentActionBar = getSupportActionBar();
-
         currentActionBar.setDisplayShowHomeEnabled(false);
         currentActionBar.setDisplayShowTitleEnabled(false);
-
         currentActionBar.setCustomView( ActionBarSetter.getActionBarView("Favorites",this));
-
         currentActionBar.setDisplayShowCustomEnabled(true);
-
         RecipeDisplayAdapter adapter = new RecipeDisplayAdapter(this, images, recipename);
 
         list = (ListView)findViewById(R.id.listOfRecipesFavorites);
         list.setAdapter(adapter);
-
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
