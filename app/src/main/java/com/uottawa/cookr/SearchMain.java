@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 
@@ -28,6 +29,7 @@ public class SearchMain extends AppCompatActivity {
     SelectionItems times;
     SelectionItems cuisines;
     SelectionItems types;
+    boolean flag = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,8 +146,11 @@ public class SearchMain extends AppCompatActivity {
         EditText recipeName = (EditText) findViewById(R.id.recipeNameSearch);
         EditText ingredients = (EditText) findViewById(R.id.ingredientsSearch);
 
-        if(recipeName.getText().toString().trim().length() == 0 && ingredients.getText().toString().trim().length() == 0){
-            System.out.println("CANNOT DO SEARCH add dialog pop up that tells the user to add at least ingredient or recipe");
+        if(recipeName.getText().toString().trim().length() == 0 &&
+                ingredients.getText().toString().trim().length() == 0 &&
+                cuisines.isEmpty() && types.isEmpty() && times.isEmpty()){
+
+           result = dataBase.getAllRecipes();
         }
 
         else{
@@ -156,15 +161,16 @@ public class SearchMain extends AppCompatActivity {
            result = dataBase.getRecipes(searchObject);
 
            if (result[0].equals("empty")){
-                //dialog saying that no results were found.
+               Toast.makeText(this,"Nothing found", Toast.LENGTH_LONG).show();
+               flag = false;
            }
 
-            else{
-               Intent intent = new Intent(this, Recipe_results.class);
-               intent.putExtra("recipeNames",result);
-               startActivity(intent);
-           }
+        }
 
+        if (flag) {
+            Intent intent = new Intent(this, Recipe_results.class);
+            intent.putExtra("recipeNames", result);
+            startActivity(intent);
         }
 
     }

@@ -696,7 +696,7 @@ public class DBhelper extends SQLiteOpenHelper {
         for(int i=0; i < types.size();i++){
             typesReturned[i] = types.get(i);
         }
-
+        cursor.close();
         return typesReturned;
     }
 
@@ -740,6 +740,32 @@ public class DBhelper extends SQLiteOpenHelper {
         values.put("Type",edit.getType());
 
         this.getWritableDatabase().update("Recipes",values,"RecipeName= "+ "'" + edit.getName() + "'",null);
+    }
+
+    public String [] getAllRecipes(){
+        ArrayList<String> recipes = new ArrayList<String>();
+
+        String query = "SELECT RecipeName FROM Recipes";
+
+        Cursor cursor = this.getReadableDatabase().rawQuery(query,null);
+
+        cursor.moveToFirst();
+
+        do{
+            recipes.add((cursor.getString(cursor.getColumnIndex("RecipeName"))));
+        }
+
+        while (cursor.moveToNext());
+
+        String [] rec = new String [recipes.size()];
+
+        for(int i=0; i < recipes.size();i++){
+            rec[i] = recipes.get(i);
+        }
+
+        cursor.close();
+
+        return rec;
     }
 
 }
