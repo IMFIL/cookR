@@ -1,10 +1,8 @@
 package com.uottawa.cookr;
 
-import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -37,9 +35,8 @@ public class SingleRecipeResultManage extends AppCompatActivity {
 
         String [] faves = dataBase.getFavorite();
 
-
-        for(int i=0;i<faves.length;i++){
-            if(faves[i].equals(RR.getName())){
+        for(int i = 0; i < faves.length; i++) {
+            if (faves[i].equals(RR.getName())) {
                 TextView favoriteSelector = (TextView) findViewById(R.id.AddToFavorite);
                 favoriteSelector.setText("Remove From Favorites");
                 isFave = true;
@@ -49,24 +46,15 @@ public class SingleRecipeResultManage extends AppCompatActivity {
         id = RR.getRecipeId();
 
         String [] ingredients = RR.getIngredients();
-
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, ingredients);
-
         ListView list = (ListView) findViewById(R.id.LS1);
-
         list.setAdapter(adapter);
-
         String instructions = RR.getInstructions();
-
         String [] steps = instructions.split("\\.");
 
-
         ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, steps);
-
         ListView list2 = (ListView) findViewById(R.id.LS2);
-
         list2.setAdapter(adapter2);
-
         //Allows you to scroll the listview while you are in a scrollview layout
         list.setOnTouchListener(new View.OnTouchListener() {
             // Setting on Touch Listener for handling the touch inside ScrollView
@@ -100,26 +88,24 @@ public class SingleRecipeResultManage extends AppCompatActivity {
 
     }
 
-    public void addToFavoriteClick(View view){
-        if(isFave){
-            dataBase.setUnsetFavorite(0,id);
+    public void addToFavoriteClick(View view) {
+        if (isFave){
+            dataBase.setUnsetFavorite(0, id);
             TextView favoriteSelector = (TextView) findViewById(R.id.AddToFavorite);
             favoriteSelector.setText("Add To Favorites");
             isFave = false;
         }
-        else{
-            dataBase.setUnsetFavorite(1,id);
+        else {
+            dataBase.setUnsetFavorite(1, id);
             TextView favoriteSelector = (TextView) findViewById(R.id.AddToFavorite);
             favoriteSelector.setText("Remove From Favorites");
-            isFave=true;
+            isFave = true;
         }
 
     }
 
-    public void deleteOnClick(View view){
+    public void deleteOnClick(View view) {
         dataBase.deleteAddedRecipe(id);
         Toast.makeText(this,"You deleted this recipe", Toast.LENGTH_LONG).show();
-
     }
-
 }
