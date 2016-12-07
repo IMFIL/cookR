@@ -24,13 +24,11 @@ public class RecipeDisplayAdapter extends ArrayAdapter<String> {
         imageIds = images;
         recipeNames = texts;
         this.context = context;
-
     }
 
-
     public View getView(int position, View view, ViewGroup parent) {
-        LayoutInflater inflater=context.getLayoutInflater();
-        View rowView=inflater.inflate(R.layout.recipe_list_item, null,true);
+        LayoutInflater inflater = context.getLayoutInflater();
+        View rowView=inflater.inflate(R.layout.recipe_list_item, null, true);
 
         ImageView imageView = (ImageView) rowView.findViewById(R.id.recipeImg);
         TextView txtTitle = (TextView) rowView.findViewById(R.id.recipeName);

@@ -21,18 +21,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.READ_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
-
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.READ_EXTERNAL_STORAGE)) {
-
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
             } else {
-
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                        MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
             }
         }
         
@@ -46,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         TextView faveTxv = (TextView) findViewById(R.id.Favorites);
         TextView helpTxv = (TextView) findViewById(R.id.Help);
 
-        Typeface face=Typeface.createFromAsset(getAssets(),"fonts/SanFranciscoDisplay-Light.otf");
+        Typeface face=Typeface.createFromAsset(getAssets(), "fonts/SanFranciscoDisplay-Light.otf");
 
         searchTxv.setTypeface(face);
         randomTxv.setTypeface(face);
@@ -72,44 +64,37 @@ public class MainActivity extends AppCompatActivity {
         helpIcon.setTypeface(fontAwesome);
     }
 
-    public void helpClick(View view){
-
+    public void helpClick(View view) {
         Intent intent = new Intent(this, HelpActivity.class);
         startActivity(intent);
     }
 
-    public void supriseMeClick(View view){
-
+    public void supriseMeClick(View view) {
         Intent intent = new Intent (this,SingleRecipeResult.class);
         ResultRecipe RR = dataBase.generateRandomRecipe();
-        intent.putExtra("RR",RR);
+        intent.putExtra("RR", RR);
         startActivity(intent);
 
     }
 
-    public void searchRecipeClick(View view){
-
+    public void searchRecipeClick(View view) {
         Intent intent = new Intent(this, SearchMain.class);
         startActivity(intent);
     }
 
-    public void favouritesClick(View view){
-
+    public void favouritesClick(View view) {
         Intent intent = new Intent(this, Favorites_results.class);
         startActivity(intent);
     }
-    
-    public void addNewRecipeClick(View view){
 
+    public void addNewRecipeClick(View view) {
         Intent intent = new Intent(this, addNewRecipe.class);
         startActivity(intent);
     }
 
-    public void settingsClick(View view){
-
+    public void settingsClick(View view) {
         Intent intent = new Intent(this, Settings.class);
         startActivity(intent);
     }
 
 }
-

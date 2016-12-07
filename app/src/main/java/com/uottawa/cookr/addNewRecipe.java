@@ -27,8 +27,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 public class addNewRecipe extends AppCompatActivity {
-    ListView list = null;
 
+    ListView list = null;
     SelectionItems currentList;
     int tmpPos = 0;
     SelectionItems cuisines;
@@ -56,16 +56,15 @@ public class addNewRecipe extends AppCompatActivity {
 
         dataBase = new DBhelper(this.getApplicationContext(), "", null, 2);
 
-        cuisines = new SelectionItems(dataBase.getAllCuisines(),"Cuisines");
-        types = new SelectionItems(dataBase.getAllTypes(),"Type");
+        cuisines = new SelectionItems(dataBase.getAllCuisines(), "Cuisines");
+        types = new SelectionItems(dataBase.getAllTypes(), "Type");
 
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 
     public void setImage(View view) {
         // Create intent to Open Image applications like Gallery, Google Photos
-        Intent galleryIntent = new Intent(Intent.ACTION_PICK,
-                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        Intent galleryIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 
         // Start the Intent
         startActivityForResult(galleryIntent, 1);
@@ -76,16 +75,14 @@ public class addNewRecipe extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         try {
             // When an Image is picked
-            if (requestCode == 1 && resultCode == RESULT_OK
-                    && null != data) {
+            if (requestCode == 1 && resultCode == RESULT_OK && null != data) {
                 // Get the Image from data
 
                 Uri selectedImage = data.getData();
                 String[] filePathColumn = { MediaStore.Images.Media.DATA };
 
                 // Get the cursor
-                Cursor cursor = getContentResolver().query(selectedImage,
-                        filePathColumn, null, null, null);
+                Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
                 // Move to first row
                 cursor.moveToFirst();
 
@@ -101,15 +98,13 @@ public class addNewRecipe extends AppCompatActivity {
                         Toast.LENGTH_LONG).show();
             }
         } catch (Exception e) {
-            Toast.makeText(this, "Something went wrong", Toast.LENGTH_LONG)
-                    .show();
+            Toast.makeText(this, "Something went wrong", Toast.LENGTH_LONG).show();
         }
     }
 
-
     private void populateListView(String[] els) {
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.single_listview_item,R.id.txtitem, els);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.single_listview_item, R.id.txtitem, els);
         list = new ListView(this);
         list.setAdapter(adapter);
         list.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
@@ -160,8 +155,6 @@ public class addNewRecipe extends AppCompatActivity {
                     }
                 });
         builder.setNegativeButton("Cancel",null);
-
-
         builder.setView(list);
         AlertDialog dialog=builder.create();
         dialog.show();
@@ -173,23 +166,23 @@ public class addNewRecipe extends AppCompatActivity {
         ArrayList<String> missingFields = new ArrayList<String>();
         boolean flag = false;
 
-        while(iterator.hasNext()) {
+        while (iterator.hasNext()) {
             String key=(String)iterator.next();
             String value=(String)elements.get(key);
 
-            if(value.equals("")){
+            if (value.equals("")) {
                 flag = true;
                 missingFields.add(key);
             }
         }
 
-        if(flag){
+        if (flag) {
             String textToPrint = "Please include the following elements: ";
-            for(int i=0; i<missingFields.size();i++){
+            for (int i = 0; i < missingFields.size(); i++){
                 textToPrint += missingFields.get(i);
                 textToPrint += " ";
             }
-            Toast.makeText(this,textToPrint, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, textToPrint, Toast.LENGTH_LONG).show();
         }
 
         else{
@@ -200,10 +193,10 @@ public class addNewRecipe extends AppCompatActivity {
             String prep = elements.get("Preparation Time");
             String instructions = elements.get("Instructions");
             String cuisine = elements.get("Cuisine");
-            String type =elements.get("Type");
-            String time =elements.get("Time");
+            String type = elements.get("Type");
+            String time = elements.get("Time");
 
-            addRecipe = new Addable(ingredients,name,serving,cook,prep,instructions,cuisine,type,time);
+            addRecipe = new Addable(ingredients, name, serving, cook, prep, instructions, cuisine, type, time);
         }
 
         return !flag;
@@ -213,54 +206,51 @@ public class addNewRecipe extends AppCompatActivity {
         HashMap<String, String> StringMap=new HashMap<String, String>();
 
         String name = ((EditText) findViewById(R.id.recipeNameEntry)).getText().toString();
-        StringMap.put("Recipe Name",name);
+        StringMap.put("Recipe Name", name);
         String prep = ((EditText) findViewById(R.id.prepEntry)).getText().toString();
-        StringMap.put("Preparation Time",prep);
+        StringMap.put("Preparation Time", prep);
         String cook = ((EditText) findViewById(R.id.cookEntry)).getText().toString();
-        StringMap.put("Cooking Time",cook);
+        StringMap.put("Cooking Time", cook);
         String serving = ((EditText) findViewById(R.id.servingEntry)).getText().toString();
-        StringMap.put("Serving",serving);
+        StringMap.put("Serving", serving);
         String instructions = ((EditText) findViewById(R.id.instructionsEntry)).getText().toString();
-        StringMap.put("Instructions",instructions);
+        StringMap.put("Instructions", instructions);
         String ingredients = ((EditText) findViewById(R.id.ingredientsEntry)).getText().toString();
-        StringMap.put("Ingredients",ingredients);
+        StringMap.put("Ingredients", ingredients);
         String type = "";
         String cuisine = "";
         String time = "";
-        if (cuisines.getSelectionText().equals("Cuisines")){
+        if (cuisines.getSelectionText().equals("Cuisines")) {
 
         }
-        else{
+        else {
             cuisine = cuisines.getSelectionText();
         }
 
-        if(types.getSelectionText().equals("Type")){
+        if (types.getSelectionText().equals("Type")) {
 
         }
-        else{
+        else {
             type = types.getSelectionText();
         }
 
         RadioGroup radioButtons = (RadioGroup) findViewById(R.id.radioGroup1);
-        if(radioButtons.getCheckedRadioButtonId()!=-1){
-            int id= radioButtons.getCheckedRadioButtonId();
+        if (radioButtons.getCheckedRadioButtonId() != -1) {
+            int id = radioButtons.getCheckedRadioButtonId();
             View radioButton = radioButtons.findViewById(id);
             int radioId = radioButtons.indexOfChild(radioButton);
             RadioButton btn = (RadioButton) radioButtons.getChildAt(radioId);
             time = (String) btn.getText();
         }
-        StringMap.put("Cuisine",cuisine);
-        StringMap.put("Time",time);
-        StringMap.put("Type",type);
 
-        if(checkIfNull(StringMap)){
+        StringMap.put("Cuisine", cuisine);
+        StringMap.put("Time", time);
+        StringMap.put("Type", type);
+
+        if (checkIfNull(StringMap)) {
             dataBase.addRecipe(addRecipe);
-            Toast.makeText(this,"Recipe added", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Recipe added", Toast.LENGTH_LONG).show();
 
         }
-
-
     }
-
-
 }

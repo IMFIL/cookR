@@ -20,7 +20,6 @@ public class SelectionItems {
         }
     }
 
-
     public void select(int id) {
         if (id - 1 > selected.length) {
         } else {
@@ -44,13 +43,12 @@ public class SelectionItems {
 
     public boolean isSelected(int pos) {
         return selected[pos];
-
     }
 
     private boolean moreThanOneSelect (){
         int repetitions = 0;
 
-        for(int i = 0; i < elements.length;i++){
+        for(int i = 0; i < elements.length; i++){
             if (isSelected(i)){
                 repetitions++;
             }
@@ -76,28 +74,28 @@ public class SelectionItems {
     private int getTotalSelected(){
         int count = 0;
 
-        for(int i=0; i<elements.length;i++){
-            if(selected[i]){
+        for(int i = 0; i < elements.length; i++) {
+            if (selected[i]) {
                 count++;
             }
         }
         return  count;
     }
 
-    public String [] getSelected(){
+    public String [] getSelected() {
         String [] tmp = new String [getTotalSelected()];
         int count = 0;
 
-        for(int i=0; i < elements.length;i++){
-            if(selected[i]){
+        for (int i = 0; i < elements.length; i++) {
+            if (selected[i]) {
                 tmp[count++] = elements[i];
             }
         }
         return tmp;
-    };
+    }
 
-    public boolean isEmpty(){
-        if(getSelected().length==0){
+    public boolean isEmpty() {
+        if (getSelected().length == 0) {
             return true;
         }
 

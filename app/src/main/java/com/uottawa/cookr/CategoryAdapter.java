@@ -19,7 +19,7 @@ public class CategoryAdapter extends ArrayAdapter<String> {
     private final Activity context;
 
     public CategoryAdapter(Activity context, String [] texts) {
-        super(context, R.layout.single_category_item,texts);
+        super(context, R.layout.single_category_item, texts);
 
         recipeNames = texts;
         this.context = context;
@@ -30,17 +30,15 @@ public class CategoryAdapter extends ArrayAdapter<String> {
     public View getView(int position, View view, ViewGroup parent) {
 
         LayoutInflater inflater=context.getLayoutInflater();
-        View rowView=inflater.inflate(R.layout.single_category_item, null,true);
+        View rowView=inflater.inflate(R.layout.single_category_item, null, true);
 
         Typeface fontAwesome = Typeface.createFromAsset( context.getAssets(), "fonts/fontawesome-webfont.ttf" );
-
 
         TextView txtTitle = (TextView) rowView.findViewById(R.id.CategoryName);
         TextView txtX = (TextView) rowView.findViewById(R.id.DeleteCategoryBtn);
 
         txtTitle.setText(recipeNames[position]);
         txtX.setTypeface(fontAwesome);
-
 
         return rowView;
 

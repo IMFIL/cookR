@@ -18,11 +18,8 @@ import android.widget.ListView;
 public class Recipe_results extends AppCompatActivity {
 
     DBhelper dataBase;
-
     ListView list = null;
-
     String [] recipename;
-
     Integer [] images;
 
     @Override
@@ -35,7 +32,7 @@ public class Recipe_results extends AppCompatActivity {
         recipename = names.getStringArray("recipeNames");
         images = new Integer[recipename.length];
 
-        for(int i=0;i<recipename.length;i++){
+        for (int i = 0;i < recipename.length; i++) {
             images[i] = R.drawable.chef;
         }
 
@@ -44,36 +41,27 @@ public class Recipe_results extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.customToolBar);
         setSupportActionBar(myToolbar);
 
-
         android.support.v7.app.ActionBar currentActionBar = getSupportActionBar();
 
         currentActionBar.setDisplayShowHomeEnabled(false);
         currentActionBar.setDisplayShowTitleEnabled(false);
-
-        currentActionBar.setCustomView( ActionBarSetter.getActionBarView("Recipes",this));
-
+        currentActionBar.setCustomView( ActionBarSetter.getActionBarView("Recipes", this));
         currentActionBar.setDisplayShowCustomEnabled(true);
 
         RecipeDisplayAdapter adapter = new RecipeDisplayAdapter(this,images,recipename);
 
         list = (ListView)findViewById(R.id.listOfRecipes);
         list.setAdapter(adapter);
-
-
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                Intent intent = new Intent (context,SingleRecipeResult.class);
+                Intent intent = new Intent (context, SingleRecipeResult.class);
                 ResultRecipe RR = dataBase.getSingleResult(recipename[position]);
-                intent.putExtra("RR",RR);
+                intent.putExtra("RR", RR);
                 startActivity(intent);
-
             }
         });
-
-
     }
-
 }

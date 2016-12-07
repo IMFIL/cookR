@@ -5,7 +5,6 @@ package com.uottawa.cookr;
  */
 
 
-
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -18,11 +17,8 @@ import android.widget.ListView;
 public class Favorites_results extends AppCompatActivity {
 
     DBhelper dataBase;
-
     ListView list = null;
-
     String [] recipename;
-
     Integer [] images;
 
     @Override
@@ -33,34 +29,24 @@ public class Favorites_results extends AppCompatActivity {
 
         dataBase = new DBhelper(this.getApplicationContext(), "", null, 2);
 
-
         recipename = dataBase.getFavorite();
         images = new Integer[recipename.length];
 
-        for(int i=0;i<recipename.length;i++){
+        for (int i = 0; i < recipename.length; i++) {
             images[i] = R.drawable.chef;
         }
 
-
         Toolbar myToolbar = (Toolbar) findViewById(R.id.customToolBar);
         setSupportActionBar(myToolbar);
-
-
         android.support.v7.app.ActionBar currentActionBar = getSupportActionBar();
-
         currentActionBar.setDisplayShowHomeEnabled(false);
         currentActionBar.setDisplayShowTitleEnabled(false);
-
         currentActionBar.setCustomView( ActionBarSetter.getActionBarView("Favorites",this));
-
         currentActionBar.setDisplayShowCustomEnabled(true);
-
-        RecipeDisplayAdapter adapter = new RecipeDisplayAdapter(this,images,recipename);
+        RecipeDisplayAdapter adapter = new RecipeDisplayAdapter(this, images, recipename);
 
         list = (ListView)findViewById(R.id.listOfRecipesFavorites);
         list.setAdapter(adapter);
-
-
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -70,11 +56,7 @@ public class Favorites_results extends AppCompatActivity {
                 ResultRecipe RR = dataBase.getSingleResult(recipename[position]);
                 intent.putExtra("RR",RR);
                 startActivity(intent);
-
             }
         });
-
-
     }
-
 }

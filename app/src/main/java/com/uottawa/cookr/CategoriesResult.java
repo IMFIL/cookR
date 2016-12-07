@@ -21,9 +21,6 @@ public class CategoriesResult extends AppCompatActivity{
 
     String [] els;
     DBhelper dataBase;
-
-
-
     Context context = this;
 
     @Override
@@ -41,36 +38,31 @@ public class CategoriesResult extends AppCompatActivity{
         Toolbar myToolbar = (Toolbar) findViewById(R.id.customToolBar);
         setSupportActionBar(myToolbar);
 
-
-
         android.support.v7.app.ActionBar currentActionBar = getSupportActionBar();
 
         currentActionBar.setDisplayShowHomeEnabled(false);
         currentActionBar.setDisplayShowTitleEnabled(false);
 
-        currentActionBar.setCustomView( ActionBarSetter.getActionBarView("Added Categories",this));
+        currentActionBar.setCustomView( ActionBarSetter.getActionBarView("Added Categories", this));
 
         currentActionBar.setDisplayShowCustomEnabled(true);
 
         CategoryAdapter adapter = new CategoryAdapter(this,els);
 
-
         ListView list = (ListView) findViewById(R.id.listOfCategories);
         list.setAdapter(adapter);
-
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                if(position >= categories.getInt("CuisineSize")){
-                    dataBase.deleteCategory(els[position],"Type");
+                if (position >= categories.getInt("CuisineSize")) {
+                    dataBase.deleteCategory(els[position], "Type");
                 }
 
-                else{
-                    dataBase.deleteCategory(els[position],"Cuisine");
+                else {
+                    dataBase.deleteCategory(els[position], "Cuisine");
                 }
 
                 Toast.makeText(context,"Deleted Recipe", Toast.LENGTH_LONG).show();

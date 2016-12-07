@@ -15,7 +15,7 @@ public class Addable {
     private String type;
     private String time;
 
-    public Addable(String [] ing, String name, String serving){
+    public Addable(String [] ing, String name, String serving) {
 
     }
 

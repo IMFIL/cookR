@@ -11,6 +11,7 @@ import java.util.Stack;
 
 
 public class DBhelper extends SQLiteOpenHelper {
+
     String [] StringsNeeded;
 
     public DBhelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
@@ -292,8 +293,8 @@ public class DBhelper extends SQLiteOpenHelper {
         Cursor cursor;
         String [] returnNames = null;
 
-        try{
-            if(search.getRecipeName().trim().equals("")){
+        try {
+            if (search.getRecipeName().trim().equals("")) {
 
                 Stack<String> booleanStack = new Stack<String>();   //from here to the last push, its string parsing so we can get the proper boolean operators
                 String tmpIngredient = "";
@@ -301,33 +302,33 @@ public class DBhelper extends SQLiteOpenHelper {
                 boolean ingredient = true;
                 boolean operator = false;
 
-                for(int i=0;i<search.getIngredients().length();i++){
+                for (int i = 0; i < search.getIngredients().length(); i++) {
 
-                    if(search.getIngredients().charAt(i) == ' '){
-                        if(ingredient){
-                            ingredient=false;
-                            operator=true;
+                    if (search.getIngredients().charAt(i) == ' ') {
+                        if (ingredient) {
+                            ingredient = false;
+                            operator = true;
                             booleanStack.push(tmpIngredient);
-                            tmpIngredient="";
+                            tmpIngredient = "";
                         }
-                        else{
-                            ingredient=true;
-                            operator=false;
+                        else {
+                            ingredient = true;
+                            operator = false;
                             booleanStack.push(tmpBool);
-                            tmpBool="";
+                            tmpBool = "";
                         }
 
-                        while(search.getIngredients().charAt(i) == ' '){
+                        while (search.getIngredients().charAt(i) == ' ') {
                             i++;
                         }
                         i--;
                     }
 
-                    else if (ingredient){
+                    else if (ingredient) {
                         tmpIngredient += search.getIngredients().charAt(i);
                     }
 
-                    else if (operator){
+                    else if (operator) {
                         tmpBool += search.getIngredients().charAt(i);
                     }
                 }
@@ -335,31 +336,31 @@ public class DBhelper extends SQLiteOpenHelper {
                 booleanStack.push(tmpIngredient);  //last push
 
 
-                if(booleanStack.size() % 2 == 0){
+                if (booleanStack.size() % 2 == 0) {
                     //this is not a correct query.
                 }
 
-                cursor = db.rawQuery(generateQuery(booleanStack,search),StringsNeeded);
+                cursor = db.rawQuery(generateQuery(booleanStack, search), StringsNeeded);
             }
 
-            else{
+            else {
                 cursor = db.rawQuery("SELECT RecipeName FROM Recipes WHERE RecipeName=?", new String [] {search.getRecipeName()});
             }
 
-            if(cursor==null) return new String [] {"empty"};
+            if (cursor == null) return new String [] {"empty"};
 
             ArrayList<String> names = new ArrayList<String>();
             int count = 0;
 
             cursor.moveToFirst();
 
-            do{
+            do {
                 names.add (cursor.getString(cursor.getColumnIndex("RecipeName")));
             }
 
             while(cursor.moveToNext());
             returnNames = new String [names.size()];
-            for(int i=0; i< names.size();i++){
+            for (int i = 0; i < names.size(); i++){
                 returnNames[i] = names.get(i);
             }
             cursor.close();
@@ -370,14 +371,11 @@ public class DBhelper extends SQLiteOpenHelper {
             return new String [] {"empty"};
         }
 
-
         cursor.close();
         return returnNames;
     }
 
-
-
-    private String generateQuery(Stack<String> stack,Searchable search){
+    private String generateQuery(Stack<String> stack, Searchable search){
         String query = "SELECT * FROM Recipes " +
                 "JOIN Amounts ON Amounts.RecipeID=Recipes.RecipeID " +
                 "JOIN Ingredients ON Amounts.IngredientID = Ingredients.IngredientID " +
@@ -385,80 +383,80 @@ public class DBhelper extends SQLiteOpenHelper {
 
         ArrayList<String> list = new ArrayList<String>();
         int count = 0;
-        while(!stack.empty()){
+        while (!stack.empty()) {
             String item = stack.pop().toLowerCase();
 
             if (count == 0){
                 list.add("%"+item+"%");
             }
 
-            if(item.equals("and")){
+            if (item.equals("and")) {
                 query+= "AND Ingredients.IngredientName LIKE ? ";
             }
 
-            else if(item.equals("or")){
+            else if (item.equals("or")) {
                 query+= "OR Ingredients.IngredientName LIKE ? ";
             }
 
-            else if(item.equals("not")){
+            else if (item.equals("not")) {
                 query+= "AND NOT Ingredients.IngredientName LIKE ? ";
             }
 
-            else{
-                if(count!=0) {
+            else {
+                if (count!=0) {
                     list.add("%" + item + "%");
                 }
             }
             count++;
 
-            if(search.getCuisines().length>1){
+            if (search.getCuisines().length>1) {
                 query+="AND Recipes.Ethnicity LIKE ? ";
                 list.add("%" + search.getCuisines()[0] + "%");
 
-                for(int i=1;i<search.getCuisines().length;i++){
-                    query+="OR Recipes.Ethnicity LIKE ? ";
+                for (int i = 1; i < search.getCuisines().length; i++) {
+                    query += "OR Recipes.Ethnicity LIKE ? ";
                     list.add("%" + search.getCuisines()[i] + "%");
                 }
             }
 
-            else if(search.getCuisines().length==1){
+            else if (search.getCuisines().length == 1) {
                 query+="AND Recipes.Ethnicity LIKE ? ";
                 list.add("%" +search.getCuisines()[0]+ "%");
             }
 
-            if(search.getTypes().length>1){
-                query+="AND Recipes.Type LIKE ? ";
+            if (search.getTypes().length > 1) {
+                query += "AND Recipes.Type LIKE ? ";
                 list.add("%"+search.getTypes()[0]+ "%");
 
-                for(int i=1;i<search.getTypes().length;i++){
-                    query+="OR Recipes.Type LIKE ?";
+                for (int i = 1;i < search.getTypes().length; i++) {
+                    query += "OR Recipes.Type LIKE ?";
                     list.add("%"+search.getTypes()[i]+ "%");
                 }
             }
 
-            else if(search.getTypes().length==1){
-                query+="AND Recipes.Type LIKE ? ";
+            else if (search.getTypes().length == 1) {
+                query += "AND Recipes.Type LIKE ? ";
                 list.add("%"+search.getTypes()[0] + "%");
             }
 
-            if(search.getTimes().length>1){
-                query+="AND Recipes.TimeOfDay=? ";
+            if (search.getTimes().length > 1) {
+                query += "AND Recipes.TimeOfDay=? ";
                 list.add(search.getTimes()[0]);
 
-                for(int i=1;i<search.getTimes().length;i++){
-                    query+="OR Recipes.TimeOfDay=?";
+                for (int i = 1; i < search.getTimes().length; i++) {
+                    query += "OR Recipes.TimeOfDay=?";
                     list.add(search.getTimes()[i]);
                 }
             }
 
-            else if(search.getTimes().length==1){
-                query+="AND Recipes.TimeOfDay=? ";
+            else if (search.getTimes().length == 1) {
+                query += "AND Recipes.TimeOfDay=? ";
                 list.add(search.getTimes()[0]);
             }
 
         }
         StringsNeeded = new String [list.size()];
-        for(int i=0;i<list.size();i++){
+        for (int i = 0; i < list.size(); i++) {
             StringsNeeded[i] = list.get(i);
         }
         return query;
@@ -474,7 +472,6 @@ public class DBhelper extends SQLiteOpenHelper {
         ArrayList <String> ingredients = new ArrayList <String>();
 
         try {
-
             cursor = this.getReadableDatabase().rawQuery(query, new String[]{recipeName});
 
             cursor.moveToFirst();
@@ -515,43 +512,42 @@ public class DBhelper extends SQLiteOpenHelper {
 
         catch (Exception e){
             e.printStackTrace();
-            return new ResultRecipe(new String [] {},"","","","","",0);
+            return new ResultRecipe(new String [] {}, "", "", "", "", "", 0);
         }
 
     }
 
-
-    public void setUnsetFavorite(int sou,int id){
+    public void setUnsetFavorite(int sou, int id) {
         SQLiteDatabase db = getWritableDatabase();
         String query = "UPDATE Recipes SET Favourite = " + sou + " WHERE RecipeID = " +id;
-        Cursor c = db.rawQuery(query,null);
+        Cursor c = db.rawQuery(query, null);
         c.moveToFirst();
         c.close();
     }
 
     public String [] getFavorite(){
         String query = "SELECT RecipeName FROM Recipes WHERE Favourite = 1";
-        Cursor c = this.getWritableDatabase().rawQuery(query,null);
+        Cursor c = this.getWritableDatabase().rawQuery(query, null);
         ArrayList<String> faves = new ArrayList<String>();
         if (c.getCount() == 0) return new String[]{};
 
         c.moveToFirst();
-        do{
+        do {
             faves.add(c.getString(c.getColumnIndex("RecipeName")));
         }
 
-        while(c.moveToNext());
+        while (c.moveToNext());
 
         String [] favorties = new String [faves.size()];
 
-        for(int i=0;i<faves.size();i++){
+        for (int i = 0; i < faves.size(); i++) {
             favorties[i] = faves.get(i);
         }
         c.close();
-        return  favorties;
+        return favorties;
     }
 
-    public ResultRecipe generateRandomRecipe(){
+    public ResultRecipe generateRandomRecipe() {
         String query = "SELECT * FROM Recipes";
         Cursor c = this.getReadableDatabase().rawQuery(query,null);
 
@@ -561,14 +557,12 @@ public class DBhelper extends SQLiteOpenHelper {
         int randomNum = rand.nextInt((c.getCount() - 1) + 1) + 1;
         c.close();
 
-        c = this.getReadableDatabase().rawQuery("SELECT RecipeName FROM Recipes WHERE RecipeID = " + randomNum,null);
+        c = this.getReadableDatabase().rawQuery("SELECT RecipeName FROM Recipes WHERE RecipeID = " + randomNum, null);
         c.moveToFirst();
         return getSingleResult(c.getString(c.getColumnIndex("RecipeName")));
-
     }
 
-    public void addRecipe(Addable toAdd){
-
+    public void addRecipe(Addable toAdd) {
         ContentValues values = new ContentValues();
 
         values.put("RecipeName", toAdd.getName());
@@ -582,16 +576,16 @@ public class DBhelper extends SQLiteOpenHelper {
         values.put("Type", toAdd.getType());
         values.put("userCreated", 1);
 
-       this.getWritableDatabase().insert("Recipes",null,values);
+       this.getWritableDatabase().insert("Recipes", null, values);
 
         values = new ContentValues();
         String ingredients="";
 
-        for(int i=0;i<toAdd.getIngredients().length;i++){
-            values.put("IngredientName",toAdd.getIngredients()[i]);
-            ingredients+="'"+ toAdd.getIngredients()[i]+"'";
-            if(i != toAdd.getIngredients().length - 1){
-                ingredients+=", ";
+        for (int i = 0; i < toAdd.getIngredients().length; i++) {
+            values.put("IngredientName", toAdd.getIngredients()[i]);
+            ingredients += "'"+ toAdd.getIngredients()[i]+"'";
+            if (i != toAdd.getIngredients().length - 1){
+                ingredients += ", ";
             }
         }
 
@@ -602,11 +596,11 @@ public class DBhelper extends SQLiteOpenHelper {
         Cursor cursor = this.getReadableDatabase().rawQuery(query,null);
         cursor.moveToFirst();
 
-        do{
+        do {
             ids.add(Integer.parseInt(cursor.getString(cursor.getColumnIndex("IngredientID"))));
         }
 
-        while(cursor.moveToNext());
+        while (cursor.moveToNext());
         cursor.close();
 
         String newRecipeID = "SELECT COUNT(*) FROM Recipes";
@@ -616,41 +610,41 @@ public class DBhelper extends SQLiteOpenHelper {
         int idOfRecipe = Integer.parseInt(cursor.getString(cursor.getColumnIndex("COUNT(*)")));
         cursor.close();
 
-        for(int i=0; i<ids.size();i++){
+        for (int i = 0; i < ids.size(); i++){
             values = new ContentValues();
-            values.put("RecipeID",idOfRecipe);
-            values.put("IngredientID",ids.get(i));
-            this.getWritableDatabase().insert("Amounts",null,values);
+            values.put("RecipeID", idOfRecipe);
+            values.put("IngredientID", ids.get(i));
+            this.getWritableDatabase().insert("Amounts", null, values);
         }
     }
 
-    public String [] getAdded(){
+    public String [] getAdded() {
         String query = "SELECT RecipeName FROM Recipes WHERE userCreated = 1";
-        Cursor c = this.getWritableDatabase().rawQuery(query,null);
+        Cursor c = this.getWritableDatabase().rawQuery(query, null);
         ArrayList<String> faves = new ArrayList<String>();
         if (c.getCount() == 0) return new String[]{};
 
         c.moveToFirst();
-        do{
+        do {
             faves.add(c.getString(c.getColumnIndex("RecipeName")));
         }
 
-        while(c.moveToNext());
+        while (c.moveToNext());
 
         String [] favorties = new String [faves.size()];
 
-        for(int i=0;i<faves.size();i++){
+        for (int i = 0; i < faves.size(); i++) {
             favorties[i] = faves.get(i);
         }
         c.close();
-        return  favorties;
+        return favorties;
     }
 
-    public void deleteAddedRecipe(int id){
+    public void deleteAddedRecipe(int id) {
         this.getWritableDatabase().delete("Recipes", "RecipeID" + "=" +id , null);
     }
 
-    public String [] getAllCuisines(){
+    public String [] getAllCuisines() {
         String query = "SELECT CuisineName FROM Cuisines";
         Cursor cursor = this.getReadableDatabase().rawQuery(query,null);
         ArrayList<String> cuisines = new ArrayList<String>();
@@ -658,7 +652,7 @@ public class DBhelper extends SQLiteOpenHelper {
 
         cursor.moveToFirst();
 
-        do{
+        do {
             cuisines.add((cursor.getString(cursor.getColumnIndex("CuisineName"))));
         }
 
@@ -668,22 +662,22 @@ public class DBhelper extends SQLiteOpenHelper {
 
         String [] cuisinesReturned = new String [cuisines.size()];
 
-        for(int i=0; i < cuisines.size();i++){
+        for (int i = 0; i < cuisines.size(); i++) {
             cuisinesReturned[i] = cuisines.get(i);
         }
 
         return cuisinesReturned;
     }
 
-    public String [] getAllTypes(){
+    public String [] getAllTypes() {
         String query = "SELECT TypeName FROM MealTypes";
-        Cursor cursor = this.getReadableDatabase().rawQuery(query,null);
+        Cursor cursor = this.getReadableDatabase().rawQuery(query, null);
         ArrayList<String> types = new ArrayList<String>();
 
         if(cursor.getCount() == 0) return new String [] {};
         cursor.moveToFirst();
 
-        do{
+        do {
             types.add((cursor.getString(cursor.getColumnIndex("TypeName"))));
         }
 
@@ -693,65 +687,60 @@ public class DBhelper extends SQLiteOpenHelper {
 
         String [] typesReturned = new String [types.size()];
 
-        for(int i=0; i < types.size();i++){
+        for (int i = 0; i < types.size(); i++) {
             typesReturned[i] = types.get(i);
         }
         cursor.close();
         return typesReturned;
     }
 
-    public void deleteCategory(String name,String place){
+    public void deleteCategory(String name, String place){
         String whereToDelete = "";
-        if(place.equals("Cuisine")){
+        if (place.equals("Cuisine")) {
             whereToDelete = "Cuisines";
         }
-
-        else{
+        else {
             whereToDelete = "MealTypes";
         }
         this.getWritableDatabase().delete(whereToDelete, place+"Name" + " = " + "'" +name+ "'" , null);
 
     }
 
-    public void addToCuisine(String name){
+    public void addToCuisine(String name) {
         ContentValues values = new ContentValues();
-        values.put("CuisineName",name);
-        this.getWritableDatabase().insert("Cuisines",null,values);
+        values.put("CuisineName", name);
+        this.getWritableDatabase().insert("Cuisines", null, values);
     }
 
-    public void addToType(String name){
-
+    public void addToType(String name) {
         ContentValues values = new ContentValues();
-        values.put("TypeName",name);
-        this.getWritableDatabase().insert("MealTypes",null,values);
+        values.put("TypeName", name);
+        this.getWritableDatabase().insert("MealTypes", null, values);
 
     }
 
-    public void editRecipe(Addable edit,String previousName){
+    public void editRecipe(Addable edit, String previousName) {
         ContentValues values = new ContentValues();
 
-        values.put("RecipeName",edit.getName());
-        values.put("Instructions",edit.getInstructions());
-        values.put("TimeOfDay",edit.getTime());
-        values.put("Cuisine",edit.getCuisine());
-        values.put("Servings",edit.getServing());
-        values.put("PreparationTime",edit.getPrepTime());
-        values.put("CookingTime",edit.getCookingTime());
-        values.put("Type",edit.getType());
+        values.put("RecipeName", edit.getName());
+        values.put("Instructions", edit.getInstructions());
+        values.put("TimeOfDay", edit.getTime());
+        values.put("Cuisine", edit.getCuisine());
+        values.put("Servings", edit.getServing());
+        values.put("PreparationTime", edit.getPrepTime());
+        values.put("CookingTime", edit.getCookingTime());
+        values.put("Type", edit.getType());
 
-        this.getWritableDatabase().update("Recipes",values,"RecipeName= "+ "'" + edit.getName() + "'",null);
+        this.getWritableDatabase().update("Recipes", values, "RecipeName= "+ "'" + edit.getName() + "'", null);
     }
 
-    public String [] getAllRecipes(){
+    public String [] getAllRecipes() {
         ArrayList<String> recipes = new ArrayList<String>();
-
         String query = "SELECT RecipeName FROM Recipes";
-
-        Cursor cursor = this.getReadableDatabase().rawQuery(query,null);
-
+        Cursor cursor = this.getReadableDatabase().rawQuery(query, null);
         cursor.moveToFirst();
 
-        do{
+        do {
             recipes.add((cursor.getString(cursor.getColumnIndex("RecipeName"))));
         }
 
@@ -759,12 +748,11 @@ public class DBhelper extends SQLiteOpenHelper {
 
         String [] rec = new String [recipes.size()];
 
-        for(int i=0; i < recipes.size();i++){
+        for (int i = 0; i < recipes.size(); i++) {
             rec[i] = recipes.get(i);
         }
 
         cursor.close();
-
         return rec;
     }
 
