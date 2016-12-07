@@ -14,33 +14,24 @@ public class Settings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
 
-
         Toolbar myToolbar = (Toolbar) findViewById(R.id.customToolBar);
         setSupportActionBar(myToolbar);
-
-
 
         android.support.v7.app.ActionBar currentActionBar = getSupportActionBar();
 
         currentActionBar.setDisplayShowHomeEnabled(false);
         currentActionBar.setDisplayShowTitleEnabled(false);
-
-        currentActionBar.setCustomView( ActionBarSetter.getActionBarView("Settings",this));
-
+        currentActionBar.setCustomView( ActionBarSetter.getActionBarView("Settings", this));
         currentActionBar.setDisplayShowCustomEnabled(true);
     }
 
-
-    public void manageRecipeClick(View view){
-
+    public void manageRecipeClick(View view) {
         Intent intent = new Intent(this, ManageRecipes.class);
         startActivity(intent);
     }
 
-    public void manageCategoriesClick(View view){
-
+    public void manageCategoriesClick(View view) {
         Intent intent = new Intent(this, ManageCategories.class);
         startActivity(intent);
     }
-
 }
