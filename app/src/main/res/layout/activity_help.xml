@@ -77,6 +77,18 @@
             android:onClick="helpAddRecipe"
             android:soundEffectsEnabled="true" />
 
+        <Button
+            android:text="@string/helpSettingButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_help_settings"
+            android:background="@drawable/border"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:onClick="helpWhatSettings"
+            android:soundEffectsEnabled="true" />
+
     </LinearLayout>
 
 </RelativeLayout>

@@ -31,11 +31,22 @@
         android:layout_margin="20dp">
 
         <TextView
-            android:text="@string/HelpAddRecipe"
+            android:text="@string/helpSearchQuestion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView7"
+            android:layout_weight="0.1"
+            android:textSize="20sp"
+            android:textColor="@color/redPastel"
+            android:gravity="center_vertical" />
+
+        <TextView
+            android:text="@string/helpSearchText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView5"
             android:layout_weight="1"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:layout_marginTop="10dp" />
     </LinearLayout>
 </RelativeLayout>

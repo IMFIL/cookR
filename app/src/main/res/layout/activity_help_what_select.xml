@@ -31,12 +31,22 @@
         android:layout_margin="20dp">
 
         <TextView
+            android:text="@string/helpQuickSelectQuestion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView9"
+            android:layout_weight="0.1"
+            android:textSize="20sp"
+            android:textColor="@color/redPastel"
+            android:gravity="center_vertical" />
+
+        <TextView
             android:text="@string/helpTextWhatRandomRecipe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView"
-            android:layout_marginBottom="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginBottom="0dp"
+            android:layout_marginTop="10dp"
             android:layout_weight="1"
             android:textSize="18sp" />
     </LinearLayout>
