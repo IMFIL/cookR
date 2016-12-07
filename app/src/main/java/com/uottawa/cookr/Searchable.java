@@ -12,10 +12,9 @@ public class Searchable {
     String [] types;
     String [] times;
 
-    public Searchable (String name, String ing, String [] cuis, String [] ty, String ti []){
+    public Searchable (String name, String ing, String [] cuis, String [] ty, String ti []) {
         recipeName = name;
         ingredients = ing;
-
         cuisines = cuis;
         types = ty;
         times = ti;
