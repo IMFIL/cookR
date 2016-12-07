@@ -41,38 +41,30 @@ public class DBhelper extends SQLiteOpenHelper {
     }
 
     private void createMealTypesTable(SQLiteDatabase sqLiteDatabase){
-        sqLiteDatabase.execSQL("CREATE TABLE MealTypes (TypeID INTEGER PRIMARY KEY NOT NULL, TypeName STRING NOT NULL)");
+        sqLiteDatabase.execSQL("CREATE TABLE MealTypes (TypeName STRING NOT NULL)");
         sqLiteDatabase.execSQL("INSERT INTO MealTypes (\n" +
-                "                          TypeName,\n" +
-                "                          TypeID\n" +
+                "                          TypeName\n" +
                 "                      )\n" +
                 "                      VALUES (\n" +
-                "                          'Main Dish',\n" +
-                "                          1\n" +
+                "                          'Main Dish'\n" +
                 "                      ),\n" +
                 "                      (\n" +
-                "                          'Starter',\n" +
-                "                          2\n" +
+                "                          'Starter'\n" +
                 "                      ),\n" +
                 "                      (\n" +
-                "                          'Dessert',\n" +
-                "                          3\n" +
+                "                          'Dessert'\n" +
                 "                      ),\n" +
                 "                      (\n" +
-                "                          'Appetizer/Snack',\n" +
-                "                          4\n" +
+                "                          'Appetizer/Snack'\n" +
                 "                      ),\n" +
                 "                      (\n" +
-                "                          'Drink',\n" +
-                "                          5\n" +
+                "                          'Drink'\n" +
                 "                      ),\n" +
                 "                      (\n" +
-                "                          'Sauce',\n" +
-                "                          7\n" +
+                "                          'Sauce'\n" +
                 "                      ),\n" +
                 "                      (\n" +
-                "                          'Other',\n" +
-                "                          8\n" +
+                "                          'Other'\n" +
                 "                      );\n");
     }
 
@@ -134,50 +126,39 @@ public class DBhelper extends SQLiteOpenHelper {
     }
 
     private void createCuisinesTable(SQLiteDatabase sqLiteDatabase){
-        sqLiteDatabase.execSQL("CREATE TABLE Cuisines (CuisineID INTEGER PRIMARY KEY NOT NULL, CuisineName STRING NOT NULL)");
+        sqLiteDatabase.execSQL("CREATE TABLE Cuisines (CuisineName STRING NOT NULL)");
         sqLiteDatabase.execSQL("INSERT INTO Cuisines (\n" +
-                "                         CuisineName,\n" +
-                "                         CuisineID\n" +
+                "                         CuisineName\n" +
                 "                     )\n" +
                 "                     VALUES (\n" +
-                "                         'Universal',\n" +
-                "                         1\n" +
+                "                         'Universal'\n" +
                 "                     ),\n" +
                 "                     (\n" +
-                "                         'American',\n" +
-                "                         2\n" +
+                "                         'American'\n" +
                 "                     ),\n" +
                 "                     (\n" +
-                "                         'Italian',\n" +
-                "                         3\n" +
+                "                         'Italian'\n" +
                 "                     ),\n" +
                 "                     (\n" +
-                "                         'Mexican',\n" +
-                "                         4\n" +
+                "                         'Mexican'\n" +
                 "                     ),\n" +
                 "                     (\n" +
-                "                         'African',\n" +
-                "                         5\n" +
+                "                         'African'\n" +
                 "                     ),\n" +
                 "                     (\n" +
-                "                         'Middle Eastern',\n" +
-                "                         6\n" +
+                "                         'Middle Eastern'\n" +
                 "                     ),\n" +
                 "                     (\n" +
-                "                         'Indian',\n" +
-                "                         7\n" +
+                "                         'Indian'\n" +
                 "                     ),\n" +
                 "                     (\n" +
-                "                         'Other',\n" +
-                "                         8\n" +
+                "                         'Other'\n" +
                 "                     ),\n" +
                 "                     (\n" +
-                "                         'Asian',\n" +
-                "                         9\n" +
+                "                         'Asian'\n" +
                 "                     ),\n" +
                 "                     (\n" +
-                "                         'Greek',\n" +
-                "                         10\n" +
+                "                         'Greek'\n" +
                 "                     );\n");
     }
 
@@ -256,7 +237,7 @@ public class DBhelper extends SQLiteOpenHelper {
     }
 
     private void createRecipeTable(SQLiteDatabase sqLiteDatabase){
-        sqLiteDatabase.execSQL("CREATE TABLE Recipes (RecipeID INTEGER UNIQUE NOT NULL PRIMARY KEY ASC AUTOINCREMENT, RecipeName STRING NOT NULL, Instructions STRING NOT NULL, TimeOfDay STRING NOT NULL, Cuisine STRING NOT NULL, Servings INTEGER, Favourite INT NOT NULL, PreparationTime INTEGER, CookingTime INTEGER, Type STRING, userCreated INT);");
+        sqLiteDatabase.execSQL("CREATE TABLE Recipes (RecipeID INTEGER UNIQUE NOT NULL PRIMARY KEY ASC AUTOINCREMENT, RecipeName STRING NOT NULL UNIQUE, Instructions STRING NOT NULL, TimeOfDay STRING NOT NULL, Cuisine STRING NOT NULL, Servings INTEGER, Favourite INT NOT NULL, PreparationTime INTEGER, CookingTime INTEGER, Type STRING, userCreated INT);");
         sqLiteDatabase.execSQL("INSERT INTO Recipes (\n" +
                 "                        userCreated,\n" +
                 "                        Type,\n" +
@@ -673,6 +654,8 @@ public class DBhelper extends SQLiteOpenHelper {
         String query = "SELECT CuisineName FROM Cuisines";
         Cursor cursor = this.getReadableDatabase().rawQuery(query,null);
         ArrayList<String> cuisines = new ArrayList<String>();
+        if(cursor.getCount() == 0) return new String [] {};
+
         cursor.moveToFirst();
 
         do{
@@ -696,6 +679,8 @@ public class DBhelper extends SQLiteOpenHelper {
         String query = "SELECT TypeName FROM MealTypes";
         Cursor cursor = this.getReadableDatabase().rawQuery(query,null);
         ArrayList<String> types = new ArrayList<String>();
+
+        if(cursor.getCount() == 0) return new String [] {};
         cursor.moveToFirst();
 
         do{
@@ -716,8 +701,45 @@ public class DBhelper extends SQLiteOpenHelper {
     }
 
     public void deleteCategory(String name,String place){
-        this.getWritableDatabase().delete(place, place+"ID" + "=" + name , null);
+        String whereToDelete = "";
+        if(place.equals("Cuisine")){
+            whereToDelete = "Cuisines";
+        }
 
+        else{
+            whereToDelete = "MealTypes";
+        }
+        this.getWritableDatabase().delete(whereToDelete, place+"Name" + " = " + "'" +name+ "'" , null);
+
+    }
+
+    public void addToCuisine(String name){
+        ContentValues values = new ContentValues();
+        values.put("CuisineName",name);
+        this.getWritableDatabase().insert("Cuisines",null,values);
+    }
+
+    public void addToType(String name){
+
+        ContentValues values = new ContentValues();
+        values.put("TypeName",name);
+        this.getWritableDatabase().insert("MealTypes",null,values);
+
+    }
+
+    public void editRecipe(Addable edit,String previousName){
+        ContentValues values = new ContentValues();
+
+        values.put("RecipeName",edit.getName());
+        values.put("Instructions",edit.getInstructions());
+        values.put("TimeOfDay",edit.getTime());
+        values.put("Cuisine",edit.getCuisine());
+        values.put("Servings",edit.getServing());
+        values.put("PreparationTime",edit.getPrepTime());
+        values.put("CookingTime",edit.getCookingTime());
+        values.put("Type",edit.getType());
+
+        this.getWritableDatabase().update("Recipes",values,"RecipeName= "+ "'" + edit.getName() + "'",null);
     }
 
 }
