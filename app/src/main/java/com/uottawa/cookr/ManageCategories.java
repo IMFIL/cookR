@@ -58,6 +58,8 @@ public class ManageCategories extends AppCompatActivity {
         }
 
         intent.putExtra("addedCats",allCat);
+        intent.putExtra("TypeSize",types.length);
+        intent.putExtra("CuisineSize",cuisines.length);
         startActivity(intent);
     }
 

@@ -70,7 +70,7 @@
                         android:layout_height="match_parent"
                         android:textSize="25sp"
                         android:maxLines="1"
-                        android:id="@+id/editText"
+                        android:id="@+id/recipeNameEntry"
                         android:inputType="textPersonName" />
                 </android.support.design.widget.TextInputLayout>
 
@@ -255,7 +255,8 @@
                     android:layout_width="match_parent"
                     android:hint="Ingredients"
                     android:layout_height="match_parent"
-                    android:textSize="25sp" />
+                    android:textSize="25sp"
+                    android:id="@+id/ingredientsEntry" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -271,7 +272,8 @@
                     android:layout_width="match_parent"
                     android:hint="Instructions"
                     android:layout_height="match_parent"
-                    android:textSize="25sp" />
+                    android:textSize="25sp"
+                    android:id="@+id/instructionsEntry" />
             </android.support.design.widget.TextInputLayout>
 
             <LinearLayout
@@ -293,7 +295,8 @@
                         android:layout_width="match_parent"
                         android:hint="Serving"
                         android:layout_height="match_parent"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        android:id="@+id/servingEntry" />
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
@@ -308,7 +311,8 @@
                         android:layout_width="match_parent"
                         android:hint="Prep Time"
                         android:layout_height="match_parent"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        android:id="@+id/prepEntry" />
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
@@ -321,14 +325,15 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:hint="Cook Time"
+                        android:inputType="number"
                         android:layout_height="match_parent"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        android:id="@+id/cookEntry" />
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
 
             <Button
                 android:text="@string/addPlus"
-                android:inputType="number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/addBtn"
@@ -338,7 +343,8 @@
                 android:layout_marginBottom="10dp"
                 android:paddingBottom="20dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
+                android:layout_marginRight="10dp"
+                android:onClick="onAddClick" />
         </LinearLayout>
     </ScrollView>
 

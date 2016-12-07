@@ -1,5 +1,6 @@
 package com.uottawa.cookr;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -7,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -17,13 +19,21 @@ import android.widget.Toast;
 public class CategoriesResult extends AppCompatActivity{
 
     String [] els;
+    DBhelper dataBase;
+
+
+
+    Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.added_categories_page);
 
-        Bundle categories = getIntent().getExtras();
+        dataBase = new DBhelper(this.getApplicationContext(), "", null, 2);
+
+
+        final Bundle categories = getIntent().getExtras();
 
         els = categories.getStringArray("addedCats");
 
@@ -53,7 +63,15 @@ public class CategoriesResult extends AppCompatActivity{
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                System.out.println("hehe");
+
+                if(position >= categories.getInt("CuisineSize")){
+                    dataBase.deleteCategory(els[position],"Type");
+                }
+
+                else{
+                    dataBase.deleteCategory(els[position],"Cuisine");
+                }
+
             }
         });
 
@@ -61,8 +79,7 @@ public class CategoriesResult extends AppCompatActivity{
     }
 
     public void onDeleteClick(View view){
-        Toast.makeText(this,"clicked this button", Toast.LENGTH_LONG).show();
-
+//        Toast.makeText(this,"clicked this button", Toast.LENGTH_LONG).show();
 
     }
 
