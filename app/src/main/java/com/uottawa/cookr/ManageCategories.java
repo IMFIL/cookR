@@ -1,14 +1,18 @@
 package com.uottawa.cookr;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class ManageCategories extends AppCompatActivity {
     DBhelper dataBase;
+    Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,12 +32,17 @@ public class ManageCategories extends AppCompatActivity {
     }
 
 
-    public void addTypeClick(View view) {
+    public void addTypeClick(View view){
 
+        TextView newType = (TextView) findViewById(R.id.newTypeEntry);
+        dataBase.addToType(newType.getText().toString());
+        Toast.makeText(context,"Added a type", Toast.LENGTH_LONG).show();
     }
 
-    public void addCuisineClick(View view) {
-
+    public void addCuisineClick(View view){
+        TextView newCuisine = (TextView) findViewById(R.id.newCuisineEntry);
+        dataBase.addToCuisine(newCuisine.getText().toString());
+        Toast.makeText(context,"Added a cuisine", Toast.LENGTH_LONG).show();
     }
 
     public void seeAllAddedClick(View view) {
@@ -46,7 +55,7 @@ public class ManageCategories extends AppCompatActivity {
             allCat[i] = cuisines[i];
         }
 
-        for(int i = 0; i < types.length; i++){
+        for (int i = 0; i < types.length; i++){
             allCat[cuisines.length + i] = types[i];
         }
 

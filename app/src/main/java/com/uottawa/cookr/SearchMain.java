@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class SearchMain extends AppCompatActivity {
@@ -24,6 +25,7 @@ public class SearchMain extends AppCompatActivity {
     SelectionItems times;
     SelectionItems cuisines;
     SelectionItems types;
+    boolean flag = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +39,10 @@ public class SearchMain extends AppCompatActivity {
         android.support.v7.app.ActionBar currentActionBar = getSupportActionBar();
         currentActionBar.setDisplayShowHomeEnabled(false);
         currentActionBar.setDisplayShowTitleEnabled(false);
-        currentActionBar.setCustomView( ActionBarSetter.getActionBarView("Search", this));
+        currentActionBar.setCustomView(ActionBarSetter.getActionBarView("Search", this));
         currentActionBar.setDisplayShowCustomEnabled(true);
 
-        Typeface fontAwesome = Typeface.createFromAsset( getAssets(), "fonts/fontawesome-webfont.ttf" );
+        Typeface fontAwesome = Typeface.createFromAsset(getAssets(), "fonts/fontawesome-webfont.ttf");
         TextView searchButton = (TextView) findViewById(R.id.searchRecipes);
 
         searchButton.setTypeface(fontAwesome);
@@ -59,13 +61,13 @@ public class SearchMain extends AppCompatActivity {
         list.setAdapter(adapter);
         list.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
-        for (int i = 0; i < currentList.getArray().length; i++ ){
+        for (int i = 0; i < currentList.getArray().length; i++) {
             if (currentList.isSelected(i)) {
                 list.setItemChecked(i, true);
             }
         }
 
-        list.setOnItemClickListener( new AdapterView.OnItemClickListener(){
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
@@ -73,10 +75,8 @@ public class SearchMain extends AppCompatActivity {
 
                 if (!currentList.isSelected(position)) {
                     currentList.select(position);
-                    list.setItemChecked(position,true);
-                }
-
-                else {
+                    list.setItemChecked(position, true);
+                } else {
                     currentList.unselect(position);
                     list.setItemChecked(position, false);
                 }
@@ -87,7 +87,7 @@ public class SearchMain extends AppCompatActivity {
 
 
     public void showDialogListView(View view) {
-        String [] selection = {};
+        String[] selection = {};
         Button buttonUsed = null;
 
         switch (view.getId()) {
@@ -118,37 +118,41 @@ public class SearchMain extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int id) {
                         finalButtonUsed.setText(currentList.getSelectionText());
                     }
-            });
+                });
         builder.setNegativeButton("Cancel", null);
         builder.setView(list);
-        AlertDialog dialog=builder.create();
+        AlertDialog dialog = builder.create();
         dialog.show();
     }
 
     public void searchOnClick(View view) {
-        String [] result;
+        String[] result;
         EditText recipeName = (EditText) findViewById(R.id.recipeNameSearch);
         EditText ingredients = (EditText) findViewById(R.id.ingredientsSearch);
 
-        if (recipeName.getText().toString().trim().length() == 0 && ingredients.getText().toString().trim().length() == 0) {
-            System.out.println("CANNOT DO SEARCH add dialog pop up that tells the user to add at least ingredient or recipe");
+        if (recipeName.getText().toString().trim().length() == 0 &&
+                ingredients.getText().toString().trim().length() == 0 &&
+                cuisines.isEmpty() && types.isEmpty() && times.isEmpty()) {
+
+            result = dataBase.getAllRecipes();
+        } else {
+            Searchable searchObject = new Searchable(recipeName.getText().toString(), ingredients.getText().toString(),
+                    cuisines.getSelected(), types.getSelected(), times.getSelected());
+
+            result = dataBase.getRecipes(searchObject);
+
+            if (result[0].equals("empty")) {
+                Toast.makeText(this, "Nothing found", Toast.LENGTH_LONG).show();
+                flag = false;
+            }
+
+
         }
 
-        else {
-            Searchable searchObject = new Searchable(recipeName.getText().toString(), ingredients.getText().toString(),
-                    cuisines.getSelected(),types.getSelected(),times.getSelected());
-
-           result = dataBase.getRecipes(searchObject);
-
-           if (result[0].equals("empty")){
-                //dialog saying that no results were found.
-           }
-
-            else {
-               Intent intent = new Intent(this, Recipe_results.class);
-               intent.putExtra("recipeNames", result);
-               startActivity(intent);
-           }
+        if (flag) {
+            Intent intent = new Intent(this, Recipe_results.class);
+            intent.putExtra("recipeNames", result);
+            startActivity(intent);
         }
     }
 }

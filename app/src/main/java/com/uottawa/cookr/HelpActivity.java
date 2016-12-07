@@ -45,4 +45,9 @@ public class HelpActivity extends AppCompatActivity {
         Intent intent = new Intent(this, helpWhatSelect.class);
         startActivity(intent);
     }
+
+    public void helpWhatSettings(View view){
+        Intent intent = new Intent(this, helpWhatSettings.class);
+        startActivity(intent);
+    }
 }
