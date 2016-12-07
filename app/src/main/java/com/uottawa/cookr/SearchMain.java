@@ -64,7 +64,7 @@ public class SearchMain extends AppCompatActivity {
                 list.setItemChecked(i, true);
             }
         }
-        
+
         list.setOnItemClickListener( new AdapterView.OnItemClickListener(){
 
             @Override
