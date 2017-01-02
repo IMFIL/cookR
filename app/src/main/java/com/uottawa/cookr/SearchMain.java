@@ -142,6 +142,8 @@ public class SearchMain extends AppCompatActivity {
             result = dataBase.getRecipes(searchObject);
 
             if (result[0].equals("empty")) {
+                finish();
+                startActivity(getIntent());
                 Toast.makeText(this, "Nothing found", Toast.LENGTH_LONG).show();
                 flag = false;
             }
@@ -153,6 +155,7 @@ public class SearchMain extends AppCompatActivity {
             Intent intent = new Intent(this, Recipe_results.class);
             intent.putExtra("recipeNames", result);
             startActivity(intent);
+            dataBase.close();
         }
     }
 }

@@ -58,6 +58,7 @@ public class ManageRecipes extends AppCompatActivity {
                                     int position, long id) {
                 Intent intent = new Intent (context,SingleRecipeResultManage.class);
                 ResultRecipe RR = dataBase.getSingleResult(recipename[position]);
+                dataBase.close();
                 intent.putExtra("RR", RR);
                 startActivity(intent);
             }

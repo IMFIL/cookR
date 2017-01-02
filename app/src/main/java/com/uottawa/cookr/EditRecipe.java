@@ -283,6 +283,7 @@ public class EditRecipe extends AppCompatActivity {
         if(checkIfNull(StringMap)){
             dataBase.editRecipe(addRecipe,prev);
             Toast.makeText(this,"Recipe Edited", Toast.LENGTH_LONG).show();
+            dataBase.close();
 
         }
 

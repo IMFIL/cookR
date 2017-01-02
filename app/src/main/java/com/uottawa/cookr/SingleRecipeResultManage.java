@@ -109,6 +109,10 @@ public class SingleRecipeResultManage extends AppCompatActivity {
     public void deleteOnClick(View view) {
         dataBase.deleteAddedRecipe(id);
         Toast.makeText(this,"You deleted this recipe", Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(this, ManageRecipes.class);
+        startActivity(intent);
+        dataBase.close();
+        finish();
     }
 
     public void EditOnClick(View view) {

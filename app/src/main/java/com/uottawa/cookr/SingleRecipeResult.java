@@ -90,12 +90,14 @@ public class SingleRecipeResult extends AppCompatActivity {
     public void addToFavoriteClick(View view){
         if (isFave) {
             dataBase.setUnsetFavorite(0, id);
+            dataBase.close();
             TextView favoriteSelector = (TextView) findViewById(R.id.AddToFavorite);
             favoriteSelector.setText("Add To Favorites");
             isFave = false;
         }
         else {
             dataBase.setUnsetFavorite(1, id);
+            dataBase.close();
             TextView favoriteSelector = (TextView) findViewById(R.id.AddToFavorite);
             favoriteSelector.setText("Remove From Favorites");
             isFave = true;

@@ -59,6 +59,7 @@ public class Recipe_results extends AppCompatActivity {
                                     int position, long id) {
                 Intent intent = new Intent (context, SingleRecipeResult.class);
                 ResultRecipe RR = dataBase.getSingleResult(recipename[position]);
+                dataBase.close();
                 intent.putExtra("RR", RR);
                 startActivity(intent);
             }

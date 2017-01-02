@@ -48,6 +48,7 @@ public class ManageCategories extends AppCompatActivity {
         Intent intent = new Intent(this, CategoriesResult.class);
         String [] cuisines = dataBase.getAllCuisines();
         String [] types = dataBase.getAllTypes();
+        dataBase.close();
         String [] allCat = new String [cuisines.length + types.length];
 
         for (int i = 0; i < cuisines.length; i++) {
