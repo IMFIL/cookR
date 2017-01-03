@@ -77,7 +77,7 @@ public class CategoriesResult extends AppCompatActivity{
                     dataBase.close();
                 }
 
-                Toast.makeText(context,"Deleted Recipe", Toast.LENGTH_LONG).show();
+                Toast.makeText(context,"Deleted Category", Toast.LENGTH_LONG).show();
 
 
 
@@ -89,7 +89,6 @@ public class CategoriesResult extends AppCompatActivity{
     }
 
     public void onDeleteClick(View view){
-//        Toast.makeText(this,"clicked this button", Toast.LENGTH_LONG).show();
 
     }
 

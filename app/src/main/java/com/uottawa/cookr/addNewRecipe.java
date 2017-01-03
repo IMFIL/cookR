@@ -32,7 +32,6 @@ public class addNewRecipe extends AppCompatActivity {
 
     ListView list = null;
     SelectionItems currentList;
-    int tmpPos = 0;
     SelectionItems cuisines;
     SelectionItems types;
     Addable addRecipe;
@@ -201,9 +200,8 @@ public class addNewRecipe extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
-                currentList.unselect(tmpPos);
-                tmpPos = position;
-                currentList.select(tmpPos);
+                currentList.clearAll();
+                currentList.select(position);
             }
 
         });

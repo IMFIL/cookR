@@ -102,6 +102,12 @@ public class SelectionItems {
         return false;
     }
 
+    public void clearAll(){
+        for(int i =0; i<selected.length;i++){
+            selected[i] = false;
+        }
+    }
+
 }
 
 
