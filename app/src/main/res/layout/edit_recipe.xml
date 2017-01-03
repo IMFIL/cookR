@@ -241,40 +241,89 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <android.support.design.widget.TextInputLayout
-                app:hintTextAppearance="@style/AppTheme"
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:textColorHint="@color/text"
-                android:layout_height="wrap_content"
-                android:paddingBottom="20dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:paddingTop="10dp">
-                <EditText
-                    android:layout_width="match_parent"
-                    android:hint="Ingredients"
-                    android:layout_height="match_parent"
-                    android:textSize="25sp"
-                    android:id="@+id/ingredientsEntry" />
-            </android.support.design.widget.TextInputLayout>
+                android:layout_height="match_parent"
+                android:layout_weight="1">
 
-            <android.support.design.widget.TextInputLayout
-                app:hintTextAppearance="@style/AppTheme"
-                android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:textColorHint="@color/text"
-                android:layout_height="wrap_content"
-                android:paddingBottom="20dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp">
-                <EditText
+                <android.support.design.widget.TextInputLayout
+                    app:hintTextAppearance="@style/AppTheme"
                     android:layout_width="match_parent"
-                    android:hint="Instructions"
-                    android:layout_height="match_parent"
-                    android:textSize="25sp"
-                    android:id="@+id/instructionsEntry" />
-            </android.support.design.widget.TextInputLayout>
+                    android:layout_weight="1"
+                    android:textColorHint="@color/text"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:paddingTop="10dp">
+
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:hint="Ingredients"
+                        android:layout_height="match_parent"
+                        android:textSize="25sp"
+                        android:id="@+id/ingredientsEntry" />
+                </android.support.design.widget.TextInputLayout>
+
+                <Button
+                    android:text="add Ingredient"
+                    android:layout_width="match_parent"
+                    android:id="@+id/addIngredient"
+                    android:layout_weight="3"
+                    android:textSize="10sp"
+                    android:onClick="addIngredients"
+                    android:layout_height="75dp" />
+
+            </LinearLayout>
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/ingredientsListView" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <android.support.design.widget.TextInputLayout
+                    app:hintTextAppearance="@style/AppTheme"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:textColorHint="@color/text"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp">
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:hint="Instructions"
+                        android:layout_height="match_parent"
+                        android:textSize="25sp"
+                        android:id="@+id/instructionsEntry" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <Button
+                    android:text="add Instruction"
+                    android:layout_width="match_parent"
+                    android:id="@+id/addInstruction"
+                    android:layout_weight="3"
+                    android:textSize="10sp"
+                    android:onClick="addInstruction"
+                    android:layout_height="75dp"
+                    android:elevation="11dp" />
+
+            </LinearLayout>
+
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/InstructionListView" />
 
             <LinearLayout
                 android:orientation="horizontal"

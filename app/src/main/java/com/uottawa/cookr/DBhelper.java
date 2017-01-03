@@ -397,7 +397,6 @@ public class DBhelper extends SQLiteOpenHelper {
             cursorREC.moveToFirst();
 
             recipeID = Integer.parseInt(cursorREC.getString(cursorREC.getColumnIndex("PrimRecipeID")));
-            Log.d("ERROR",String.valueOf(recipeID));
 
             cursorING = this.getReadableDatabase().rawQuery(ingredientsQuery,  new String[] {String.valueOf(recipeID)});
             cursorING.moveToFirst();
@@ -420,7 +419,8 @@ public class DBhelper extends SQLiteOpenHelper {
                 tmp = new ResultRecipe(Ingredients, cursorREC.getString(cursorREC.getColumnIndex("RecipeName")),
                         cursorREC.getString(cursorREC.getColumnIndex("Servings")), cursorREC.getString(cursorREC.getColumnIndex("CookingTime")),
                         cursorREC.getString(cursorREC.getColumnIndex("PreparationTime")), cursorREC.getString(cursorREC.getColumnIndex("Instructions")),
-                        Integer.parseInt(cursorREC.getString(cursorREC.getColumnIndex("PrimRecipeID"))));
+                        Integer.parseInt(cursorREC.getString(cursorREC.getColumnIndex("PrimRecipeID"))),cursorREC.getString(cursorREC.getColumnIndex("Cuisine")),
+                        cursorREC.getString(cursorREC.getColumnIndex("Type")),cursorREC.getString(cursorREC.getColumnIndex("TimeOfDay")));
             }
 
             while (cursorREC.moveToNext());
@@ -431,7 +431,7 @@ public class DBhelper extends SQLiteOpenHelper {
 
         catch (Exception e){
             e.printStackTrace();
-            return new ResultRecipe(new String [] {}, "", "", "", "", "", 0);
+            return new ResultRecipe(new String [] {}, "", "", "", "", "", 0,"","","");
         }
 
         finally {
@@ -516,14 +516,14 @@ public class DBhelper extends SQLiteOpenHelper {
 
 
 
-        String newRecipeID = "SELECT PRIMRecipeID WHERE RecipeName= " +toAdd.getName()+";";
+        String newRecipeID = "SELECT PrimRecipeID FROM Recipes WHERE RecipeName='" +toAdd.getName()+"';";
         Cursor cursor = this.getReadableDatabase().rawQuery(newRecipeID,null);
         cursor.moveToFirst();
         int idOfRecipe = 0;
         try {
 
             do{
-                idOfRecipe = Integer.parseInt(cursor.getString(cursor.getColumnIndex("PRIMRecipeID")));
+                idOfRecipe = Integer.parseInt(cursor.getString(cursor.getColumnIndex("PrimRecipeID")));
             }
             while(cursor.moveToNext());
         }
@@ -665,8 +665,17 @@ public class DBhelper extends SQLiteOpenHelper {
 
     public void editRecipe(Addable edit, String previousName) {
         ContentValues values = new ContentValues();
+        String name = "";
+        int id = 0;
 
-        values.put("RecipeName", edit.getName());
+        if(previousName.equals(edit.getName())){
+            name = edit.getName();
+        }
+        else{
+            name = previousName;
+        }
+
+        values.put("RecipeName", name);
         values.put("Instructions", edit.getInstructions());
         values.put("TimeOfDay", edit.getTime());
         values.put("Cuisine", edit.getCuisine());
@@ -677,7 +686,35 @@ public class DBhelper extends SQLiteOpenHelper {
 
         SQLiteDatabase db = this.getWritableDatabase();
         db.update("Recipes", values, "RecipeName= "+ "'" + edit.getName() + "'", null);
+        Cursor cursor = this.getReadableDatabase().rawQuery("SELECT PrimRecipeID FROM Recipes WHERE RecipeName='" +name+ "'",null);
+
+        cursor.moveToFirst();
+        do {
+            id = Integer.parseInt(((cursor.getString(cursor.getColumnIndex("PrimRecipeID")))));
+        }
+        while (cursor.moveToNext());
+
+        cursor.close();
+
+        db.execSQL("DELETE FROM Ingredients WHERE RecipeID = " + id);
         db.close();
+
+        SQLiteDatabase dbING = this.getWritableDatabase();
+
+        for(int i=0;i<edit.getIngredients().length;i++){
+            values = new ContentValues();
+            values.put("RecipeID",id);
+            values.put("IngredientName",edit.getIngredients()[i]);
+            try {
+                dbING.insert("Ingredients", null, values);
+            }
+
+            catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+        dbING.close();
+
     }
 
     public String [] getAllRecipes() {

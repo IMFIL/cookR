@@ -251,11 +251,20 @@ public class addNewRecipe extends AppCompatActivity {
         ArrayList<String> missingFields = new ArrayList<String>();
         boolean flag = false;
 
+        if(instructionAdded.size()==0){
+            missingFields.add("Instructions");
+            flag=true;
+        }
+        if(ingredientsAdded.size()==0){
+            missingFields.add("Ingredients");
+            flag=true;
+        }
+
         while (iterator.hasNext()) {
             String key=(String)iterator.next();
             String value=(String)elements.get(key);
 
-            if (value.equals("")) {
+            if(value.equals("")){
                 flag = true;
                 missingFields.add(key);
             }
@@ -281,7 +290,7 @@ public class addNewRecipe extends AppCompatActivity {
             StringBuffer instructions = new StringBuffer();
 
             for(int i=0;i<instructionAdded.size();i++){
-                instructions.append(instructionAdded.get(i)+". ");
+                instructions.append(instructionAdded.get(i)+" . ");
             }
 
 
