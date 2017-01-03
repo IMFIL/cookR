@@ -669,10 +669,10 @@ public class DBhelper extends SQLiteOpenHelper {
         int id = 0;
 
         if(previousName.equals(edit.getName())){
-            name = edit.getName();
+            name = previousName;
         }
         else{
-            name = previousName;
+            name = edit.getName();
         }
 
         values.put("RecipeName", name);
@@ -685,7 +685,7 @@ public class DBhelper extends SQLiteOpenHelper {
         values.put("Type", edit.getType());
 
         SQLiteDatabase db = this.getWritableDatabase();
-        db.update("Recipes", values, "RecipeName= "+ "'" + edit.getName() + "'", null);
+        db.update("Recipes", values, "RecipeName= "+ "'" + previousName + "'", null);
         Cursor cursor = this.getReadableDatabase().rawQuery("SELECT PrimRecipeID FROM Recipes WHERE RecipeName='" +name+ "'",null);
 
         cursor.moveToFirst();
