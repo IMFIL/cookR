@@ -85,17 +85,28 @@ public class SingleRecipeResult extends AppCompatActivity {
         TextView serving = (TextView) findViewById(R.id.serving);
         serving.setText(RR.getServing() + "\n Servings");
 
+        TextView cuisine = (TextView) findViewById(R.id.cuisine);
+        cuisine.setText("Cuisine\n " + RR.getCuisine());
+
+        TextView type = (TextView) findViewById(R.id.type);
+        type.setText("Type\n" +RR.getType());
+
+        TextView time = (TextView) findViewById(R.id.time);
+        time.setText(" Meal Time \n"+RR.getTime());
+
     }
 
     public void addToFavoriteClick(View view){
         if (isFave) {
             dataBase.setUnsetFavorite(0, id);
+            dataBase.close();
             TextView favoriteSelector = (TextView) findViewById(R.id.AddToFavorite);
             favoriteSelector.setText("Add To Favorites");
             isFave = false;
         }
         else {
             dataBase.setUnsetFavorite(1, id);
+            dataBase.close();
             TextView favoriteSelector = (TextView) findViewById(R.id.AddToFavorite);
             favoriteSelector.setText("Remove From Favorites");
             isFave = true;

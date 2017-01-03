@@ -2,6 +2,7 @@
 package com.uottawa.cookr;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -11,6 +12,8 @@ import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -24,6 +27,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -39,7 +43,11 @@ public class EditRecipe extends AppCompatActivity {
     String imgDecodableString;
     ResultRecipe RR;
     String prev;
-
+    ArrayList<String> instructionAdded;
+    ArrayList<String> ingredientsAdded;
+    deletableAdapter Insadapter;
+    deletableAdapter Ingadapter;
+    Context context = this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +56,8 @@ public class EditRecipe extends AppCompatActivity {
         dataBase = new DBhelper(this.getApplicationContext(), "", null, 2);
 
         RR = (ResultRecipe) getIntent().getSerializableExtra("RR");
-        prev = getIntent().getStringExtra("PreviousName");
+        prev = getIntent().getStringExtra("previousName");
+        Log.d("NAME",prev);
 
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.customToolBar);
@@ -72,21 +81,95 @@ public class EditRecipe extends AppCompatActivity {
         cook.setText(RR.getCookingTime());
         EditText serving = ((EditText) findViewById(R.id.servingEntry));
         serving.setText(RR.getServing());
-        EditText instructions = ((EditText) findViewById(R.id.instructionsEntry));
-        instructions.setText(RR.getInstructions());
-        EditText ingredients = ((EditText) findViewById(R.id.ingredientsEntry));
-        String ings = "";
 
-        for(int i=0; i<RR.getIngredients().length;i++){
-            ings += RR.getIngredients()[i];
-            ings += " ";
+        instructionAdded = new ArrayList<String>();
+        String [] instructions = RR.getInstructions().split(" . ");
+        for(int i=0;i<instructions.length;i++){
+            instructionAdded.add(instructions[i]);
+        }
+        for(int i=0;i<instructionAdded.size();i++){
+        }
+
+        Insadapter = new deletableAdapter(this,instructionAdded,10);
+        ListView Inslist = (ListView) findViewById(R.id.InstructionListView);
+        Inslist.setAdapter(Insadapter);
+
+        //Allows you to scroll the listview while you are in a scrollview layout
+        Inslist.setOnTouchListener(new View.OnTouchListener() {
+            // Setting on Touch Listener for handling the touch inside ScrollView
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                // Disallow the touch request for parent scroll on touch of child view
+                v.getParent().requestDisallowInterceptTouchEvent(true);
+                return false;
             }
-        ingredients.setText(ings);
+        });
+
+        Inslist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String tmp = instructionAdded.get(position);
+                instructionAdded.remove(position);
+                Insadapter.notifyDataSetChanged();
+
+
+                Toast.makeText(context, "Instruction "+tmp+" removed", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        ingredientsAdded = new ArrayList<String>(Arrays.asList(RR.getIngredients()));
+        Ingadapter = new deletableAdapter(this,ingredientsAdded,10);
+        ListView Inglist = (ListView) findViewById(R.id.ingredientsListView);
+        Inglist.setAdapter(Ingadapter);
+
+        //Allows you to scroll the listview while you are in a scrollview layout
+        Inglist.setOnTouchListener(new View.OnTouchListener() {
+            // Setting on Touch Listener for handling the touch inside ScrollView
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                // Disallow the touch request for parent scroll on touch of child view
+                v.getParent().requestDisallowInterceptTouchEvent(true);
+                return false;
+            }
+        });
+
+        Inglist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String tmp = ingredientsAdded.get(position);
+                ingredientsAdded.remove(position);
+                Ingadapter.notifyDataSetChanged();
+
+
+                Toast.makeText(context, "Ingredient "+tmp+" removed", Toast.LENGTH_LONG).show();
+            }
+        });
+
 
         cuisines = new SelectionItems(dataBase.getAllCuisines(),"Cuisines");
         types = new SelectionItems(dataBase.getAllTypes(),"Type");
 
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+    }
+
+    public void addInstruction(View v) {
+        EditText instructionView = (EditText) findViewById(R.id.instructionsEntry);
+        if(!instructionView.getText().toString().trim().equals("")){
+            instructionAdded.add(instructionView.getText().toString());
+            instructionView.setText("");
+            Insadapter.notifyDataSetChanged();
+        }
+    }
+
+    public void addIngredients(View v) {
+        EditText ingredientsView = (EditText) findViewById(R.id.ingredientsEntry);
+        if(!ingredientsView.getText().toString().trim().equals("")){
+            ingredientsAdded.add(ingredientsView.getText().toString());
+            ingredientsView.setText("");
+            Ingadapter.notifyDataSetChanged();
+        }
     }
 
     public void setImage(View view) {
@@ -200,6 +283,15 @@ public class EditRecipe extends AppCompatActivity {
         ArrayList<String> missingFields = new ArrayList<String>();
         boolean flag = false;
 
+        if(instructionAdded.size()==0){
+            missingFields.add("Instructions");
+            flag=true;
+        }
+        if(ingredientsAdded.size()==0){
+            missingFields.add("Ingredients");
+            flag=true;
+        }
+
         while(iterator.hasNext()) {
             String key=(String)iterator.next();
             String value=(String)elements.get(key);
@@ -220,17 +312,25 @@ public class EditRecipe extends AppCompatActivity {
         }
 
         else{
-            String [] ingredients = elements.get("Ingredients").split("\\.");
+            String[] ingredients = new String[ingredientsAdded.size()];
+            ingredients = ingredientsAdded.toArray(ingredients);
+
             String name = elements.get("Recipe Name") ;
             String serving = elements.get("Serving") ;
             String cook = elements.get("Cooking Time");
             String prep = elements.get("Preparation Time");
-            String instructions = elements.get("Instructions");
-            String cuisine = elements.get("Cuisine");
-            String type =elements.get("Type");
-            String time =elements.get("Time");
+            StringBuffer instructions = new StringBuffer();
 
-            addRecipe = new Addable(ingredients,name,serving,cook,prep,instructions,cuisine,type,time);
+            for(int i=0;i<instructionAdded.size();i++){
+                instructions.append(instructionAdded.get(i)+" . ");
+            }
+
+
+            String cuisine = elements.get("Cuisine");
+            String type = elements.get("Type");
+            String time = elements.get("Time");
+
+            addRecipe = new Addable(ingredients, name, serving, cook, prep, instructions.toString(), cuisine, type, time);
         }
 
         return !flag;
@@ -241,16 +341,13 @@ public class EditRecipe extends AppCompatActivity {
 
         String name = ((EditText) findViewById(R.id.recipeNameEntry)).getText().toString();
         StringMap.put("Recipe Name",name);
+        Log.d("NAME",name);
         String prep = ((EditText) findViewById(R.id.prepEntry)).getText().toString();
         StringMap.put("Preparation Time",prep);
         String cook = ((EditText) findViewById(R.id.cookEntry)).getText().toString();
         StringMap.put("Cooking Time",cook);
         String serving = ((EditText) findViewById(R.id.servingEntry)).getText().toString();
         StringMap.put("Serving",serving);
-        String instructions = ((EditText) findViewById(R.id.instructionsEntry)).getText().toString();
-        StringMap.put("Instructions",instructions);
-        String ingredients = ((EditText) findViewById(R.id.ingredientsEntry)).getText().toString();
-        StringMap.put("Ingredients",ingredients);
         String type = "";
         String cuisine = "";
         String time = "";
@@ -283,6 +380,10 @@ public class EditRecipe extends AppCompatActivity {
         if(checkIfNull(StringMap)){
             dataBase.editRecipe(addRecipe,prev);
             Toast.makeText(this,"Recipe Edited", Toast.LENGTH_LONG).show();
+            dataBase.close();
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
 
         }
 

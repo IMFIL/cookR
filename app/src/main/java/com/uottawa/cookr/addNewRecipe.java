@@ -1,6 +1,7 @@
 package com.uottawa.cookr;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -10,6 +11,7 @@ import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -36,11 +38,20 @@ public class addNewRecipe extends AppCompatActivity {
     Addable addRecipe;
     DBhelper dataBase;
     String imgDecodableString;
+    ArrayList<String> ingredientsAdded;
+    ArrayList<String> instructionAdded;
+    deletableAdapter Ingadapter;
+    deletableAdapter Insadapter;
+    Context context = this;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_new_recipe);
+        ingredientsAdded = new ArrayList<String>();
+        instructionAdded = new ArrayList<String>();
+
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.customToolBar);
         setSupportActionBar(myToolbar);
@@ -60,6 +71,80 @@ public class addNewRecipe extends AppCompatActivity {
         types = new SelectionItems(dataBase.getAllTypes(), "Type");
 
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
+        Ingadapter = new deletableAdapter(this,ingredientsAdded,10);
+        ListView Inglist = (ListView) findViewById(R.id.ingredientsListView);
+        Inglist.setAdapter(Ingadapter);
+
+        //Allows you to scroll the listview while you are in a scrollview layout
+        Inglist.setOnTouchListener(new View.OnTouchListener() {
+            // Setting on Touch Listener for handling the touch inside ScrollView
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                // Disallow the touch request for parent scroll on touch of child view
+                v.getParent().requestDisallowInterceptTouchEvent(true);
+                return false;
+            }
+        });
+
+        Inglist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String tmp = ingredientsAdded.get(position);
+                ingredientsAdded.remove(position);
+                Ingadapter.notifyDataSetChanged();
+
+                Toast.makeText(context,"Ingredient "+tmp+ " removed", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        Insadapter = new deletableAdapter(this,instructionAdded,10);
+        ListView Inslist = (ListView) findViewById(R.id.InstructionListView);
+        Inslist.setAdapter(Insadapter);
+
+        //Allows you to scroll the listview while you are in a scrollview layout
+        Inslist.setOnTouchListener(new View.OnTouchListener() {
+            // Setting on Touch Listener for handling the touch inside ScrollView
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                // Disallow the touch request for parent scroll on touch of child view
+                v.getParent().requestDisallowInterceptTouchEvent(true);
+                return false;
+            }
+        });
+
+        Inslist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    String tmp = instructionAdded.get(position);
+                    instructionAdded.remove(position);
+                    Insadapter.notifyDataSetChanged();
+
+
+                Toast.makeText(context, "Instruction "+tmp+" removed", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        }
+
+    public void addInstruction(View v) {
+        EditText instructionView = (EditText) findViewById(R.id.instructionsEntry);
+        if(!instructionView.getText().toString().trim().equals("")){
+            instructionAdded.add(instructionView.getText().toString());
+            instructionView.setText("");
+            Insadapter.notifyDataSetChanged();
+        }
+    }
+
+    public void addIngredients(View v) {
+        EditText ingredientsView = (EditText) findViewById(R.id.ingredientsEntry);
+        if(!ingredientsView.getText().toString().trim().equals("")){
+            ingredientsAdded.add(ingredientsView.getText().toString());
+            ingredientsView.setText("");
+            Ingadapter.notifyDataSetChanged();
+        }
     }
 
     public void setImage(View view) {
@@ -166,11 +251,20 @@ public class addNewRecipe extends AppCompatActivity {
         ArrayList<String> missingFields = new ArrayList<String>();
         boolean flag = false;
 
+        if(instructionAdded.size()==0){
+            missingFields.add("Instructions");
+            flag=true;
+        }
+        if(ingredientsAdded.size()==0){
+            missingFields.add("Ingredients");
+            flag=true;
+        }
+
         while (iterator.hasNext()) {
             String key=(String)iterator.next();
             String value=(String)elements.get(key);
 
-            if (value.equals("")) {
+            if(value.equals("")){
                 flag = true;
                 missingFields.add(key);
             }
@@ -186,17 +280,25 @@ public class addNewRecipe extends AppCompatActivity {
         }
 
         else{
-            String [] ingredients = elements.get("Ingredients").split("\\.");
+            String[] ingredients = new String[ingredientsAdded.size()];
+            ingredients = ingredientsAdded.toArray(ingredients);
+
             String name = elements.get("Recipe Name") ;
             String serving = elements.get("Serving") ;
             String cook = elements.get("Cooking Time");
             String prep = elements.get("Preparation Time");
-            String instructions = elements.get("Instructions");
+            StringBuffer instructions = new StringBuffer();
+
+            for(int i=0;i<instructionAdded.size();i++){
+                instructions.append(instructionAdded.get(i)+" . ");
+            }
+
+
             String cuisine = elements.get("Cuisine");
             String type = elements.get("Type");
             String time = elements.get("Time");
 
-            addRecipe = new Addable(ingredients, name, serving, cook, prep, instructions, cuisine, type, time);
+            addRecipe = new Addable(ingredients, name, serving, cook, prep, instructions.toString(), cuisine, type, time);
         }
 
         return !flag;
@@ -213,10 +315,6 @@ public class addNewRecipe extends AppCompatActivity {
         StringMap.put("Cooking Time", cook);
         String serving = ((EditText) findViewById(R.id.servingEntry)).getText().toString();
         StringMap.put("Serving", serving);
-        String instructions = ((EditText) findViewById(R.id.instructionsEntry)).getText().toString();
-        StringMap.put("Instructions", instructions);
-        String ingredients = ((EditText) findViewById(R.id.ingredientsEntry)).getText().toString();
-        StringMap.put("Ingredients", ingredients);
         String type = "";
         String cuisine = "";
         String time = "";
@@ -248,9 +346,16 @@ public class addNewRecipe extends AppCompatActivity {
         StringMap.put("Type", type);
 
         if (checkIfNull(StringMap)) {
-            dataBase.addRecipe(addRecipe);
-            Toast.makeText(this, "Recipe added", Toast.LENGTH_LONG).show();
-
+            String succ = dataBase.addRecipe(addRecipe);
+            if(succ.equals("Success")){
+                Toast.makeText(this, "Recipe added", Toast.LENGTH_LONG).show();
+                finish();
+                Intent intent = new Intent (context,SingleRecipeResult.class);
+                ResultRecipe RR = dataBase.getSingleResult(StringMap.get("Recipe Name"));
+                intent.putExtra("RR",RR);
+                startActivity(intent);
+                dataBase.close();
+            }
         }
     }
 }

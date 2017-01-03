@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -54,8 +55,10 @@ public class Favorites_results extends AppCompatActivity {
                                     int position, long id) {
                 Intent intent = new Intent (context,SingleRecipeResult.class);
                 ResultRecipe RR = dataBase.getSingleResult(recipename[position]);
+                dataBase.close();
                 intent.putExtra("RR",RR);
                 startActivity(intent);
+                finish();
             }
         });
     }

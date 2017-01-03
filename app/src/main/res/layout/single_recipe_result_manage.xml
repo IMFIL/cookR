@@ -113,6 +113,42 @@
                     android:paddingTop="10dp" />
 
             </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="25dp">
+
+                <TextView
+                    android:text="Cuisine"
+                    android:layout_width="match_parent"
+                    android:id="@+id/cuisine"
+                    android:paddingBottom="1dp"
+                    android:textSize="16dp"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:layout_height="60dp" />
+
+                <TextView
+                    android:text="Type"
+                    android:layout_width="match_parent"
+                    android:id="@+id/type"
+                    android:textSize="16dp"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:layout_height="60dp" />
+
+                <TextView
+                    android:text="Time"
+                    android:layout_width="match_parent"
+                    android:id="@+id/time"
+                    android:paddingBottom="1dp"
+                    android:textSize="16dp"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:layout_height="60dp" />
+
+            </LinearLayout>
 
             <LinearLayout
                 android:orientation="horizontal"

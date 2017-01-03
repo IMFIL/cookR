@@ -1,17 +1,17 @@
 package com.uottawa.cookr;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by filipslatinac on 2016-12-03.
@@ -22,6 +22,7 @@ public class CategoriesResult extends AppCompatActivity{
     String [] els;
     DBhelper dataBase;
     Context context = this;
+    deletableAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,11 @@ public class CategoriesResult extends AppCompatActivity{
 
         els = categories.getStringArray("addedCats");
 
+        List<String> llist = Arrays.asList(els);
+        final ArrayList<String> elsList = new ArrayList<>(llist.size());
+        elsList.addAll(llist);
+
+
         Toolbar myToolbar = (Toolbar) findViewById(R.id.customToolBar);
         setSupportActionBar(myToolbar);
 
@@ -47,7 +53,7 @@ public class CategoriesResult extends AppCompatActivity{
 
         currentActionBar.setDisplayShowCustomEnabled(true);
 
-        CategoryAdapter adapter = new CategoryAdapter(this,els);
+        adapter = new deletableAdapter(this,elsList,25);
 
         ListView list = (ListView) findViewById(R.id.listOfCategories);
         list.setAdapter(adapter);
@@ -59,16 +65,22 @@ public class CategoriesResult extends AppCompatActivity{
 
                 if (position >= categories.getInt("CuisineSize")) {
                     dataBase.deleteCategory(els[position], "Type");
+                    elsList.remove(position);
+                    adapter.notifyDataSetChanged();
+
                 }
 
                 else {
                     dataBase.deleteCategory(els[position], "Cuisine");
+                    elsList.remove(position);
+                    adapter.notifyDataSetChanged();
+                    dataBase.close();
                 }
 
                 Toast.makeText(context,"Deleted Recipe", Toast.LENGTH_LONG).show();
 
-//                finish();
-//                startActivity(getIntent());
+
+
 
             }
         });

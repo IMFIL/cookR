@@ -88,6 +88,15 @@ public class SingleRecipeResultManage extends AppCompatActivity {
         TextView serving = (TextView) findViewById(R.id.serving);
         serving.setText(RR.getServing() + "\n Servings");
 
+        TextView cuisine = (TextView) findViewById(R.id.cuisine);
+        cuisine.setText("Cuisine\n " + RR.getCuisine());
+
+        TextView type = (TextView) findViewById(R.id.type);
+        type.setText("Type\n" +RR.getType());
+
+        TextView time = (TextView) findViewById(R.id.time);
+        time.setText(" Meal Time \n"+RR.getTime());
+
     }
 
     public void addToFavoriteClick(View view) {
@@ -109,6 +118,10 @@ public class SingleRecipeResultManage extends AppCompatActivity {
     public void deleteOnClick(View view) {
         dataBase.deleteAddedRecipe(id);
         Toast.makeText(this,"You deleted this recipe", Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(this, ManageRecipes.class);
+        startActivity(intent);
+        dataBase.close();
+        finish();
     }
 
     public void EditOnClick(View view) {
@@ -117,6 +130,7 @@ public class SingleRecipeResultManage extends AppCompatActivity {
         intent.putExtra("RR", RR);
         intent.putExtra("previousName", RR.getName());
         startActivity(intent);
+        finish();
 
     }
 

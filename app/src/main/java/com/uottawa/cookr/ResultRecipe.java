@@ -12,13 +12,17 @@ public class ResultRecipe implements Serializable {
     private String serving;
     private String cookingTime;
     private String prepTime;
+    private String type;
+    private String cuisine;
+    private String time;
     private String instructions;
     private int RecipeId;
 
     public ResultRecipe(String [] ingredients,
             String name, String serving,
             String cookingTime, String prepTime,
-            String instructions,int id){
+            String instructions,int id,String cuisine,
+            String time, String type ){
         this.ingredients = ingredients;
         this.name = name;
         this.serving = serving;
@@ -26,6 +30,9 @@ public class ResultRecipe implements Serializable {
         this.prepTime = prepTime;
         this.instructions = instructions;
         RecipeId = id;
+        this.cuisine = cuisine;
+        this.time = time;
+        this.type = type;
     }
 
 
@@ -56,4 +63,10 @@ public class ResultRecipe implements Serializable {
     public int getRecipeId(){
         return RecipeId;
     }
+
+    public String getType() {return type;}
+
+    public String getCuisine() {return cuisine;}
+
+    public String getTime() {return time;}
 }
