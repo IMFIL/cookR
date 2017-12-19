@@ -1,1 +1,1 @@
-Cookr is a Recipe finder aplication where one can enter a specific range of recipe related information to find the most relevant recipes. It was design as a course project but grew to be more than that. 
+Project: Website | Built in 2016  Fridge looks empty? Let's see if we can recommend a recipe with the available ingredients at your disposal.
